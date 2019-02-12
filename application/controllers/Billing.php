@@ -15,7 +15,12 @@
 			$phoneNumber 	= $this->input->post('phoneNumber');
 			$email 			= $this->input->post('email');
 			$company 		= $this->input->post('company');
-
+			$data['firstName'] = $firstName;
+			$data['lastName'] = $lastName;
+			$data['phoneNumber'] = $phoneNumber;
+			$data['email'] = $email;
+			$data['company'] = $company;
+			$this->load->view('billing/payment',$data);
 			
 		}
 		public function payment()

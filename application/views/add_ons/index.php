@@ -396,8 +396,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Payment Digital signage
-        
+        Blank page
+        <small>it all starts here</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -410,43 +410,11 @@
     <section class="content">
 
       <!-- Default box -->
-
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title"></h3>
-    
-              <?= form_open('billing/create'); ?>
-              <table>
-                <tr>
-                  <td>First Name</td>
-                  <td>:</td>
-                  <td><?= form_input('firstName', "", array('placeholder'=>'First Name')) ?></td>
-                </tr>
-                <tr>
-                  <td>Last Name</td>
-                  <td>:</td>
-                  <td><?= form_input('lastName', "", array('placeholder'=>'Last Name')) ?></td>
-                </tr>
-                <tr>
-                  <td>Phone Number</td>
-                  <td>:</td>
-                  <td><?= form_input('phoneNumber', "", array('placeholder'=>'Phone Number')) ?></td>
-                </tr>
-                <tr>
-                  <td>Email</td>
-                  <td>:</td>
-                  <td><?= form_input('email', "", array('placeholder'=>'Email')) ?></td>
-                </tr>
-                <tr>
-                  <td>Company</td>
-                  <td>:</td>
-                  <td><?= form_input('company', "", array('placeholder'=>'Company')) ?></td>
-                </tr>
-                <tr>
-                  <td><?= form_submit('submit','Kirim') ?></td>
-                </tr>
-              </table>
-              <?= form_close() ?>
+          <h3 class="box-title">Title</h3>
+
+
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                     title="Collapse">
@@ -456,7 +424,22 @@
           </div>
         </div>
         <div class="box-body">
-          Start creating your amazing application!
+          <div class="row">
+            <?php for ($i=0; $i < 10; $i++) { ?>
+            <div class="col-md-6">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Judulnya</h3>
+                </div>
+                <div class="panel-body">
+                  Deskripsinya ya Dek<br>
+                  <button class="btn btn-primary">Read More</button>
+                  <button class="btn btn-success">Add</button>
+                </div>
+              </div>
+            </div>
+            <?php } ?>
+          </div>
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
