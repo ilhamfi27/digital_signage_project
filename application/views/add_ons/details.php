@@ -21,7 +21,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        ADD ONS
+        DETAILS ADD ONS
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -36,39 +36,23 @@
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Title</h3>
-
-
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-                    title="Collapse">
-              <i class="fa fa-minus"></i></button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-              <i class="fa fa-times"></i></button>
-          </div>
+          <h3 class="box-title">Title <?= $id ?></h3>
         </div>
         <div class="box-body">
           <div class="row">
-            <?php
-            $id = 1; 
-            for ($i=0; $i < 10; $i++) { 
-            ?>
-            <div class="col-md-6">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h3 class="panel-title">Judulnya</h3>
-                </div>
-                <div class="panel-body">
-                  Deskripsinya ya Dek<br>
-                  <a href='<?= site_url() ?>add_ons/details/<?= $id ?>'><button class="btn btn-primary">Read More</button></a>
-                  <button class="btn btn-success">Add</button>
-                </div>
-              </div>
+            <div class="col-md-12">
+                <img src='<?= base_url() ?>storage/images/kucing.jpg' width='500'>
             </div>
-            <?php
-              $id++; 
-            } 
-            ?>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+                <p>sjhsdjgfhsdbchjdsgcuhecjkndiojiowionjkgwuiqgiowudopjscnxjkcbsugdioewhfioscsa</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+                <button class="btn btn-success pull-right">Add</button>
+            </div>
           </div>
         </div>
         <!-- /.box-body -->
