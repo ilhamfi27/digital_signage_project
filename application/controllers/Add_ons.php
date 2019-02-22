@@ -3,7 +3,7 @@
 /**
  * 
  */
-class Add_ons extends CI_Controller{
+class Add_ons extends Application_controller{
 	
 	function __construct(){
 		parent::__construct();

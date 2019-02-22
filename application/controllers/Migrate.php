@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Migrate extends CI_Controller {
+class Migrate extends Application_controller {
     public function __construct() {
         parent::__construct();
         $this->load->library('migration');

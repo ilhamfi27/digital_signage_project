@@ -1,6 +1,6 @@
 <?php 
 
-class Front_display extends CI_Controller{
+class Front_display extends Application_controller{
 	
 	function __construct()	{
 		parent::__construct();
