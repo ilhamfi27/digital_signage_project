@@ -3,7 +3,7 @@
 <head>
     <?= $template['head_resource'] ?>
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-red sidebar-mini">
     <div class="wrapper">
 
         <?= $template['navbar'] ?>
