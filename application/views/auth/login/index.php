@@ -11,16 +11,17 @@
     <!-- /.login-logo -->
     <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
-        <?= validation_errors() ?>
-        <form action="<?= site_url() ?>auth/login/create_session" method="post">
+        <?= form_open('auth/login/create_session'); ?>
             <div class="form-group has-feedback">
-                <input type="username" name="username" class="form-control" placeholder="Username">
+                <?= form_input('username', set_value('username'), ['class' => 'form-control', 'placeholder' => 'Username']) ?>
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
             </div>
+            <?= form_error('username') ?>
             <div class="form-group has-feedback">
-                <input type="password" name="password" class="form-control" placeholder="Password">
+                <?= form_password('password', set_value('password'), ['class' => 'form-control', 'placeholder' => 'Password']) ?>
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
+            <?= form_error('password') ?>
             <div class="row">
                 <div class="col-xs-8">
                     <div class="checkbox icheck">

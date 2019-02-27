@@ -7,6 +7,7 @@ class Login extends MY_Controller{
     public function __construct(){
         parent::__construct();
         $this->load->helper('view_partial');
+        $this->load->model('user_model', 'user');
     }
 
     public function index(){
@@ -17,17 +18,46 @@ class Login extends MY_Controller{
         $username = $this->input->post('username');
         $password = $this->input->post('password');
 
-        $this->form_validation->set_rules('username', 'Username', 'required');
-        $this->form_validation->set_rules('password', 'Password', 'required');
+        $this->form_validation->set_rules([
+            [
+                'field' => 'username',
+                'label' => 'Username',
+                'rules' => 'required|min_length[3]|max_length[30]|regex_match[/^[a-zA-Z0-9_.]+$/]'
+            ],
+            [
+                'field' => 'password',
+                'label' => 'Password',
+                'rules' => 'required|min_length[3]|max_length[40]'
+            ]
+        ]);
 
         if ($this->form_validation->run() === FALSE) {
             $this->load->view('auth/login/index');
         } else {
-            if ($username === "admin" && $password === "admin") {
-                redirect("dashboard/", "refresh");
+            $data = [
+                'username' => $username,
+                'password' => md5($password)
+            ];
+            $user = $this->user->user_existence_test($data);
+            $user_num = $user->num_rows();
+            $user_data = $user->get();
+            if ($user_num > 0) {
+                $this->session->set_userdata(
+                    [
+                        'username' => $username,
+                        'email' => $user_data->email,
+                        'level' => 'admin'
+                    ]
+                );
+                redirect('dashboard/','refresh');
             } else {
-                redirect("login/", "refresh");
+                $this->load->view('auth/login/index');
             }
         }
+    }
+
+    public function logout() {
+        $this->session->sess_destroy();
+        redirect("auth/login/");
     }
 }
