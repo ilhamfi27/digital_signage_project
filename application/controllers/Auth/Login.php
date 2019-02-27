@@ -3,9 +3,10 @@
  * 
  * 
  */
-class Login extends CI_Controller{
+class Login extends MY_Controller{
     public function __construct(){
         parent::__construct();
+        $this->load->helper('view_partial');
     }
 
     public function index(){
@@ -16,11 +17,17 @@ class Login extends CI_Controller{
         $username = $this->input->post('username');
         $password = $this->input->post('password');
 
-        if ($username === "sherli" && $password === "1234") {
-            redirect("add_ons/", "refresh");
+        $this->form_validation->set_rules('username', 'Username', 'required');
+        $this->form_validation->set_rules('password', 'Password', 'required');
+
+        if ($this->form_validation->run() === FALSE) {
+            $this->load->view('auth/login/index');
         } else {
-            redirect("login/", "refresh");
+            if ($username === "admin" && $password === "admin") {
+                redirect("dashboard/", "refresh");
+            } else {
+                redirect("login/", "refresh");
+            }
         }
     }
-
 }
