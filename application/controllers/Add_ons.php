@@ -3,7 +3,7 @@
 /**
  * 
  */
-class Add_ons extends Application_controller{
+class Add_ons extends MY_Controller{
 	
 	function __construct(){
 		parent::__construct();

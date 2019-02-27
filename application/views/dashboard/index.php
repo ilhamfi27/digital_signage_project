@@ -5,7 +5,6 @@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
-
         <?= stick_template("resources/admin_header") ?>
         <?= stick_template("resources/admin_sidebar") ?>
 
@@ -850,8 +849,6 @@
         <!-- /.content-wrapper -->
 
         <?= stick_template("resources/admin_footer") ?>
-
-
     </div>
     <!-- ./wrapper -->
     <?= stick_template("resources/admin_scripts") ?>

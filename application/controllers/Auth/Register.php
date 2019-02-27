@@ -3,7 +3,7 @@
  * 
  * 
  */
-class Register extends Application_controller{
+class Register extends MY_Controller{
     public function __construct(){
         parent::__construct();
     }

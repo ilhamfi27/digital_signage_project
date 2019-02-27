@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends Application_controller {
+class Welcome extends MY_Controller {
 	public function index(){
 		$this->load->view('welcome');
 	}

@@ -3,7 +3,7 @@
  * 
  * 
  */
-class Login extends Application_controller{
+class Login extends MY_Controller{
     public function __construct(){
         parent::__construct();
         $this->load->helper('view_partial');

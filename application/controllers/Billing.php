@@ -1,5 +1,5 @@
 <?php 
-	class Billing extends Application_controller{
+	class Billing extends MY_Controller{
 		
 		function __construct(){
 			parent::__construct();
