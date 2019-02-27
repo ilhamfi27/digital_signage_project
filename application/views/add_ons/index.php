@@ -59,7 +59,7 @@
                   <h3 class="panel-title">Judulnya</h3>
                 </div>
                 <div class="panel-body">
-                  Deskripsinya ya Dek<br>
+                  Deskripsinya<br>
                   <a href='<?= site_url() ?>add_ons/details/<?= $id ?>'><button class="btn btn-primary">Read More</button></a>
                   <button class="btn btn-success">Add</button>
                 </div>

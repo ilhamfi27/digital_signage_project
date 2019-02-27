@@ -16,8 +16,8 @@ class Login extends CI_Controller{
         $username = $this->input->post('username');
         $password = $this->input->post('password');
 
-        if ($username === "abcde" && $password === "1234") {
-            redirect("dashboard/", "refresh");
+        if ($username === "sherli" && $password === "1234") {
+            redirect("add_ons/", "refresh");
         } else {
             redirect("login/", "refresh");
         }
