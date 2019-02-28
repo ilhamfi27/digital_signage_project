@@ -51,8 +51,10 @@ class Dashboard extends MY_Controller {
         if ($this->form_validation->run() === FALSE) {
             $this->load->view('dashboard/user_profile');
         } else {
-            # code...
+            redirect('dashboard/user_profile');
         }
         
     }
+
+    
 }

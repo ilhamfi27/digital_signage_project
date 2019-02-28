@@ -17,7 +17,7 @@
   <!-- =============================================== -->
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper" style="float: left;">
+  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
@@ -27,70 +27,70 @@
 
     <!-- Main content -->
     <section class="content">
-
-      <div class="col-md-10 col-md-offset-1">
-        <div class="box">
-          <div class="box-body">
-            <div class="row">
-              <div class="col-md-3">
-                <img src="<?= base_url('storage/images/memo.jpg') ?>" class="img-responsive">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <div class="box">
+            <div class="box-body">
+              <div class="row">
+                <div class="col-md-3">
+                  <img src="<?= base_url('storage/images/memo.jpg') ?>" class="img-responsive">
+                </div>
+                <div class="col-md-9">
+                  <h2><?= $judul ?></h2>
+                  <span style="font-size: 30px; font-weight: 700; position: absolute; top: 10px; right: 20px;"><?=$harga?></span>
+                  <p style="font-size: 16px;">Creator : <?= $pembuat ?></p>
+                  <p style="font-size: 16px;">27 February 2019</p>
+                  <p style="font-size: 16px;">Rating</p>
+                  <button class="btn btn-success">BUY</button>
+                </div>
               </div>
-              <div class="col-md-9">
-                <h2><?= $judul ?></h2>
-                <span style="font-size: 30px; font-weight: 700; position: absolute; top: 10px; right: 20px;"><?=$harga?></span>
-                <p style="font-size: 16px;">Creator : <?= $pembuat ?></p>
-                <p style="font-size: 16px;">27 February 2019</p>
-                <p style="font-size: 16px;">Rating</p>
-                <button class="btn btn-success">BUY</button>
+              <div class="row">
+                <div class="col-md-12"> 
+                  <p align="justify"><?= $deskripsi?> </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <p style="font-size:20px" align="center">Sreenshoots</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <center>
+                  <img src="<?= base_url('storage/images/memo.jpg')?>" width="400px" height="300px">
+                  <P>Gambar 1</P>
+                  </center>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <nav aria-label="Page navigation" class="col-md-offset-4">
+                    <ul class="pagination">
+                      <li class="disabled">
+                        <a href="#" aria-label="Previous">
+                          <span aria-hidden="true">&laquo;</span>
+                        </a>
+                      </li>
+                      <li><a href="#">1</a></li>
+                      <li><a href="#">2</a></li>
+                      <li><a href="#">3</a></li>
+                      <li><a href="#">4</a></li>
+                      <li><a href="#">5</a></li>
+                      <li>
+                        <a href="#" aria-label="Next">
+                          <span aria-hidden="true">&raquo;</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
+                  <!-- end nav -->
+                </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-12"> 
-                <p align="justify"><?= $deskripsi?> </p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <p style="font-size:20px" align="center">Sreenshoots</p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <center>
-                <img src="<?= base_url('storage/images/memo.jpg')?>" width="400px" height="300px">
-                <P>Gambar 1</P>
-                </center>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <nav aria-label="Page navigation" class="col-md-offset-4">
-                  <ul class="pagination">
-                    <li class="disabled">
-                      <a href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                      </a>
-                    </li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li>
-                      <a href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
-                <!-- end nav -->
-              </div>
-            </div>
+            <!-- End Box Body -->
           </div>
-          <!-- End Box Body -->
         </div>
       </div>
-
     </section>
     <!-- /.content -->
   </div>

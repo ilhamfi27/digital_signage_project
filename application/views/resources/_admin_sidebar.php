@@ -36,7 +36,18 @@
                         <li><a href="#"><i class="fa fa-circle-o"></i> Add Ons</a></li>
                         <li><a href="#"><i class="fa fa-circle-o"></i> Installed Add On</a></li>
                         <li><a href="<?= base_url('add_ons/new_addon')?>"><i class="fa fa-circle-o"></i> New Add-on</a></li>
-
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-folder"></i> <span>Appearance</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="#"><i class="fa fa-circle-o"></i> Themes</a></li>
+                        <li><a href="<?= base_url('appearance/new_theme') ?>"><i class="fa fa-circle-o"></i> New Theme</a></li>
                     </ul>
                 </li>
             </ul>

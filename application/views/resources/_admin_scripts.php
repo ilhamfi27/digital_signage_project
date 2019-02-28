@@ -19,3 +19,8 @@
 <script src="<?= base_url() ?>assets/vendor/template_admin-lte/dist/js/pages/dashboard2.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?= base_url() ?>assets/vendor/template_admin-lte/dist/js/demo.js"></script>
+<script>
+  $(document).ready(function () {
+    $('.sidebar-menu').tree()
+  })
+</script>
