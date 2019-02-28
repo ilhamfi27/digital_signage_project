@@ -33,9 +33,9 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Add Ons</a></li>
+                        <li><a href="<?= site_url('add_ons/index') ?>"><i class="fa fa-circle-o"></i> Add Ons</a></li>
                         <li><a href="#"><i class="fa fa-circle-o"></i> Installed Add On</a></li>
-                        <li><a href="<?= base_url('add_ons/new_addon')?>"><i class="fa fa-circle-o"></i> New Add-on</a></li>
+                        <li><a href="<?= site_url('add_ons/new_addon')?>"><i class="fa fa-circle-o"></i> New Add-on</a></li>
                     </ul>
                 </li>
                 <li class="treeview">

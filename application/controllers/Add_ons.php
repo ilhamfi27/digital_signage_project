@@ -11,6 +11,13 @@ class Add_ons extends MY_Controller{
 	}
 	public function details($id=0){
 		$data['id'] = $id;
+		$data = [
+			'judul' => "Memo",
+			'deskripsi' => "Memo untuk menyimpan catatan kecil",
+			'harga' => "IDR 8000",
+			'kategori' => "Produktifitas",
+			'pembuat' => "Tim Lab SI"
+		];
 		$this->load->view('add_ons/details', $data);
 	}
 	public function new_addon(){
