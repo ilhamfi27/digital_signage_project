@@ -19,6 +19,14 @@
 <script src="<?= base_url() ?>assets/vendor/template_admin-lte/dist/js/pages/dashboard2.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?= base_url() ?>assets/vendor/template_admin-lte/dist/js/demo.js"></script>
+<!-- data tables -->
+<script src="<?= base_url() ?>assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="<?= base_url() ?>assets/vendor/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+<script type="text/javascript">
+	$("#installed-add-ons").dataTable();
+</script>
+
 <script>
   $(document).ready(function () {
     $('.sidebar-menu').tree()

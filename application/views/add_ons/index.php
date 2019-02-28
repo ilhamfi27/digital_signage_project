@@ -36,7 +36,7 @@
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Search for...">
             <span class="input-group-btn">
-              <button class="btn btn-default" type="button">Go!</button>
+              <button class="btn btn-default" type="button">Go</button>
             </span>
           </div><!-- /input-group -->
         </div><!-- /.col-lg-6 -->
@@ -59,7 +59,7 @@
                     </div>
                   </div>
                   <div class="row" style="margin-top: 10px;">
-                    <div class="col-md-4 col-md-offset-4"> 
+                    <div class="col-md-8 col-md-offset-4"> 
                       <a href='<?= site_url("add_ons/details"); ?>'><button class="btn btn-primary">Read More</button></a>
                       <button class="btn btn-success">Buy</button>
                     </div>
@@ -82,7 +82,7 @@
                     </div>
                   </div>
                   <div class="row" style="margin-top: 10px;">
-                    <div class="col-md-4 col-md-offset-4"> 
+                   <div class="col-md-8 col-md-offset-4"> 
                       <a href='<?= site_url("add_ons/details"); ?>'><button class="btn btn-primary">Read More</button></a>
                       <button class="btn btn-success">Buy</button>
                     </div>
@@ -107,7 +107,7 @@
                     </div>
                   </div>
                   <div class="row" style="margin-top: 10px;">
-                    <div class="col-md-4 col-md-offset-4"> 
+                    <div class="col-md-8 col-md-offset-4"> 
                       <a href='<?= site_url("add_ons/details"); ?>'><button class="btn btn-primary">Read More</button></a>
                       <button class="btn btn-success">Buy</button>
                     </div>
@@ -130,7 +130,7 @@
                     </div>
                   </div>
                   <div class="row" style="margin-top: 10px;">
-                    <div class="col-md-4 col-md-offset-4"> 
+                    <div class="col-md-8 col-md-offset-4"> 
                       <a href='<?= site_url("add_ons/details"); ?>'><button class="btn btn-primary">Read More</button></a>
                       <button class="btn btn-success">Buy</button>
                     </div>

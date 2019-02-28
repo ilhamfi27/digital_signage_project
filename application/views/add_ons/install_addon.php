@@ -32,24 +32,43 @@
           <div class="box">
             <div class="box-body">
               <div class="row">
-                <div class="col-md-3">
-                  <img src="<?= base_url('storage/images/memo.jpg') ?>" class="img-responsive">
-                </div>
-                <div class="col-md-9">
-                  <h2>Memo</h2>
-                  <span style="font-size: 30px; font-weight: 700; position: absolute; top: 10px; right: 20px;">$80</span>
-                  <p style="font-size: 16px;">Creator : sherli yualinda</p>
-                  <p style="font-size: 16px;">27 February 2019</p>
-                  <p style="font-size: 16px;">Rating</p>
-                  <button class="btn btn-success">BUY</button>
+                  <!-- <div class="col-lg-3 col-lg-offset-9">
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Search for...">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Go</button>
+                      </span>
+                    </div>
+                  </div> -->
+                  <div class="col-md-12">
+                    <table class="table table-responsive" id="installed-add-ons">
+                      <thead>
+                        <tr>
+                          <th>No</th>
+                          <th>Nama Add Ons</th>
+                          <th>Kategori</th>
+                          <th>Komentar</th>
+                          <th>Download</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php for($i = 0; $i < 23; $i++){ ?>
+                        <tr>
+                          <td><?= ($i + 1) ?></td>
+                          <td>
+                            <label>Memo</label><br>
+                            <img src="<?= base_url('storage/images/memo.jpg') ?>" width="150" height="150">
+                          </td>
+                          <td>Note Sehari-hari</td>
+                          <td>bagus sekali</td>
+                          <td>11 0rang</td>
+                        </tr>
+                        <?php } ?>
+                      </tbody>
+                    </table>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-md-12"> 
-                  <p align="justify">s of 2017, text messages are used by youth and adults for personal, family, business and social purposes. Governmental and non-governmental organizations use text messaging for communication between colleagues. In the 2010s, the sending of short informal messages has become an accepted part of many cultures, as happened earlier with emailing.[1] This makes texting a quick and easy way to communicate with friends, family and colleagues, including in contexts where a call would be impolite or inappropriate (e.g., calling very late at night or when one knows the other person is busy with family or work activities). Like e-mail and voicemail, and unlike calls (in which the caller hopes to speak directly with the recipient), texting does not require the caller and recipient to both be free at the same moment; this permits communication even between busy individuals. Text messages can also be used to interact with automated systems, for example, to order products or services from e-commerce websites, or to participate in online contests. Advertisers and service providers use direct text marketing to send messages to mobile users about promotions, payment due dates, and other notifications instead of using postal mail, email, or voicemail.</p>
-                </div>
-              </div>
-              <div class="row">
+              <!-- <div class="row">
                 <div class="col-md-12">
                   <nav aria-label="Page navigation" class="col-md-offset-4">
                     <ul class="pagination">
@@ -69,10 +88,10 @@
                         </a>
                       </li>
                     </ul>
-                  </nav>
+                  </nav> -->
                   <!-- end nav -->
-                </div>
-              </div>
+                <!-- </div>
+              </div> -->
             </div>
             <!-- End Box Body -->
           </div>
@@ -87,22 +106,6 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery 3 -->
-<script src="<?= base_url() ?>assets/vendor/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="<?= base_url() ?>assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- SlimScroll -->
-<script src="<?= base_url() ?>assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="<?= base_url() ?>assets/vendor/fastclick/lib/fastclick.js"></script>
-<!-- AdminLTE App -->
-<script src="<?= base_url() ?>assets/vendor/template_admin-lte/dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="<?= base_url() ?>assets/vendor/template_admin-lte/dist/js/demo.js"></script>
-<script>
-  $(document).ready(function () {
-    $('.sidebar-menu').tree()
-  })
-</script>
+<?= stick_template('resources/admin_scripts') ?>
 </body>
 </html>
