@@ -73,4 +73,7 @@ class Add_ons extends MY_Controller{
 		}
 
 	}
+	public function install_addon()	{
+		$this->load->view('add_ons/install_addon');
+	}
 }
