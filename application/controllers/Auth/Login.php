@@ -38,9 +38,9 @@ class Login extends MY_Controller{
                 'username' => $username,
                 'password' => md5($password)
             ];
-            $user = $this->user->user_existence_test($data);
+            $user = $this->user->user_existence($data);
             $user_num = $user->num_rows();
-            $user_data = $user->get();
+            $user_data = $user->row();
             if ($user_num > 0) {
                 $this->session->set_userdata(
                     [

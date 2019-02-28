@@ -5,7 +5,7 @@ class User_model extends CI_Model {
         parent::__construct();
     }
 
-    public function user_existence_test($data){
+    public function user_existence($data){
         $result = $this->db->get_where($this->table, $data);
         return $result;
     }
