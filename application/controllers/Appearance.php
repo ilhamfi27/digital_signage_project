@@ -34,7 +34,7 @@ class Appearance extends MY_Controller{
 			[
 				'field' => 'category',
 				'label'	=> 'Category',
-				'rules' => 'trim|required|min_length[4]'
+				'rules' => 'trim|required'
 			],
 			[
 				'field' => 'creator',
