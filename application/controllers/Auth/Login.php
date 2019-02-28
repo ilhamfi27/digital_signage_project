@@ -8,9 +8,11 @@ class Login extends MY_Controller{
         parent::__construct();
         $this->load->helper('view_partial');
         $this->load->model('user_model', 'user');
+        parent::session_needed_except(['test_aja', 'index', 'create_session']);
     }
 
     public function index(){
+        $this->has_session();
         $this->load->view('auth/login/index');
     }
     
@@ -44,9 +46,10 @@ class Login extends MY_Controller{
             if ($user_num > 0) {
                 $this->session->set_userdata(
                     [
-                        'username' => $username,
-                        'email' => $user_data->email,
-                        'level' => 'admin'
+                        'username'  => $username,
+                        'email'     => $user_data->email,
+                        'level'     => 'admin',
+                        'status'    => 'logged in'
                     ]
                 );
                 redirect('dashboard/','refresh');
@@ -59,5 +62,11 @@ class Login extends MY_Controller{
     public function logout() {
         $this->session->sess_destroy();
         redirect("auth/login/");
+    }
+
+    private function has_session() {
+        if ($this->session->status) {
+            redirect('dashboard/');
+        }
     }
 }

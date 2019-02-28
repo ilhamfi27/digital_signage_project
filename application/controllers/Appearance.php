@@ -7,7 +7,11 @@ class Appearance extends MY_Controller{
     public function __construct() {
         parent::__construct();
         $this->load->helper('view_partial');
-    }
+	}
+	
+	public function index()	{
+		$this->load->view('appearance/index');
+	}
 
     public function new_theme() {
         $this->load->view('appearance/new_theme');

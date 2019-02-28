@@ -2,6 +2,7 @@
 class Dashboard extends MY_Controller {
     public function __construct() {
         parent::__construct();
+        parent::session_needed_except();
         $this->load->helper('view_partial');
     }
 

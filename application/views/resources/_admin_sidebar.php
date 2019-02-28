@@ -46,7 +46,7 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Themes</a></li>
+                        <li><a href="<?= base_url('appearance/') ?>"><i class="fa fa-circle-o"></i> Themes</a></li>
                         <li><a href="<?= base_url('appearance/new_theme') ?>"><i class="fa fa-circle-o"></i> New Theme</a></li>
                     </ul>
                 </li>

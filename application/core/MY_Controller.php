@@ -3,11 +3,10 @@ class MY_Controller extends CI_Controller {
     public function __construct() {
         parent::__construct();
     }
-
-    protected function skip_session($methods = []){
+    protected function session_needed_except($methods = []) {
         $method_used = $this->router->fetch_method();
-        if ($this->session->userdata('user') && !in_array($methods,$method_used)) {
-            redirect("auth/login/", "refresh");
+        if (!$this->session->status && !in_array($method_used, $methods)) {
+            redirect('auth/login/', 'refresh');
         }
     }
 }
