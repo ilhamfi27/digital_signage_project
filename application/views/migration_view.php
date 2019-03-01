@@ -148,7 +148,8 @@
     <script>
         $(document).ready(function(){
             $("#migration-table").DataTable({
-                "pageLength": 5
+                "pageLength": 5,
+                "order": [[ 0, "desc" ]]
             });
         });
     </script>

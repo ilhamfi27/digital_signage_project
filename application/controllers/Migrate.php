@@ -13,7 +13,7 @@ class Migrate extends MY_Controller {
         } else {
             $migration_status = show_error($this->migration->error_string());
         }
-        $this->index($migration_status);;
+        $this->index($migration_status);    
     }
     
     public function index($migration_status = NULL) {

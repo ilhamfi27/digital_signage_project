@@ -29,7 +29,7 @@
                                         <div class="col-sm-1"></div>
                                         <label class="col-sm-2 control-label" for="username">Username</label>
                                         <div class="col-sm-6">
-                                            <input type='text' name='username' class='form-control' disabled>
+                                            <input type='text' name='username' class='form-control' value="<?= $this->session->username; ?>" disabled>
                                             <?= form_error('username') ?>
                                         </div>
                                     </div>
