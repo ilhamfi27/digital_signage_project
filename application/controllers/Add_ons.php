@@ -4,6 +4,7 @@ class Add_ons extends MY_Controller{
 	
 	function __construct(){
 		parent::__construct();
+        parent::session_needed_except();
 		$this->load->helper('view_partial');
 	}
 	public function index()	{

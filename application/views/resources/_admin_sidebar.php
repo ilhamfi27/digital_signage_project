@@ -54,6 +54,7 @@
                         <?php } ?>
                     </ul>
                 </li>
+                <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
             </ul>
         </section>
         <!-- /.sidebar -->

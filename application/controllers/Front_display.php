@@ -4,7 +4,8 @@ class Front_display extends MY_Controller{
 	
 	function __construct()	{
 		parent::__construct();
-			}
+        parent::session_needed_except();
+	}
 
 	public function index(){
 		$data['dropdown_data'] = array(
