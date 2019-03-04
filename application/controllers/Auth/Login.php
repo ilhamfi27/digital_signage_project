@@ -54,8 +54,7 @@ class Login extends MY_Controller{
                 );
                 redirect('dashboard/','refresh');
             } else {
-                echo "gagal";
-                // $this->load->view('auth/login/index');
+                $this->load->view('auth/login/index');
             }
         }
     }
