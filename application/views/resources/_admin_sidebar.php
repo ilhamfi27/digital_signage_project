@@ -7,7 +7,7 @@
                     <img src="<?= base_url() ?>assets/vendor/template_admin-lte/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>Alexander Pierce</p>
+                    <p><?= $this->session->username ?></p>
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>
@@ -35,7 +35,9 @@
                     <ul class="treeview-menu">
                         <li><a href="<?= site_url('add_ons/index') ?>"><i class="fa fa-circle-o"></i> Add Ons</a></li>
                         <li><a href="<?= site_url('add_ons/install_addon') ?>"><i class="fa fa-circle-o"></i> Installed Add On</a></li>
+                        <?php if($this->session->level === "admin"){ ?>
                         <li><a href="<?= site_url('add_ons/new_addon')?>"><i class="fa fa-circle-o"></i> New Add-on</a></li>
+                        <?php } ?>
                     </ul>
                 </li>
                 <li class="treeview">
@@ -47,7 +49,9 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="<?= base_url('appearance/') ?>"><i class="fa fa-circle-o"></i> Themes</a></li>
+                        <?php if($this->session->level === "admin"){ ?>
                         <li><a href="<?= base_url('appearance/new_theme') ?>"><i class="fa fa-circle-o"></i> New Theme</a></li>
+                        <?php } ?>
                     </ul>
                 </li>
                 <li class="treeview">

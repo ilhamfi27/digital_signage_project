@@ -10,4 +10,8 @@ class User_model extends CI_Model {
         return $result;
     }
 
+    public function insert_user($data) {
+        return $this->db->insert($this->table, $data);
+    }
+
 }

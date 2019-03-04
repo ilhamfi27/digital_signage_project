@@ -48,7 +48,7 @@ class Login extends MY_Controller{
                     [
                         'username'  => $username,
                         'email'     => $user_data->email,
-                        'level'     => 'admin',
+                        'level'     => $user_data->level,
                         'status'    => 'logged in'
                     ]
                 );

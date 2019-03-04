@@ -12,16 +12,14 @@
     <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
         <?= form_open('auth/login/create_session'); ?>
-            <div class="form-group has-feedback">
+            <div class="form-group">
                 <?= form_input('username', set_value('username'), ['class' => 'form-control', 'placeholder' => 'Username']) ?>
-                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                <?= form_error('username') ?>
             </div>
-            <?= form_error('username') ?>
-            <div class="form-group has-feedback">
-                <?= form_password('password', set_value('password'), ['class' => 'form-control', 'placeholder' => 'Password']) ?>
-                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            <div class="form-group">
+                <?= form_password('password', NULL, ['class' => 'form-control', 'placeholder' => 'Password']) ?>
+                <?= form_error('password') ?>
             </div>
-            <?= form_error('password') ?>
             <div class="row">
                 <div class="col-xs-8">
                     <div class="checkbox icheck">
@@ -36,7 +34,7 @@
                 </div>
                 <!-- /.col -->
             </div>
-        </form>
+        <?= form_close() ?>
 
         <a href="#">I forgot my password</a><br>
         <a href="<?= site_url('auth/register') ?>" class="text-center">Register a new membership</a>

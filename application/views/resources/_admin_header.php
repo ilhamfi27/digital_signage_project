@@ -105,7 +105,7 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="<?= base_url() ?>assets/vendor/template_admin-lte/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                        <span class="hidden-xs">Alexander Pierce</span>
+                        <span class="hidden-xs"><?= $this->session->username ?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
@@ -113,8 +113,7 @@
                             <img src="<?= base_url() ?>assets/vendor/template_admin-lte/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                             <p>
-                                Alexander Pierce - Web Developer
-                                <small>Member since Nov. 2012</small>
+                                <?= $this->session->username . " - ". ucfirst($this->session->level) ?>
                             </p>
                         </li>
                         <!-- Menu Body -->
