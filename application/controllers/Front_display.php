@@ -33,4 +33,7 @@ class Front_display extends MY_Controller{
 		
 
 	}
+	public function createLayout(){
+		$this->load->view('front_display/createLayout');
+	}
 }
