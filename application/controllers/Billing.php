@@ -3,6 +3,7 @@
 		
 		function __construct(){
 			parent::__construct();
+			parent::session_needed_except();
 			
 		}
 		public function index(){

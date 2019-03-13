@@ -67,7 +67,7 @@
                         <li><a href="<?= site_url('#')?>"><i class="fa fa-circle-o"></i> jhfyjg</a></li>
                     </ul>
                 </li>
-
+                <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
             </ul>
         </section>
         <!-- /.sidebar -->
