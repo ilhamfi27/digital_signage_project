@@ -38,7 +38,7 @@
                 <div class="col-md-9">
                   <h2><?= $judul ?></h2>
                   <span style="font-size: 30px; font-weight: 700; position: absolute; top: 10px; right: 20px;"><?=$harga?></span>
-                  <p style="font-size: 16px;">Creator : <?= $pembuat ?></p>
+                  <p style="font-size: 16px;">Creator :<a href=" <?= site_url('add_ons/detail_creator/lab_si')?>"> <?= $pembuat ?></p></a>
                   <p style="font-size: 16px;">27 February 2019</p>
                   <!-- <p style="font-size: 16px;">Rating</p> -->
                   <?php for ($i=0; $i < 5; $i++) { ?>

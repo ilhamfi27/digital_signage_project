@@ -37,6 +37,7 @@
                         <li><a href="<?= site_url('add_ons/install_addon') ?>"><i class="fa fa-circle-o"></i> Installed Add On</a></li>
                         <?php if($this->session->level === "admin"){ ?>
                         <li><a href="<?= site_url('add_ons/new_addon')?>"><i class="fa fa-circle-o"></i> New Add-on</a></li>
+                        <li><a href="<?= site_url('add_ons/new_creator') ?>"><i class="fa fa-circle-o"></i> New Creator</a></li>
                         <?php } ?>
                     </ul>
                 </li>

@@ -77,4 +77,16 @@ class Add_ons extends MY_Controller{
 	public function install_addon()	{
 		$this->load->view('add_ons/install_addon');
 	}
+	public function new_creator(){
+		$this->load->view('add_ons/newCreator');
+	}
+	public function create_creator(){
+		// $nama = this->input->post('nama');
+		// $tanggal_lahir = this->input->post('tanggal_lahir');
+		// $nama = this->input->post('nama');
+		redirect('add_ons/detail_creator/lab_si');
+	}
+	public function detail_creator($id){
+		$this->load->view('add_ons/detail_creator');
+	}
 }
