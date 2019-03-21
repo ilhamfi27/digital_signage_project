@@ -6,6 +6,10 @@ class Add_ons extends MY_Controller{
 		parent::__construct();
         parent::session_needed_except();
 		$this->load->helper('view_partial');
+		$this->load->model('add_on_model');
+		$config['upload_path'] = 'storage/images/add_ons/';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$this->load->library('upload',$config);
 	}
 	public function index()	{
 		$this->load->view('add_ons/index');
@@ -63,14 +67,21 @@ class Add_ons extends MY_Controller{
 		if ($this->form_validation->run() === FALSE) {
 			$this->load->view('add_ons/new_addon');
 		} else {
-			$data = [
-				'judul' => $judul,
-				'deskripsi' => $deskripsi,
-				'harga' => $harga,
-				'kategori' => $kategori,
-				'pembuat' => $pembuat
-			];
-			$this->load->view('add_ons/details', $data);
+			if (!$this->upload->do_upload('foto')){
+				echo $this->upload->display_errors();
+			}else{
+				$data = [
+					'judul' => $judul,
+					'deskripsi' => $deskripsi,
+					'harga' => $harga,
+					'kategori' => $kategori,
+					'pembuat' => $pembuat,
+					'foto' => $this->upload->data()['file_name'],
+					'screenshot' => 'xxx'
+				];
+				$this->add_on_model->insert_add_on($data);
+				redirect('add_ons/details');
+			}
 		}
 
 	}

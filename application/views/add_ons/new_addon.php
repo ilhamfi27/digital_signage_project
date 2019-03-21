@@ -48,8 +48,8 @@
             <div class="form-group">
               <label class="col-sm-2 control-label">Foto</label>
               <div class="col-sm-10">
-                <input type="file" name="screenshot">
-                <?= form_error('screenshot')?>
+                <input type="file" name="foto">
+                <?= form_error('foto')?>
               </div>
             </div>
 
