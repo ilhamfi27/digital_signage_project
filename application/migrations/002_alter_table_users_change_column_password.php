@@ -10,7 +10,8 @@ class Migration_alter_table_users_change_column_password extends CI_Migration {
             'password' => array(
                     'name' => 'password',
                     'type' => 'varchar',
-                    'constraint' => 255
+                    'constraint' => 255,
+                    'null' => FALSE
                 ),
             );
         $this->dbforge->modify_column('users', $fields);
@@ -21,7 +22,8 @@ class Migration_alter_table_users_change_column_password extends CI_Migration {
             'password' => array(
                     'name' => 'password',
                     'type' => 'varchar',
-                    'constraint' => 255
+                    'constraint' => 255,
+                    'null' => FALSE
                 ),
             );
         $this->dbforge->modify_column('users', $fields);

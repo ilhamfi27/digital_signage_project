@@ -521,3 +521,14 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
+
+
+/**
+ * ------------------------------------------------------------------------
+ * Create my Own Config
+ * ------------------------------------------------------------------------
+ * Config for allowed environment for send emails using SMTP
+ * Default environment if it's value is NULL or empty is production
+ * or staging
+ */
+$config['email_allowed_environment'] = array('production');

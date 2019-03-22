@@ -10,11 +10,11 @@
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
-        <p class="login-box-msg">Sign in to start your session</p>
+        <p class="login-box-msg"><?= $this->session->flashdata('registration_message') ?></p>
         <?= form_open('auth/login/create_session'); ?>
             <div class="form-group">
-                <?= form_input('username', set_value('username'), ['class' => 'form-control', 'placeholder' => 'Username']) ?>
-                <?= form_error('username') ?>
+                <?= form_input('user_auth', set_value('user_auth'), ['class' => 'form-control', 'placeholder' => 'Username or Email']) ?>
+                <?= form_error('user_auth') ?>
             </div>
             <div class="form-group">
                 <?= form_password('password', NULL, ['class' => 'form-control', 'placeholder' => 'Password']) ?>
