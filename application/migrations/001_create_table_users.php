@@ -11,19 +11,23 @@ class Migration_create_table_users extends CI_Migration {
                 'user_id' => [
                     'type' => 'INT',
                     'constraint' => 5,
-                    'auto_increment' => TRUE
+                    'auto_increment' => TRUE,
+                    'null' => FALSE
                 ],
                 'username' => [
                     'type' => 'varchar',
-                    'constraint' => 30
+                    'constraint' => 30,
+                    'null' => FALSE
                 ],
                 'email' => [
                     'type' => 'varchar',
-                    'constraint' => 255
+                    'constraint' => 255,
+                    'null' => FALSE
                 ],
                 'password' => [
-                    'type' => 'INT',
-                    'constraint' => 255
+                    'type' => 'varchar',
+                    'constraint' => 255,
+                    'null' => FALSE
                 ]
             ]
         );

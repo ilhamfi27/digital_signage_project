@@ -6,7 +6,6 @@
 class Login extends MY_Controller{
     public function __construct(){
         parent::__construct();
-        $this->load->helper('view_partial');
         $this->load->model('user_model', 'user');
         parent::session_needed_except(['test_aja', 'index', 'create_session']);
     }
@@ -17,13 +16,13 @@ class Login extends MY_Controller{
     }
     
     public function create_session(){
-        $username = $this->input->post('username');
+        $user_auth = $this->input->post('user_auth');
         $password = $this->input->post('password');
 
         $this->form_validation->set_rules([
             [
-                'field' => 'username',
-                'label' => 'Username',
+                'field' => 'user_auth',
+                'label' => 'Username or Email',
                 'rules' => 'required|min_length[3]|max_length[30]|regex_match[/^[a-zA-Z0-9_.]+$/]'
             ],
             [
@@ -37,7 +36,7 @@ class Login extends MY_Controller{
             $this->load->view('auth/login/index');
         } else {
             $data = [
-                'username' => $username,
+                'user_auth' => $user_auth,
                 'password' => md5($password)
             ];
             $user = $this->user->user_existence($data);
@@ -46,7 +45,7 @@ class Login extends MY_Controller{
             if ($user_num > 0) {
                 $this->session->set_userdata(
                     [
-                        'username'  => $username,
+                        'username'  => $user_data->username,
                         'email'     => $user_data->email,
                         'level'     => $user_data->level,
                         'status'    => 'logged in'
