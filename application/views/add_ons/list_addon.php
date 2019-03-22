@@ -53,6 +53,7 @@
                   <th>Harga</th>
                   <th>Kategori</th>
                   <th>Pembuat</th>
+                  <th>Keterangan</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -74,7 +75,7 @@
                         <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                       </button>
                     </a>
-                    <a href="<?php echo site_url('add_ons/edit/' . $row->id); ?>">
+                    <a href="<?php echo site_url('add_ons/edit_add_on/' . $row->id); ?>">
                       <button class="btn btn-primary">
                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                       </button>

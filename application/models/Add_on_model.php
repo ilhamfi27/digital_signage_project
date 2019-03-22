@@ -1,7 +1,7 @@
 <?php  
 	
 	class Add_on_model extends CI_Model{
-		private $table ="addon";
+		private $table ="add_ons";
 		public function __construct(){
 			parent::__construct();
 		}
@@ -16,7 +16,7 @@
 			return $this->db->affected_rows();
 		}
 		public function all(){
-        return $this->db->get($add_ons);
+        return $this->db->get('add_ons');
     	}
     	public function details($id){
     		return $this->db->get_where($this->table,$id);	

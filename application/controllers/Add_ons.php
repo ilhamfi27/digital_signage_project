@@ -88,13 +88,12 @@ class Add_ons extends MY_Controller{
 	}
 	public function delete_add_on($data){
 		$where = array('id'=>$data);
-		$this->delete_add_on->where($where);
-		redirect('add_ons/index');
+		$this->add_on_model->delete_add_on($where);
+		redirect('add_ons/list_addon');
 	}
 	public function edit_add_on($id){
 		$where = array('id'=>$id);
-		$data['addon']=$this->Add_on_model->details($where)->result();
-		$this->resource_views();
+		$data['addon']=$this->add_on_model->details($where)->result();
 		$this->load->view('add_ons/edit_add_on',$data);
 	}
 	public function update_add_on(){
@@ -135,6 +134,7 @@ class Add_ons extends MY_Controller{
 		$this->load->view('add_ons/detail_creator');
 	}
 	public function list_addon(){
-		$this->load->view('add_ons/list_addon');
+		$data['addon'] = $this->add_on_model->all()->result();
+		$this->load->view('add_ons/list_addon',$data);
 	}
 }
