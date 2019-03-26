@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,22 +38,62 @@
             <div class="col-md-12">
               <div class="panel panel-default">
                 <div class="panel-heading">
-                  <center><h2 class="panel-title"><b>WELCOME TO THE DIGITAL SIGNAGE APPLICATION</b></h2>
+                  <center><h2 class="panel-title"><b>Add Content</b></h2>
                 </div>
                 <div class="panel-body">
                   <div class="row">
-                    <div class="col-md-12">
-                      <center><img src="<?= base_url('storage/images/logo.png') ?>" width="300" height="300"><br>
+                    <div class="col-md-4">
+                      <div class 
                     </div>
                   </div>
                   <div class="row">
                   	 <div class="col-md-12">
-                       <p align="center"><font size="3">Input Content<br></font><br>Enter Content to Fill in Your Screens</p>
+                      <?= form_open_multipart('front_display/inputContent')?>
+                        <table>
+                        <tr>
+                          <td>ID</td>
+                          <td>:</td>
+                          <td><?= form_input('id')?></td>
+                        </tr>
+                         <tr>
+                           <td>Subject</td>
+                           <td>:</td>
+                           <td><?= form_input('subject')?></td>
+                         </tr>
+                         <tr>
+                           <td>Description</td>
+                           <td>:</td>
+                           <td><?= form_input('description')?></td>
+                         </tr>
+                         <tr>
+                           <td>Date</td>
+                           <td>:</td>
+                           <td><input type="date" name="date"></td> 
+                         </tr>
+                         <tr>
+                           <td>Image/video</td>
+                           <td>:</td>
+                           <td><input type="file" name="image"></td>
+                         </tr>
+                         <tr>
+                           <td>Category</td>
+                           <td>:</td>
+                           <td>
+                              <select name="category">
+                                <option value="iklan">Iklan</option>
+                                <option value="umum">Umum</option>
+                              </select>
+                           </td>
+                         </tr>
+                       </table>
+                      <center><a href='<?= site_url("front_display/munculcontent"); ?>'><?= form_submit('ok','CREATE CONTENT', 'class="btn btn-primary"')?></a>
+                      <?= form_close()?>
+                       
                   	 </div>
                   </div>
                    <div class="row" style="margin-top: 10px;">
                     <div class="col-md-12"> 
-                      <center><a href='<?= base_url("front_display/input"); ?>'><button class="btn btn-primary">Enter Content</button></a>
+                      <!-- <center><a href='<?= site_url("front_display/munculcontent"); ?>'><button class="btn btn-primary">CREATE CONTENT</button></a> -->
                     </div>
                   </div>
                 </div>

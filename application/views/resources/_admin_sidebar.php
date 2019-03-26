@@ -63,7 +63,7 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="<?= site_url('front_display/content') ?>"><i class="fa fa-circle-o"></i> Front Display</a></li>
+                        <li><a href="<?= site_url('front_display/index') ?>"><i class="fa fa-circle-o"></i> Front Display</a></li>
                         <li><a href="<?= site_url('#') ?>"><i class="fa fa-circle-o"></i> hgjugkj</a></li>
                         <li><a href="<?= site_url('#')?>"><i class="fa fa-circle-o"></i> jhfyjg</a></li>
                     </ul>

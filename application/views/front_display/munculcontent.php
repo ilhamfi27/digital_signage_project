@@ -38,7 +38,7 @@
             <div class="col-md-12">
               <div class="panel panel-default">
                 <div class="panel-heading">
-                  <center><h2 class="panel-title"><b>Add Layout</b></h2>
+                  <center><h2 class="panel-title"><b>Add Content</b></h2>
                 </div>
                 <div class="panel-body">
                   <div class="row">
@@ -47,15 +47,34 @@
                     </div>
                   </div>
                   <div class="row">
-                  	 <div class="col-md-12">
-                       <p align="center"><font size="3">Edit Layout</font><br>Create or edit adaptive layouts for your screens<br>add widgets and divide your screens into areas.</p>
-                  	 </div>
+                  	<table border="1">
+						<tr>
+							<td>Id</td>
+							<td>subject</td>
+							<td>description</td>
+							<td>image</td>
+							<td>date</td>
+							<td>category</td>
+							<td>Aksi</td>
+						</tr>
+						<?php foreach ($content as $s) {?>
+						<tr>
+							<td><?php echo $s->id; ?></td>
+							<td><?php echo $s->subject; ?></td>
+							<td><?php echo $s->description; ?></td>
+							<td><?php echo $s->image; ?></td>
+							<td><?php echo $s->date; ?></td>
+							<td><?php echo $s->category; ?></td>
+							<td>
+								<?php echo anchor('front_display/editcontent/'.$s->id,'Update')?> ||
+								<?php echo anchor('front_display/hapuscontent/'.$s->id,'Hapus')?>
+							</td>
+						</tr>
+						<?php }?>
+					</table>
+					<?php echo anchor('front_display/input','Tambah'); ?>
                   </div>
                    <div class="row" style="margin-top: 10px;">
-                    <div class="col-md-12"> 
-                      <center><a href='<?= site_url("#"); ?>'><button class="btn btn-primary">CREATE LAYOUT</button></a>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
