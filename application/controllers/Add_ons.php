@@ -12,7 +12,8 @@ class Add_ons extends MY_Controller{
 		$this->load->library('upload',$config);
 	}
 	public function index()	{
-		$this->load->view('add_ons/index');
+		$data['addon'] = $this->add_on_model->all()->result();
+		$this->load->view('add_ons/index',$data);
 	}
 	public function details($id=0){
 		$data['id'] = $id;
@@ -85,6 +86,38 @@ class Add_ons extends MY_Controller{
 		}
 
 	}
+	public function delete_add_on($data){
+		$where = array('id'=>$data);
+		$this->add_on_model->delete_add_on($where);
+		redirect('add_ons/list_addon');
+	}
+	public function edit_add_on($id){
+		$where = array('id'=>$id);
+		$data['addon']=$this->add_on_model->details($where)->result();
+		$this->load->view('add_ons/edit_add_on',$data);
+	}
+	public function update_add_on(){
+		$id = $this->iput->post('id');
+		$foto = $this->iput->post('foto');
+		$judul = $this->iput->post('judul');
+		$deskripsi = $this->iput->post('deskripsi');
+		$kategori = $this->iput->post('kategori');
+		$pembuat = $this->iput->post('pembuat');
+		$screenshot = $this->iput->post('screenshot');
+	
+		$data = array(
+			'foto'=>$foto,
+			'judul'=>$judul,
+			'deskripsi'=>$deskripsi,
+			'kategori'=>$kategori,
+			'pembuat'=>$pembuat,
+			'screenshot'=>$screenshot
+		);
+		$where = array(
+			'id'=>$id
+		);
+
+	}
 	public function install_addon()	{
 		$this->load->view('add_ons/install_addon');
 	}
@@ -99,5 +132,9 @@ class Add_ons extends MY_Controller{
 	}
 	public function detail_creator($id){
 		$this->load->view('add_ons/detail_creator');
+	}
+	public function list_addon(){
+		$data['addon'] = $this->add_on_model->all()->result();
+		$this->load->view('add_ons/list_addon',$data);
 	}
 }
