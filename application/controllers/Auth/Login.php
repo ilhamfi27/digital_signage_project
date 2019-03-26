@@ -23,7 +23,7 @@ class Login extends MY_Controller{
             [
                 'field' => 'user_auth',
                 'label' => 'Username or Email',
-                'rules' => 'required|min_length[3]|max_length[30]|regex_match[/^[a-zA-Z0-9_.]+$/]'
+                'rules' => 'required|min_length[3]|max_length[30]|regex_match[/^[a-zA-Z0-9_.@]+$/]'
             ],
             [
                 'field' => 'password',
@@ -45,8 +45,8 @@ class Login extends MY_Controller{
             if ($user_num > 0) {
                 $this->session->set_userdata(
                     [
+                        'id'        => $user_data->user_id,
                         'username'  => $user_data->username,
-                        'email'     => $user_data->email,
                         'level'     => $user_data->level,
                         'status'    => 'logged in'
                     ]

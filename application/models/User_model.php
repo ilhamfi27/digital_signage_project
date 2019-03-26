@@ -6,13 +6,25 @@ class User_model extends CI_Model {
     }
 
     public function user_existence($data){
-        $result = $this->db->get_where($this->table, $data);
-        return $result;
+        $sql = "
+            SELECT 
+                * 
+            FROM 
+                `users` 
+            WHERE 
+                (`username` = ? 
+                OR `email` = ?)
+                AND `password` = ?
+        ";
+        return $this->db->query($sql, [
+            $data['user_auth'],
+            $data['user_auth'],
+            $data['password']
+        ]);
     }
 
     public function insert_user($data) {
         $this->db->insert($this->table, $data);
         return $this->db->insert_id();
     }
-
 }
