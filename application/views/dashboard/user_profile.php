@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <?= stick_template("resources/meta") ?>
+    <?= $page_resource['meta'] ?>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
-        <?= stick_template("resources/admin_header") ?>
-        <?= stick_template("resources/admin_sidebar") ?>
+        <?= $page_resource['admin_header'] ?>
+        <?= $page_resource['admin_sidebar'] ?>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -24,53 +24,65 @@
                         <div class="box">
                             <!-- /.box-header -->
                             <div class="box-body">
-                                <?= form_open('',['class' => 'form-horizontal']) ?>
+                                <?= form_open_multipart('dashboard/insert_data_user',['class' => 'form-horizontal']) ?>
                                     <div class="form-group">
-                                        <div class="col-sm-1"></div>
-                                        <label class="col-sm-2 control-label" for="username">Username</label>
+                                        <label class="col-sm-2 col-sm-offset-1 control-label" for="username">Username</label>
                                         <div class="col-sm-6">
                                             <input type='text' name='username' class='form-control' value="<?= $this->session->username; ?>" disabled>
                                             <?= form_error('username') ?>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="col-sm-1"></div>
-                                        <label class="col-sm-2 control-label" for="first_name">First Name</label>
+                                        <label class="col-sm-2 col-sm-offset-1 control-label" for="first_name">First Name</label>
                                         <div class="col-sm-6">
-                                            <input type='text' name='first_name' class='form-control' id='first_name'>
+                                            <input type='text' name='first_name' class='form-control' id='first_name' value="<?= $user_data->first_name ?>">
                                             <?= form_error('first_name') ?>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="col-sm-1"></div>
-                                        <label class="col-sm-2 control-label" for="last_name">Last Name</label>
+                                        <label class="col-sm-2 col-sm-offset-1 control-label" for="last_name">Last Name</label>
                                         <div class="col-sm-6">
-                                            <input type='text' name='last_name' class='form-control' id='last_name'>
+                                            <input type='text' name='last_name' class='form-control' id='last_name' value="<?= $user_data->last_name ?>">
                                             <?= form_error('last_name') ?>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="col-sm-1"></div>
-                                        <label class="col-sm-2 control-label" for="birth_date">Birth Date</label>
+                                        <label class="col-sm-2 col-sm-offset-1 control-label" for="birth_date">Birth Date</label>
                                         <div class="col-sm-6">
-                                            <input type="date" class="form-control" name="birth_date" id="birth_date">
+                                            <input type="date" class="form-control" name="birth_date" id="birth_date" value="<?= $user_data->birth_date ?>">
                                             <?= form_error('birth_date') ?>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="col-sm-1"></div>
-                                        <label class="col-sm-2 control-label" for="email">Email</label>
+                                        <label class="col-sm-2 col-sm-offset-1 control-label" for="gender">Gender</label>
                                         <div class="col-sm-6">
-                                            <input type="email" class="form-control" name="email" id="email">
-                                            <?= form_error('email') ?>
+                                            <label class="radion-inline">
+                                                <input type="radio" name="gender" id="gender" value="m" <?= $user_data->gender == "m" ? "checked" : ""; ?>>
+                                                Male
+                                            </label>
+                                            <label class="radion-inline">
+                                                <input type="radio" name="gender" id="gender" value="f"<?= $user_data->gender == "f" ? "checked" : ""; ?>>
+                                                Female
+                                            </label>
+                                            <?= form_error('gender') ?>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="col-sm-1"></div>
-                                        <label class="col-sm-2 control-label" for="photo">Photo</label>
+                                        <label class="col-sm-2 col-sm-offset-1 control-label" for="photo">Photo</label>
                                         <div class="col-sm-6">
-                                            <input type="file" name="photo" id="photo">
-                                            <?= form_error('photo') ?>
+                                            <input type="file" name="photo" id="photo" accept="image/x-png,image/gif,image/jpeg">
+                                            <!-- <input type="hidden" name="existing_photo" value="<?// $user_data->avatar ?>"> -->
+                                            <?= $this->session->flashdata('photo_error') ?>
+                                            <img src="<?= base_url("storage/images/user_avatar/" . $user_data->avatar) ?>" alt="User Avatar" width="200">
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 col-sm-offset-1 control-label" for="password_verification">Password Verification</label>
+                                        <div class="col-sm-6">
+                                            <input type='password' name='password_verification' class='form-control' id='password_verification'>
+                                            <?= form_error('password_verification') ?>
+                                            <?= NULL !== $this->session->flashdata('password_verification_wrong') ? $this->session->flashdata('password_verification_wrong') : NULL; ?>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -93,9 +105,9 @@
         </div>
         <!-- /.content-wrapper -->
 
-        <?= stick_template("resources/admin_footer") ?>
+        <?= $page_resource['admin_footer'] ?>
     </div>
     <!-- ./wrapper -->
-    <?= stick_template("resources/admin_scripts") ?>
+    <?= $page_resource['admin_scripts'] ?>
 </body>
 </html>

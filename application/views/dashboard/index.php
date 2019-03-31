@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <?= stick_template("resources/meta") ?>
+    <?= $page_resource['meta'] ?>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
-        <?= stick_template("resources/admin_header") ?>
-        <?= stick_template("resources/admin_sidebar") ?>
+        <?= $page_resource['admin_header'] ?>
+        <?= $page_resource['admin_sidebar'] ?>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -848,9 +848,9 @@
         </div>
         <!-- /.content-wrapper -->
 
-        <?= stick_template("resources/admin_footer") ?>
+        <?= $page_resource['admin_footer'] ?>
     </div>
     <!-- ./wrapper -->
-    <?= stick_template("resources/admin_scripts") ?>
+    <?= $page_resource['admin_scripts'] ?>
 </body>
 </html>

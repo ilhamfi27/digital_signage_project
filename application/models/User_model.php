@@ -5,6 +5,10 @@ class User_model extends CI_Model {
         parent::__construct();
     }
 
+    public function detail($id){
+        return $this->db->get_where($this->table, ['user_id' => $id]);
+    }
+
     public function user_existence($data){
         $sql = "
             SELECT 
@@ -23,7 +27,7 @@ class User_model extends CI_Model {
         ]);
     }
 
-    public function insert_user($data) {
+    public function insert($data) {
         $this->db->insert($this->table, $data);
         return $this->db->insert_id();
     }
