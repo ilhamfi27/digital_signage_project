@@ -32,8 +32,19 @@ class MY_Controller extends CI_Controller {
     }
 
     protected function page_resources($add_data = NULL){
-        $this->load->model("user_model", "user_m");
-        $data['user_data'] = $this->user_data_m->detail($this->session->id)->row();
+        $this->load->model("user_data_model");
+        $this->load->model("user_model");
+
+        $user_identity = $this->user_data_model->detail($this->session->id)->row();
+        $user_base_data = $this->user_model->detail($this->session->id)->row();
+
+        $public_identity = !empty($user_identity) ? $user_identity->first_name . " " . $user_identity->last_name : $user_base_data->username;
+        $profile = [
+            'joined' => $user_base_data->verification_sent_date,
+            'public_identity' => $public_identity,
+            'avatar' => !empty($user_identity) ? $user_identity->avatar : NULL
+        ];
+        $data['user_data'] = (object) $profile;
         $data['app_data'] = $add_data;
         return [
             'meta' => $this->load->view('resources/_meta', NULL, TRUE),

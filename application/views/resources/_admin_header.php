@@ -105,7 +105,7 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="<?= base_url('storage/images/user_avatar/' . $user_data->avatar) ?>" class="user-image" alt="User Image">
-                        <span class="hidden-xs"><?= $this->session->username ?></span>
+                        <span class="hidden-xs"><?= $user_data->public_identity ?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
@@ -113,7 +113,8 @@
                             <img src="<?= base_url('storage/images/user_avatar/' . $user_data->avatar) ?>" class="img-circle" alt="User Image">
 
                             <p>
-                                <?= $this->session->username . " - ". ucfirst($this->session->level) ?>
+                                <?= $user_data->public_identity . " - ". ucfirst($this->session->level) ?>
+                                <small>Joined since <?= date("d M Y", strtotime($user_data->joined)) ?></small>
                             </p>
                         </li>
                         <!-- Menu Body -->

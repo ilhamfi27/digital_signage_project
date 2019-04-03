@@ -7,7 +7,7 @@
                 <img src="<?= base_url('storage/images/user_avatar/' . $user_data->avatar) ?>" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p><?= $this->session->username ?></p>
+                <p><?= $user_data->public_identity ?></p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>

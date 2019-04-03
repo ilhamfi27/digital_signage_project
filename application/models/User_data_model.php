@@ -6,7 +6,7 @@ class User_data_model extends CI_Model {
     }
 
     public function detail($id){
-        return $this->db->get($this->table);
+        return $this->db->get_where($this->table, ['user_id' => $id]);
     }
 
     public function insert($data) {
