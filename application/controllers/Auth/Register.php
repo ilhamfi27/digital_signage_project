@@ -9,6 +9,7 @@ class Register extends MY_Controller{
         parent::__construct();
         // $this->load->library('email_handler');
         $this->load->model('user_model', 'user_m');
+        $this->load->model('user_data_model', 'user_data_m');
     }
 
     public function index() {
@@ -30,7 +31,7 @@ class Register extends MY_Controller{
             [
                 'field' => 'email',
                 'label' => 'Email',
-                'rules' => 'trim|required|min_length[3]|max_length[30]'
+                'rules' => 'trim|required|min_length[3]|max_length[30]|regex_match[/^[a-zA-Z0-9_.@]+$/]'
             ],
             [
                 'field' => 'password',
@@ -39,7 +40,7 @@ class Register extends MY_Controller{
             ],
             [
                 'field' => 'confirm_password',
-                'label' => 'Retype password',
+                'label' => 'Confirm Password',
                 'rules' => 'trim|required|min_length[6]|max_length[30]|matches[password]'
             ]
         ]);
@@ -54,7 +55,8 @@ class Register extends MY_Controller{
                 // 'verification_code' => $this->activation_code,
                 // 'verification_sent_date' => parent::local_timestamp()
             ];
-            $user_id = $this->user_m->insert_user($data);
+            $user_id = $this->user_m->insert($data);
+            $this->user_data_m->insert(['user_id' => $user_id]);
             redirect("auth/login/");
         }
     }
