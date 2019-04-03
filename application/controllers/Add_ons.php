@@ -1,5 +1,4 @@
 <?php 
-
 class Add_ons extends MY_Controller{
 	
 	function __construct(){
@@ -12,10 +11,13 @@ class Add_ons extends MY_Controller{
 		$this->load->library('upload',$config);
 	}
 	public function index()	{
+        $data['page_resource'] = parent::page_resources();
 		$data['addon'] = $this->add_on_model->all()->result();
 		$this->load->view('add_ons/index',$data);
 	}
 	public function details($id=0){
+
+        $data['page_resource'] = parent::page_resources();
 		$data['id'] = $id;
 		$data = [
 			'judul' => "Memo",
@@ -27,9 +29,12 @@ class Add_ons extends MY_Controller{
 		$this->load->view('add_ons/details', $data);
 	}
 	public function new_addon(){
-		$this->load->view('add_ons/new_addon');
+        $data['page_resource'] = parent::page_resources();
+		$this->load->view('add_ons/new_addon',$data);
 	}
 	public function insert_add_on(){
+
+        $data['page_resource'] = parent::page_resources();
 		$judul 		= $this->input->post('judul');
 		$deskripsi 	= $this->input->post('deskripsi');
 		$harga 		= $this->input->post('harga');
@@ -81,10 +86,9 @@ class Add_ons extends MY_Controller{
 					'screenshot' => 'xxx'
 				];
 				$this->add_on_model->insert_add_on($data);
-				redirect('add_ons/details');
+				redirect('add_ons/list_addon');
 			}
 		}
-
 	}
 	public function delete_add_on($data){
 		$where = array('id'=>$data);
@@ -92,18 +96,20 @@ class Add_ons extends MY_Controller{
 		redirect('add_ons/list_addon');
 	}
 	public function edit_add_on($id){
+        $data['page_resource'] = parent::page_resources();
 		$where = array('id'=>$id);
-		$data['addon']=$this->add_on_model->details($where)->result();
-		$this->load->view('add_ons/edit_add_on',$data);
+		$data['addon']=$this->add_on_model->details($where)->row();
+		$this->load->view('add_ons/edit_addon',$data);
 	}
 	public function update_add_on(){
-		$id = $this->iput->post('id');
-		$foto = $this->iput->post('foto');
-		$judul = $this->iput->post('judul');
-		$deskripsi = $this->iput->post('deskripsi');
-		$kategori = $this->iput->post('kategori');
-		$pembuat = $this->iput->post('pembuat');
-		$screenshot = $this->iput->post('screenshot');
+		$id = $this->input->post('id');
+		$foto = $this->input->post('foto');
+		$judul = $this->input->post('judul');
+		$deskripsi = $this->input->post('deskripsi');
+		$kategori = $this->input->post('kategori');
+		$pembuat = $this->input->post('pembuat');
+		$harga = $this->input->post('harga');
+		$screenshot = $this->input->post('screenshot');
 	
 		$data = array(
 			'foto'=>$foto,
@@ -111,17 +117,21 @@ class Add_ons extends MY_Controller{
 			'deskripsi'=>$deskripsi,
 			'kategori'=>$kategori,
 			'pembuat'=>$pembuat,
+			'harga'=>$harga,
 			'screenshot'=>$screenshot
 		);
-		$where = array(
-			'id'=>$id
-		);
+		$this->add_on_model->update($data,$id);
+		redirect('add_ons/list_addon');
 
 	}
 	public function install_addon()	{
+
+        $data['page_resource'] = parent::page_resources();
 		$this->load->view('add_ons/install_addon');
 	}
 	public function new_creator(){
+
+        $data['page_resource'] = parent::page_resources();
 		$this->load->view('add_ons/newCreator');
 	}
 	public function create_creator(){
@@ -131,9 +141,13 @@ class Add_ons extends MY_Controller{
 		redirect('add_ons/detail_creator/lab_si');
 	}
 	public function detail_creator($id){
+
+        $data['page_resource'] = parent::page_resources();
 		$this->load->view('add_ons/detail_creator');
 	}
 	public function list_addon(){
+
+        $data['page_resource'] = parent::page_resources();
 		$data['addon'] = $this->add_on_model->all()->result();
 		$this->load->view('add_ons/list_addon',$data);
 	}

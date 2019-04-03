@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <?= stick_template('resources/meta'); ?>
+  <?= $page_resource['meta'] ?>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
 <div class="wrapper">
 
-  <?= stick_template('resources/admin_header') ?>
+  <?= $page_resource['admin_header'] ?>
 
   <!-- =============================================== -->
 
   <!-- Left side column. contains the sidebar -->
-  <?= stick_template('resources/admin_sidebar') ?>
+  <?= $page_resource['admin_sidebar'] ?>
 
   <!-- =============================================== -->
 
@@ -21,7 +21,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        NEW ADD ONS
+        EDIT ADD ONS
       </h1>
     </section>
 
@@ -32,15 +32,16 @@
       <div class="box">
         <div class="box-header with-border">
           <center>
-            <p style="font-size: 25px">Input New Add On</p>
+            <p style="font-size: 25px">Edit Add On</p>
           </center>
         </div>
         <div class="box-body">
-          <?= form_open_multipart('add_ons/insert_add_on',['class' => 'form-horizontal']) ?>
+          <?= form_open_multipart('add_ons/update_add_on',['class' => 'form-horizontal']) ?>
+          <input type="hidden" name="id" value="<?= $addon->id ?>">
             <div class="form-group">
               <label class="col-sm-2 control-label">Judul</label>
               <div class="col-sm-10">
-                <input type="text" name="judul" class="form-control" id="judul">
+                <input type="text" name="judul" class="form-control" id="judul" value="<?= $addon->judul ?>">
                 <?= form_error('judul')?>
               </div>
             </div>
@@ -56,7 +57,7 @@
            <div class="form-group">
               <label class="col-sm-2 control-label">Deskripsi</label>
               <div class="col-sm-10">
-                <textarea class="form-control" id="deskripsi" rows="3" name="deskripsi"></textarea>
+                <textarea class="form-control" id="deskripsi" rows="3" name="deskripsi"><?= $addon->deskripsi ?></textarea>
                 <?= form_error('deskripsi')?>
               </div>
            </div>
@@ -64,7 +65,7 @@
            <div class="form-group">
               <label class="col-sm-2 control-label">Harga</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="harga" name="harga">
+                <input type="text" class="form-control" id="harga" name="harga" value="<?= $addon->harga ?>">
                 <?= form_error('harga')?>
               </div>
            </div>
@@ -87,7 +88,7 @@
             <div class="form-group">
               <label class="col-sm-2 control-label">Pembuat</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="pembuat" name="pembuat">
+                <input type="text" class="form-control" id="pembuat" name="pembuat" value="<?= $addon->pembuat?>">
                 <?= form_error('pembuat')?>
               </div>
             </div>
@@ -108,7 +109,7 @@
   </div>
   <!-- /.content-wrapper -->
 
-  <?= stick_template('resources/admin_footer') ?>
+  <?= $page_resource['admin_footer'] ?>
 
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
@@ -116,22 +117,6 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery 3 -->
-<script src="<?= base_url() ?>assets/vendor/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="<?= base_url() ?>assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- SlimScroll -->
-<script src="<?= base_url() ?>assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="<?= base_url() ?>assets/vendor/fastclick/lib/fastclick.js"></script>
-<!-- AdminLTE App -->
-<script src="<?= base_url() ?>assets/vendor/template_admin-lte/dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="<?= base_url() ?>assets/vendor/template_admin-lte/dist/js/demo.js"></script>
-<script>
-  $(document).ready(function () {
-    $('.sidebar-menu').tree()
-  })
-</script>
+    <?= $page_resource['admin_scripts'] ?>
 </body>
 </html>
