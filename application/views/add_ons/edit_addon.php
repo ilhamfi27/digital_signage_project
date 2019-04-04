@@ -75,11 +75,11 @@
               <div class="col-sm-10">
                 <select id="kategori" class="form-control" name="kategori">
                   <option>kategori</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
+                  <option selected>1</option>
+                  <option selected>2</option>
+                  <option selected>3</option>
+                  <option selected>4</option>
+                  <option selected>5</option>
                 </select>
                 <?= form_error('kategori')?>
               </div>

@@ -134,11 +134,67 @@ class Add_ons extends MY_Controller{
 		$this->load->view('add_ons/newCreator',$data);
 	}
 	public function create_creator(){
+		$data['page_resource'] = parent::page_resources();
+		$nama = $this->input->post('nama');
+		$alamat = $this->input->post('alamat');
+		$tempat_lahir = $this->input->post('tempat');
+		$tanggal_lahir = $this->input->post('tanggal');
+		$no_telp = $this->input->post('telepon');
+		$email = $this->input->post('email');
+		
+		
+		$this->form_validation->set_rules([
+			[
+				'field' => 'nama',
+				'label'	=> 'Nama',
+				'rules' => 'required|min_length[4]'
+			],
+			[
+				'field' => 'alamat',
+				'label'	=> 'Alamat',
+				'rules' => 'required|min_length[4]'
+			],
+			[
+				'field' => 'tempat',
+				'label'	=> 'Tempat',
+				'rules' => 'required|min_length[4]|'
+			],
+			[
+				'field' => 'tanggal',
+				'label'	=> 'Tanggal',
+				'rules' => 'required'
+			],
+			[
+				'field' => 'telepon',
+				'label'	=> 'Telepon',
+				'rules' => 'required|min_length[4]numeric'
+			],
+			[
+				'field' => 'email',
+				'label'	=> 'Email',
+				'rules' => 'required|min_length[4]'
+			]
+		]);
 
-		// $nama = this->input->post('nama');
-		// $tanggal_lahir = this->input->post('tanggal_lahir');
-		// $nama = this->input->post('nama');
-		redirect('add_ons/detail_creator/lab_si');
+		if ($this->form_validation->run() === FALSE) {
+			$this->load->view('add_ons/newCreator',$data);
+		} else {
+			if (!$this->upload->do_upload('foto')){
+				echo $this->upload->display_errors();
+			}else{
+				$data = [
+					'nama' => $nama,
+					'alamat' => $alamat,
+					'tempat' => $tempat,
+					'tanggal' => $tanggal,
+					'telepon' => $telepon,
+					'foto' => $this->upload->data()['file_name'],
+					'email'=>$email
+				];
+				$this->add_on_creator_model->insert_add_on($data);
+				redirect('add_ons/list_creator');
+			}
+		}
 	}
 	public function detail_creator($id){
 
@@ -150,5 +206,10 @@ class Add_ons extends MY_Controller{
         $data['page_resource'] = parent::page_resources();
 		$data['addon'] = $this->add_on_model->all()->result();
 		$this->load->view('add_ons/list_addon',$data);
+	}
+	public function list_creator(){
+		$data['page_resources']= parent:: page_resources();
+		$data['creator']= $this->add_on_creator_model->all()->result();
+		$this->load->view('add_ons/list_creator',$data);
 	}
 }

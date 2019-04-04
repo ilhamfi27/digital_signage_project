@@ -42,6 +42,7 @@
               <label class="col-sm-2 control-label">Foto</label>
               <div class="col-sm-10">
                 <input type="file" name="screenshot">
+                <?= form_error('screenshot')?>
               </div>
             </div>
 
@@ -49,6 +50,7 @@
               <label class="col-sm-2 control-label">Nama</label>
               <div class="col-sm-10">
                 <input type="text" name="nama" class="form-control" id="nama">
+                <?= form_error('nama')?>
               </div>
             </div>
 
@@ -56,6 +58,7 @@
               <label class="col-sm-2 control-label">Alamat</label>
               <div class="col-sm-10">
                 <textarea class="form-control" id="deskripsi" rows="3" name="alamat"></textarea>
+              <?= form_error('alamat')?>
               </div>
            </div>
 
@@ -63,6 +66,7 @@
               <label class="col-sm-2 control-label">Tempat Lahir</label>
               <div class="col-sm-10">
                 <input type="text" name="tempat" class="form-control" id="tempat">
+              <?= form_error('tempat')?>
               </div>
            </div>
 
@@ -70,6 +74,7 @@
               <label class="col-sm-2 control-label">Tanggal Lahir</label>
               <div class="col-sm-10">
                 <input type="date" name="tanggal" class="form-control" id="tanggal">
+              <?= form_error('tanggal')?>
               </div>
            </div>
 
@@ -77,6 +82,7 @@
               <label class="col-sm-2 control-label">No Telepon</label>
               <div class="col-sm-10">
                 <input type="text" name="telepon" class="form-control" id="telepon" placeholder="+628">
+              <?= form_error('telepon')?>
               </div>
            </div>
 
@@ -85,6 +91,7 @@
               <label class="col-sm-2 control-label"> Email</label>
               <div class="col-sm-10">
                 <input type="text" name="email" class="form-control" id="email" placeholder="@gmail.com">
+              <?= form_error('email')?>
               </div>
            </div>
 
