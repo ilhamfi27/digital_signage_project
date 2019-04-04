@@ -130,11 +130,11 @@ class Add_ons extends MY_Controller{
 		$this->load->view('add_ons/install_addon');
 	}
 	public function new_creator(){
-
         $data['page_resource'] = parent::page_resources();
-		$this->load->view('add_ons/newCreator');
+		$this->load->view('add_ons/newCreator',$data);
 	}
 	public function create_creator(){
+
 		// $nama = this->input->post('nama');
 		// $tanggal_lahir = this->input->post('tanggal_lahir');
 		// $nama = this->input->post('nama');
