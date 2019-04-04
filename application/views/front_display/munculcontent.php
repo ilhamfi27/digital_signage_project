@@ -64,7 +64,7 @@
 							<td><?php echo $s->id; ?></td>
 							<td><?php echo $s->subject; ?></td>
 							<td><?php echo $s->description; ?></td>
-							<td><?php echo $s->image; ?></td>
+							<td><img src="<?=base_url().'./storage/images/'.$s->image;?>" width ="100" height ='100'></td>
 							<td><?php echo $s->date; ?></td>
 							<td><?php echo $s->category; ?></td>
 							<td>

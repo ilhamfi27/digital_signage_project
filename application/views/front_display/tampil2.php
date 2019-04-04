@@ -49,12 +49,12 @@
                   </div>
                   <div class="row">
                   	 <div class="col-md-12">
-                       <p align="center"><font size="3">Input Content<br></font><br>Enter Content to Fill in Your Screens</p>
+                       <p align="center"><font size="3">Edit Layout<br></font><br>Create and edit addaptive layouts for your screens<br>add widgets and divide your screens into areas</p>
                   	 </div>
                   </div>
                    <div class="row" style="margin-top: 10px;">
                     <div class="col-md-12"> 
-                      <center><a href='<?= base_url("front_display/input"); ?>'><button class="btn btn-primary">Input Content</button></a>
+                      <center><a href='<?= base_url("front_display/inputLayout"); ?>'><button class="btn btn-primary">Create Layout</button></a>
                     </div>
                   </div>
                 </div>

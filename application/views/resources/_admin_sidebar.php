@@ -64,9 +64,22 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?= site_url('front_display/index') ?>"><i class="fa fa-circle-o"></i> Front Display</a></li>
-                    <li><a href="<?= site_url('#') ?>"><i class="fa fa-circle-o"></i> hgjugkj</a></li>
-                    <li><a href="<?= site_url('#')?>"><i class="fa fa-circle-o"></i> jhfyjg</a></li>
+                    <li><a href="<?= site_url('front_display/index') ?>"><i class="fa fa-circle-o"></i> Content</a></li>
+                    <li><a href="<?= site_url('front_display/indexLayout') ?>"><i class="fa fa-circle-o"></i> Layout</a></li>
+                    <li><a href="<?= site_url('#')?>"><i class="fa fa-circle-o"></i> Play</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-folder"></i> <span>Billing</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="<?= site_url('#') ?>"><i class="fa fa-circle-o"></i> Payment</a></li>
+                    <li><a href="<?= site_url('#') ?>"><i class="fa fa-circle-o"></i> Cetak</a></li>
+                    <li><a href="<?= site_url('#')?>"><i class="fa fa-circle-o"></i> View</a></li>
                 </ul>
             </li>
             <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
