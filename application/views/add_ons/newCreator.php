@@ -55,7 +55,7 @@
            <div class="form-group">
               <label class="col-sm-2 control-label">Alamat</label>
               <div class="col-sm-10">
-                <textarea class="form-control" id="deskripsi" rows="3" name="deskripsi"></textarea>
+                <textarea class="form-control" id="deskripsi" rows="3" name="alamat"></textarea>
               </div>
            </div>
 
