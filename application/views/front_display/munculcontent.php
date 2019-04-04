@@ -38,7 +38,9 @@
             <div class="col-md-12">
               <div class="panel panel-default">
                 <div class="panel-heading">
-                  <center><h2 class="panel-title"><b>Enter Your Content</b></h2>
+
+                  <center><h2 class="panel-title"><b>Add Content</b></h2>
+
                 </div>
                 <div class="panel-body">
                   <div class="row">
@@ -47,41 +49,35 @@
                     </div>
                   </div>
                   <div class="row">
-                  	 <div class="col-md-12">
-                       <table>
-                         <tr>
-                           <td>Subject</td>
-                           <td>:</td>
-                           <td><?= form_input('subject')?></td>
-                         </tr>
-                         <tr>
-                           <td>Description</td>
-                           <td>:</td>
-                           <td><?= form_input('description')?></td>
-                         </tr>
-                         <tr>
-                           <td>Date</td>
-                           <td>:</td>
-                           <td><input type="date" name="date"></td>
-                         </tr>
-                         <tr>
-                           <td>Image/video</td>
-                           <td>:</td>
-                           <td><input type="file" name="image"></td>
-                         </tr>
-                         <tr>
-                           <td>Category</td>
-                           <td>:</td>
-                           <td><input type="dropdown" name="category"></td>
-                         </tr>
-                       </table>
-                  	 </div>
+                  	<table border="1">
+						<tr>
+							<td>Id</td>
+							<td>subject</td>
+							<td>description</td>
+							<td>image</td>
+							<td>date</td>
+							<td>category</td>
+							<td>Aksi</td>
+						</tr>
+						<?php foreach ($content as $s) {?>
+						<tr>
+							<td><?php echo $s->id; ?></td>
+							<td><?php echo $s->subject; ?></td>
+							<td><?php echo $s->description; ?></td>
+							<td><?php echo $s->image; ?></td>
+							<td><?php echo $s->date; ?></td>
+							<td><?php echo $s->category; ?></td>
+							<td>
+								<?php echo anchor('front_display/editcontent/'.$s->id,'Update')?> ||
+								<?php echo anchor('front_display/hapuscontent/'.$s->id,'Hapus')?>
+							</td>
+						</tr>
+						<?php }?>
+					</table>
+					<?php echo anchor('front_display/input','Tambah'); ?>
                   </div>
                    <div class="row" style="margin-top: 10px;">
-                    <div class="col-md-12"> 
-                      <center><a href='<?= site_url("#"); ?>'><button class="btn btn-primary">Submit</button></a>
-                    </div>
-                  </div>
+
                 </div>
               </div>
             </div>

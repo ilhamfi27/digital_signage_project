@@ -9,7 +9,8 @@ class Migration_alter_table_user_add_column_user_level extends CI_Migration {
             'level' => [
                 'type' => 'varchar',
                 'constraint' => 12,
-                'default' => 'user'
+                'default' => 'user',
+                'null' => FALSE
             ]
         ]);
     }

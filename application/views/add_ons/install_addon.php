@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <?= stick_template('resources/meta'); ?>
+  <?= $page_resource['meta'] ?>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
 <div class="wrapper">
 
-  <?= stick_template('resources/admin_header') ?>
+  <?= $page_resource['admin_header'] ?>
 
   <!-- =============================================== -->
 
   <!-- Left side column. contains the sidebar -->
-  <?= stick_template('resources/admin_sidebar') ?>
+  <?= $page_resource['admin_sidebar'] ?>
 
   <!-- =============================================== -->
 
@@ -102,10 +102,10 @@
   </div>
   <!-- /.content-wrapper -->
 
-  <?= stick_template('resources/admin_footer') ?>
+  <?= $page_resource['admin_footer'] ?>
 </div>
 <!-- ./wrapper -->
 
-<?= stick_template('resources/admin_scripts') ?>
+<?= $page_resource['admin_scripts'] ?>
 </body>
 </html>

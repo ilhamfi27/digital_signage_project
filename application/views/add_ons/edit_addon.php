@@ -21,7 +21,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        NEW ADD ONS
+        EDIT ADD ONS
       </h1>
     </section>
 
@@ -32,15 +32,16 @@
       <div class="box">
         <div class="box-header with-border">
           <center>
-            <p style="font-size: 25px">Input New Add On</p>
+            <p style="font-size: 25px">Edit Add On</p>
           </center>
         </div>
         <div class="box-body">
-          <?= form_open_multipart('add_ons/insert_add_on',['class' => 'form-horizontal']) ?>
+          <?= form_open_multipart('add_ons/update_add_on',['class' => 'form-horizontal']) ?>
+          <input type="hidden" name="id" value="<?= $addon->id ?>">
             <div class="form-group">
               <label class="col-sm-2 control-label">Judul</label>
               <div class="col-sm-10">
-                <input type="text" name="judul" class="form-control" id="judul">
+                <input type="text" name="judul" class="form-control" id="judul" value="<?= $addon->judul ?>">
                 <?= form_error('judul')?>
               </div>
             </div>
@@ -56,7 +57,7 @@
            <div class="form-group">
               <label class="col-sm-2 control-label">Deskripsi</label>
               <div class="col-sm-10">
-                <textarea class="form-control" id="deskripsi" rows="3" name="deskripsi"></textarea>
+                <textarea class="form-control" id="deskripsi" rows="3" name="deskripsi"><?= $addon->deskripsi ?></textarea>
                 <?= form_error('deskripsi')?>
               </div>
            </div>
@@ -64,7 +65,7 @@
            <div class="form-group">
               <label class="col-sm-2 control-label">Harga</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="harga" name="harga">
+                <input type="text" class="form-control" id="harga" name="harga" value="<?= $addon->harga ?>">
                 <?= form_error('harga')?>
               </div>
            </div>
@@ -87,7 +88,7 @@
             <div class="form-group">
               <label class="col-sm-2 control-label">Pembuat</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="pembuat" name="pembuat">
+                <input type="text" class="form-control" id="pembuat" name="pembuat" value="<?= $addon->pembuat?>">
                 <?= form_error('pembuat')?>
               </div>
             </div>
@@ -114,7 +115,8 @@
        immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
 </div>
+<!-- ./wrapper -->
 
-<?= $page_resource['admin_scripts'] ?>
+    <?= $page_resource['admin_scripts'] ?>
 </body>
 </html>
