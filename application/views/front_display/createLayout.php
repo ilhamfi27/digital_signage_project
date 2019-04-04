@@ -38,7 +38,7 @@
             <div class="col-md-12">
               <div class="panel panel-default">
                 <div class="panel-heading">
-                  <center><h2 class="panel-title"><b>Add Layout</b></h2>
+                  <center><h2 class="panel-title"><b>Enter Your Content</b></h2>
                 </div>
                 <div class="panel-body">
                   <div class="row">
@@ -48,12 +48,38 @@
                   </div>
                   <div class="row">
                   	 <div class="col-md-12">
-                       <p align="center"><font size="3">Edit Layout</font><br>Create or edit adaptive layouts for your screens<br>add widgets and divide your screens into areas.</p>
+                       <table>
+                         <tr>
+                           <td>Subject</td>
+                           <td>:</td>
+                           <td><?= form_input('subject')?></td>
+                         </tr>
+                         <tr>
+                           <td>Description</td>
+                           <td>:</td>
+                           <td><?= form_input('description')?></td>
+                         </tr>
+                         <tr>
+                           <td>Date</td>
+                           <td>:</td>
+                           <td><input type="date" name="date"></td>
+                         </tr>
+                         <tr>
+                           <td>Image/video</td>
+                           <td>:</td>
+                           <td><input type="file" name="image"></td>
+                         </tr>
+                         <tr>
+                           <td>Category</td>
+                           <td>:</td>
+                           <td><input type="dropdown" name="category"></td>
+                         </tr>
+                       </table>
                   	 </div>
                   </div>
                    <div class="row" style="margin-top: 10px;">
                     <div class="col-md-12"> 
-                      <center><a href='<?= site_url("#"); ?>'><button class="btn btn-primary">CREATE LAYOUT</button></a>
+                      <center><a href='<?= site_url("#"); ?>'><button class="btn btn-primary">Submit</button></a>
                     </div>
                   </div>
                 </div>
