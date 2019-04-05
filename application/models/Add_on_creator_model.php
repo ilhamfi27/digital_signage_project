@@ -1,5 +1,5 @@
 <?php  
-class Add_on_model extends CI_Model{
+class Add_on_creator_model extends CI_Model{
 	private $table ="creator";
 	public function __construct(){
 		parent::__construct();

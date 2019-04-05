@@ -21,7 +21,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        New Creator
+        EDIT CREATOR
       </h1>
     </section>
 
@@ -32,69 +32,59 @@
       <div class="box">
         <div class="box-header with-border">
           <center>
-            <p style="font-size: 25px">Input New Creator</p>
+            <p style="font-size: 25px">Edit Creator</p>
           </center>
         </div>
         <div class="box-body">
-          <?= form_open_multipart('add_ons/create_creator',['class' => 'form-horizontal']) ?>
-            
-          <div class="form-group">
-              <label class="col-sm-2 control-label">Foto</label>
-              <div class="col-sm-10">
-                <input type="file" name="foto">
-                <?= form_error('foto')?>
-              </div>
-            </div>
-
+          <?= form_open_multipart('add_ons/update_creator',['class' => 'form-horizontal']) ?>
+          <input type="hidden" name="id" value="<?= $creator->id ?>">
             <div class="form-group">
               <label class="col-sm-2 control-label">Nama</label>
               <div class="col-sm-10">
-                <input type="text" name="nama" class="form-control" id="nama">
+                <input type="text" name="nama" class="form-control" id="nama" value="<?= $creator->nama ?>">
                 <?= form_error('nama')?>
               </div>
             </div>
 
-           <div class="form-group">
+             <div class="form-group">
               <label class="col-sm-2 control-label">Alamat</label>
               <div class="col-sm-10">
-                <textarea class="form-control" id="deskripsi" rows="3" name="alamat"></textarea>
-              <?= form_error('alamat')?>
+                <textarea class="form-control" id="alamat" rows="3" name="alamat"><?= $creator->alamat ?></textarea>
+                <?= form_error('alamat')?>
               </div>
-           </div>
+            </div>
 
-           <div class="form-group">
+            <div class="form-group">
               <label class="col-sm-2 control-label">Tempat Lahir</label>
               <div class="col-sm-10">
-                <input type="text" name="tempat" class="form-control" id="tempat">
-              <?= form_error('tempat')?>
+                <input type="text" name="tempat" class="form-control" id="tempat" value="<?= $creator->tempat_lahir ?>">
+                <?= form_error('tempat')?>
               </div>
-           </div>
+            </div>
 
             <div class="form-group">
               <label class="col-sm-2 control-label">Tanggal Lahir</label>
               <div class="col-sm-10">
-                <input type="date" name="tanggal" class="form-control" id="tanggal">
-              <?= form_error('tanggal')?>
+                <input type="text" name="tanggal" class="form-control" id="tanggal" value="<?= $creator->tanggal_lahir ?>">
+                <?= form_error('tanggal')?>
               </div>
-           </div>
+            </div>
 
-            <div class="form-group">
+           <div class="form-group">
               <label class="col-sm-2 control-label">No Telepon</label>
               <div class="col-sm-10">
-                <input type="text" name="telepon" class="form-control" id="telepon" placeholder="+628">
-              <?= form_error('telepon')?>
+                <input type="text" class="form-control" id="telepon" name="telepon" value="<?= $creator->no_telp ?>">
+                <?= form_error('telepon')?>
               </div>
            </div>
-
 
             <div class="form-group">
-              <label class="col-sm-2 control-label"> Email</label>
+              <label class="col-sm-2 control-label">Email</label>
               <div class="col-sm-10">
-                <input type="text" name="email" class="form-control" id="email" placeholder="@gmail.com">
-              <?= form_error('email')?>
+                <input type="text" class="form-control" id="email" name="email" value="<?= $creator->email?>">
+                <?= form_error('email')?>
               </div>
-           </div>
-
+            </div>
 
             <div class="form-group">
               <div class="col-sm-offset-2 col-sm-10">
@@ -118,7 +108,8 @@
        immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
 </div>
+<!-- ./wrapper -->
 
-<?= $page_resource['admin_scripts'] ?>
+    <?= $page_resource['admin_scripts'] ?>
 </body>
 </html>

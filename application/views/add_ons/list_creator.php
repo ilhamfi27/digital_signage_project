@@ -47,29 +47,36 @@
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>Foto</th>
-                  <th>Nama</th>
-                  <th>Alamat</th>
-                  <th>Tempat Lahir</th>
-                  <th>Tanggal Lahir</th>
-                  <th>No Telepon</th>
-                  <th>Email</th>
+                  <th>nama</th>
+                  <th>alamat</th>
+                  <th>tempat_lahir</th>
+                  <th>tanggal_lahir</th>
+                  <th>no_telp</th>
+                  <th>email</th>
                   <th>Keterangan</th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php 
                 $no = 1;
-                foreach($addon as $row):
+                foreach($creator as $row):
                 ?>
                 <tr>
+                  <!-- 
+                  `id`
+                  `nama`
+                  `alamat`
+                  `tempat_lahir`
+                  `tanggal_lahir`
+                  `no_telp`
+                  `email` 
+                -->
                   <td><?php echo $no; ?></td>
-                  <td><?php echo $row->foto; ?></td>
                   <td><?php echo $row->nama; ?></td>
                   <td><?php echo $row->alamat; ?></td>
-                  <td><?php echo $row->tempat; ?></td>
-                  <td><?php echo $row->tanggal; ?></td>
-                  <td><?php echo $row->telepon; ?></td>
+                  <td><?php echo $row->tempat_lahir; ?></td>
+                  <td><?php echo $row->tanggal_lahir; ?></td>
+                  <td><?php echo $row->no_telp; ?></td>
                   <td><?php echo $row->email; ?></td>
                   <td>
                     <a href="<?php echo site_url('add_ons/details/' . $row->id); ?>">
@@ -77,12 +84,12 @@
                         <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                       </button>
                     </a>
-                    <a href="<?php echo site_url('add_ons/edit_add_on/' . $row->id); ?>">
+                    <a href="<?php echo site_url('add_ons/edit_creator/' . $row->id); ?>">
                       <button class="btn btn-primary">
                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                       </button>
                     </a>
-                    <a href="<?php echo site_url('add_ons/delete_add_on/' . $row->id); ?>">
+                    <a href="<?php echo site_url('add_ons/delete_creator/' . $row->id); ?>">
                       <button class="btn btn-danger">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                       </button>

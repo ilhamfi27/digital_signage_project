@@ -6,8 +6,9 @@ class Add_ons extends MY_Controller{
         parent::session_needed_except();
 		$this->load->helper('view_partial');
 		$this->load->model('add_on_model');
+		$this->load->model('add_on_creator_model');
 		$config['upload_path'] = 'storage/images/add_ons/';
-		$config['allowed_types'] = 'gif|jpg|png';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg';
 		$this->load->library('upload',$config);
 	}
 	public function index()	{
@@ -139,7 +140,7 @@ class Add_ons extends MY_Controller{
 		$alamat = $this->input->post('alamat');
 		$tempat_lahir = $this->input->post('tempat');
 		$tanggal_lahir = $this->input->post('tanggal');
-		$no_telp = $this->input->post('telepon');
+		$telepon = $this->input->post('telepon');
 		$email = $this->input->post('email');
 		
 		
@@ -157,7 +158,7 @@ class Add_ons extends MY_Controller{
 			[
 				'field' => 'tempat',
 				'label'	=> 'Tempat',
-				'rules' => 'required|min_length[4]|'
+				'rules' => 'required|min_length[4]'
 			],
 			[
 				'field' => 'tanggal',
@@ -185,10 +186,10 @@ class Add_ons extends MY_Controller{
 				$data = [
 					'nama' => $nama,
 					'alamat' => $alamat,
-					'tempat' => $tempat,
-					'tanggal' => $tanggal,
-					'telepon' => $telepon,
-					'foto' => $this->upload->data()['file_name'],
+					'tempat_lahir' => $tempat_lahir,
+					'tanggal_lahir' => $tanggal_lahir,
+					'no_telp' => $telepon,
+					// 'foto' => $this->upload->data()['file_name'],
 					'email'=>$email
 				];
 				$this->add_on_creator_model->insert_add_on($data);
@@ -208,8 +209,42 @@ class Add_ons extends MY_Controller{
 		$this->load->view('add_ons/list_addon',$data);
 	}
 	public function list_creator(){
-		$data['page_resources']= parent:: page_resources();
+		$data['page_resource']= parent:: page_resources();
 		$data['creator']= $this->add_on_creator_model->all()->result();
 		$this->load->view('add_ons/list_creator',$data);
 	}
+	public function edit_creator($id){
+		$data['page_resource'] = parent::page_resources();
+		$where = array('id'=>$id);
+		$data['creator']=$this->add_on_creator_model->details($where)->row();
+		$this->load->view('add_ons/edit_creator',$data);
+	}
+	public function update_creator(){
+		$id = $this->input->post('id');
+		$nama = $this->input->post('nama');
+		$alamat = $this->input->post('alamat');
+		$tempat_lahir = $this->input->post('tempat_lahir');
+		$tanggal_lahir = $this->input->post('tanggal_lahir');
+		$no_telp = $this->input->post('no_telp');
+		$email = $this->input->post('email');
+		
+		$data = array(
+			'nama'=>$nama,
+			'alamat'=>$alamat,
+			'tempat_lahir'=>$tempat_lahir,
+			'tanggal_lahir'=>$tanggal_lahir,
+			'no_telp'=>$no_telp,
+			'email'=>$email
+			
+		);
+		$this->add_on_creator_model->update($data,$id);
+		redirect('add_ons/list_creator');
+
+	}
+	public function delete_creator($data){
+		$where = array('id'=>$data);
+		$this->add_on_creator_model->delete_add_on($where);
+		redirect('add_ons/list_creator');
+	}
+
 }
