@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <?= stick_template('resources/meta'); ?>
+  <?= $page_resource['meta'] ?>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
 <div class="wrapper">
 
-  <?= stick_template('resources/admin_header') ?>
-
+  <?= $page_resource['admin_header'] ?>
   <!-- =============================================== -->
 
   <!-- Left side column. contains the sidebar -->
-  <?= stick_template('resources/admin_sidebar') ?>
-
+  <?= $page_resource['admin_sidebar'] ?>
   <!-- =============================================== -->
 
   <!-- Content Wrapper. Contains page content -->
@@ -86,7 +84,11 @@
                            </td>
                          </tr>
                        </table>
-                      <center><a href='<?= site_url("front_display/munculcontent"); ?>'><?= form_submit('ok','CREATE CONTENT', 'class="btn btn-primary"')?></a>
+                      <center>
+                        <a href='<?= site_url("front_display/munculcontent") ?>'>
+                          <?= form_submit('ok','CREATE CONTENT', 'class="btn btn-primary"')?>
+                        </a>
+                      </center>
                       <?= form_close()?>
                        
                   	 </div>
@@ -112,30 +114,13 @@
   </div>
   <!-- /.content-wrapper -->
 
-  <?= stick_template('resources/admin_footer') ?>
+   <?= $page_resource['admin_footer'] ?>
 
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
 </div>
-<!-- ./wrapper -->
 
-<!-- jQuery 3 -->
-<script src="<?= base_url() ?>assets/vendor/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="<?= base_url() ?>assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- SlimScroll -->
-<script src="<?= base_url() ?>assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="<?= base_url() ?>assets/vendor/fastclick/lib/fastclick.js"></script>
-<!-- AdminLTE App -->
-<script src="<?= base_url() ?>assets/vendor/template_admin-lte/dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="<?= base_url() ?>assets/vendor/template_admin-lte/dist/js/demo.js"></script>
-<script>
-  $(document).ready(function () {
-    $('.sidebar-menu').tree()
-  })
-</script>
+<?= $page_resource['admin_scripts'] ?>
 </body>
 </html>

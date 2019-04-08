@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 12, 2019 at 01:11 PM
--- Server version: 10.1.35-MariaDB
--- PHP Version: 7.2.9
+-- Generation Time: Mar 22, 2019 at 02:43 AM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 5.6.38
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,139 +25,99 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ads`
+-- Table structure for table `add_ons`
 --
 
-CREATE TABLE `ads` (
-  `id_ads` int(5) NOT NULL,
-  `subject` varchar(255) NOT NULL,
-  `video` varchar(255) NOT NULL,
-  `image` varchar(255) NOT NULL,
-  `url` varchar(255) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `user` varchar(255) NOT NULL,
-  `status` varchar(255) NOT NULL,
-  `user_id` int(5) NOT NULL
+CREATE TABLE `add_ons` (
+  `id` int(5) NOT NULL,
+  `foto` varchar(255) NOT NULL,
+  `judul` varchar(255) NOT NULL,
+  `deskripsi` text NOT NULL,
+  `harga` int(11) NOT NULL,
+  `kategori` varchar(255) NOT NULL,
+  `pembuat` varchar(255) NOT NULL,
+  `screenshot` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `add_ons`
+--
+
+INSERT INTO `add_ons` (`id`, `foto`, `judul`, `deskripsi`, `harga`, `kategori`, `pembuat`, `screenshot`) VALUES
+(1, '1200px-Telkom_University_Logo_svg.png', 'Suamiku Ayah Anakku', 'inyong ganteng', 12000, '2', 'inyong dewe', 'xxx'),
+(2, '1200px-Telkom_University_Logo_svg1.png', 'Suamiku Ayah Anakku', 'inyong ganteng', 12000, '2', 'inyong dewe', 'xxx');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `komentar`
+--
+
+CREATE TABLE `komentar` (
+  `id` int(5) NOT NULL,
+  `id_user` int(5) NOT NULL,
+  `id_add_on` int(5) NOT NULL,
+  `komentar` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `content_cat`
+-- Table structure for table `migrations`
 --
 
-CREATE TABLE `content_cat` (
-  `id_category` int(5) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `parent` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `migrations` (
+  `version` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`version`) VALUES
+(4);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `content_item`
+-- Table structure for table `users`
 --
 
-CREATE TABLE `content_item` (
-  `id_item` int(5) NOT NULL,
-  `subject` varchar(255) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `tag` varchar(255) NOT NULL,
-  `date` date NOT NULL,
-  `image` varchar(255) NOT NULL,
-  `video` varchar(255) NOT NULL,
-  `url` varchar(255) NOT NULL,
-  `status` varchar(255) NOT NULL,
-  `id_category` int(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `item_layout`
---
-
-CREATE TABLE `item_layout` (
-  `id_layout` int(5) NOT NULL,
-  `id_item` int(5) NOT NULL,
-  `position` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `theme`
---
-
-CREATE TABLE `theme` (
-  `id_theme` int(5) NOT NULL,
-  `url` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `timeline`
---
-
-CREATE TABLE `timeline` (
-  `id_timeline` int(5) NOT NULL,
-  `id_ads` int(5) NOT NULL,
-  `duration` varchar(255) NOT NULL,
-  `priority` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user`
---
-
-CREATE TABLE `user` (
+CREATE TABLE `users` (
   `user_id` int(5) NOT NULL,
-  `password` varchar(25) NOT NULL,
+  `username` varchar(30) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `password` varchar(255) DEFAULT NULL,
+  `level` varchar(12) DEFAULT 'user'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `username`, `email`, `password`, `level`) VALUES
+(1, 'admin', 'admin@labsi.telkomuniversity.ac.id', '21232f297a57a5a743894a0e4a801fc3', 'admin');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `ads`
+-- Indexes for table `add_ons`
 --
-ALTER TABLE `ads`
-  ADD PRIMARY KEY (`id_ads`);
+ALTER TABLE `add_ons`
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `content_cat`
+-- Indexes for table `komentar`
 --
-ALTER TABLE `content_cat`
-  ADD PRIMARY KEY (`id_category`);
+ALTER TABLE `komentar`
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `content_item`
+-- Indexes for table `users`
 --
-ALTER TABLE `content_item`
-  ADD PRIMARY KEY (`id_item`);
-
---
--- Indexes for table `theme`
---
-ALTER TABLE `theme`
-  ADD PRIMARY KEY (`id_theme`);
-
---
--- Indexes for table `timeline`
---
-ALTER TABLE `timeline`
-  ADD PRIMARY KEY (`id_timeline`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
+ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`);
 
 --
@@ -165,40 +125,22 @@ ALTER TABLE `user`
 --
 
 --
--- AUTO_INCREMENT for table `ads`
+-- AUTO_INCREMENT for table `add_ons`
 --
-ALTER TABLE `ads`
-  MODIFY `id_ads` int(5) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `add_ons`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `content_cat`
+-- AUTO_INCREMENT for table `komentar`
 --
-ALTER TABLE `content_cat`
-  MODIFY `id_category` int(5) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `komentar`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `content_item`
+-- AUTO_INCREMENT for table `users`
 --
-ALTER TABLE `content_item`
-  MODIFY `id_item` int(5) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `theme`
---
-ALTER TABLE `theme`
-  MODIFY `id_theme` int(5) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `timeline`
---
-ALTER TABLE `timeline`
-  MODIFY `id_timeline` int(5) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `user_id` int(5) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `users`
+  MODIFY `user_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

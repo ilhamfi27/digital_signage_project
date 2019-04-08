@@ -11,12 +11,14 @@ class Front_display extends MY_Controller{
 	}
 
 	public function index(){
+		$data['page_resource'] = parent::page_resources();
 		$this->load->model('modelcontent');
 		$data['content'] = $this->modelcontent->ambil_content()->result();
 		$this->load->view('front_display/tampil',$data);
 	}
 	public function input(){
-		$this->load->view('front_display/createContent');
+		$data['page_resource'] = parent::page_resources();
+		$this->load->view('front_display/createContent',$data);
 	}
 
 	public function inputContent(){
@@ -25,7 +27,7 @@ class Front_display extends MY_Controller{
 		$description 		= $this->input->post('description');
 		$date = $this->input->post('date');
 		$category = $this->input->post('category');
-		$config['upload_path'] = './assets/img';
+		$config['upload_path'] = './storage/images';
 		$config['allowed_types'] = 'gif|jpg|png';
 		// $config['max_size'] = 10240;
 		// $config['max_width'] = 1024;
@@ -56,34 +58,54 @@ class Front_display extends MY_Controller{
 		redirect('front_display/munculcontent');
 	}
 	public function editContent($id){
+		$data['page_resource'] = parent::page_resources();
 		$where = array('id' => $id);
 		$data['content'] = $this->modelcontent->edit_content($where,'content')->result();
 		$this->load->view('front_display/editcontent',$data);
 	}
 	public function updateContent(){
-		$id 		= $this->input->post('id');
-		$subject 	= $this->input->post('subject');
+		$id 				= $this->input->post('id');
+		$subject 			= $this->input->post('subject');
 		$description 		= $this->input->post('description');
-		$image 	= $this->input->post('image');
+		$config['upload_path'] = './storage/images';
+		$config['allowed_types'] = 'gif|jpg|png';
 		$date = $this->input->post('date');
-		$category = $this->input->post('category');
-		$data = array(
-			'id' => $id,
-			'subject' => $subject,
-			'description' => $description,
-			'image' => $image,
-			'date' => $date,
-			'category' => $category,
-		);
-		$where = array('id' => $id);
-		$this->modelcontent->update_content($where,$data,'content');
-		redirect('front_display/munculcontent');
+		$category = $this->input->post('category');	
+
+		$this->load->library('upload',$config);
+
+		if (!$this->upload->do_upload('image')){
+			echo $this->upload->display_errors();
+		}else{
+			// echo $this->upload->data()['file_name'];
+			$data = array(
+				'subject' => $subject,
+				'description' => $description,
+				'date' => $date,
+				'category' => $category,
+				'image' => $this->upload->data()['file_name']
+			);
+			$where = array('id' => $id);
+			$this->modelcontent->update_content($where,$data,'content');
+			redirect('front_display/munculcontent');
+		}
 	}
 	public function munculcontent(){
+		$data['page_resource'] = parent::page_resources();
 		$data['content'] = $this->modelcontent->ambil_content()->result();
 		$this->load->view('front_display/munculcontent', $data);
 	}
 
+	public function indexLayout(){
+		$data['page_resource'] = parent::page_resources();
+		$this->load->model('modellayout');
+		//$data['layout'] = $this->modellayout->ambil_content()->result();
+		$this->load->view('front_display/tampil2',$data);
+	}
+	public function inputLayout(){
+		$data['page_resource'] = parent::page_resources();
+		//$this->load->view('front_display/createContent',$data);
+	}
 
 	/*public function index(){
 		$data['dropdown_data'] = array(
