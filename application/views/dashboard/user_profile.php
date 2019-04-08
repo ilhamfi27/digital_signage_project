@@ -24,7 +24,7 @@
                         <div class="box">
                             <!-- /.box-header -->
                             <div class="box-body">
-                                <?= form_open_multipart('dashboard/insert_data_user',['class' => 'form-horizontal']) ?>
+                                <?= form_open_multipart('dashboard/insert_data_user',['class' => 'form-horizontal', 'id'=>'change-profile-form']) ?>
                                     <div class="form-group">
                                         <label class="col-sm-2 col-sm-offset-1 control-label" for="username">Username</label>
                                         <div class="col-sm-6">
@@ -35,21 +35,21 @@
                                     <div class="form-group">
                                         <label class="col-sm-2 col-sm-offset-1 control-label" for="first_name">First Name</label>
                                         <div class="col-sm-6">
-                                            <input type='text' name='first_name' class='form-control' id='first_name' value="<?= "" !== form_error('first_name') ? form_error('first_name') : $user_data->first_name ?>">
+                                            <input type='text' name='first_name' class='form-control' id='first_name' value="<?= "" !== set_value('first_name') ? set_value('first_name') : $user_data->first_name ?>">
                                             <?= form_error('first_name') ?>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 col-sm-offset-1 control-label" for="last_name">Last Name</label>
                                         <div class="col-sm-6">
-                                            <input type='text' name='last_name' class='form-control' id='last_name' value="<?= "" !== form_error('last_name') ? form_error('last_name') : $user_data->last_name ?>">
+                                            <input type='text' name='last_name' class='form-control' id='last_name' value="<?= "" !== set_value('last_name') ? set_value('last_name') : $user_data->last_name ?>">
                                             <?= form_error('last_name') ?>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 col-sm-offset-1 control-label" for="birth_date">Birth Date</label>
                                         <div class="col-sm-6">
-                                            <input type="date" class="form-control" name="birth_date" id="birth_date" value="<?= "" !== form_error('birth_date') ? form_error('birth_date') : $user_data->birth_date ?>">
+                                            <input type="date" class="form-control" name="birth_date" id="birth_date" value="<?= "" !== set_value('birth_date') ? set_value('birth_date') : $user_data->birth_date ?>">
                                             <?= form_error('birth_date') ?>
                                         </div>
                                     </div>
@@ -87,7 +87,7 @@
                                     <div class="form-group">
                                         <div class="col-sm-3"></div>
                                         <div class="col-sm-6">
-                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                            <button type="submit" id="change-profile-button" class="btn btn-primary">Submit</button>
                                         </div>
                                     </div>
                                 <?= form_close() ?>
@@ -103,7 +103,14 @@
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-
+        <div class="alert alert-success alert-dismissible floating-alert" id="change-profile-success" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Profil Change Success!</strong> <span class="change-profile-message"></span>.
+        </div>
+        <div class="alert alert-danger alert-dismissible floating-alert" id="change-profile-failed" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Profil Change Failed!</strong> <span class="change-profile-message"></span>
+        </div>
         <?= $page_resource['admin_footer'] ?>
     </div>
     <!-- ./wrapper -->

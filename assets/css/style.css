@@ -69,3 +69,6 @@
     width: 80%;
     text-align: center;
 }
+#change-profile-success, #change-profile-failed {
+    display: none;
+}

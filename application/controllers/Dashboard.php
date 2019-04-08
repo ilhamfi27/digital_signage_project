@@ -72,44 +72,33 @@ class Dashboard extends MY_Controller {
 
         $user_encrypted_password = $this->user_m->detail($this->session->userdata('id'))->row()->password;
         $data['user_data'] = $this->user_data_m->detail($this->session->userdata('id'))->row();
+        
+        $new_profile_data = [
+            'user_id' => $this->session->userdata('id'),
+            'first_name' => $first_name,
+            'last_name' => $last_name,
+            'birth_date' => $birth_date,
+            'gender' => $gender,
+            'avatar' => "" !== $this->upload->data()['orig_name'] ? $this->upload->data()['orig_name'] : $data['user_data']->avatar
+        ];
 
         if ($this->form_validation->run() === FALSE) {
-            $this->load->view('dashboard/user_profile', $data);
+            $errors = validation_errors();
+            echo json_encode(['errors' => $errors]);
         } else {
-            if ($user_encrypted_password == md5($password_verification)) {
-                if ( ! $this->upload->do_upload('photo') && !isset($data['user_data']->avatar)){
-                    $error = $this->upload->display_errors();
-                    $this->session->set_flashdata('photo_error', $error);
-                    $this->load->view('dashboard/user_profile', $data);
-                }else{
-                    $new_profile_data = [
-                        'user_id' => $this->session->userdata('id'),
-                        'first_name' => $first_name,
-                        'last_name' => $last_name,
-                        'birth_date' => $birth_date,
-                        'gender' => $gender,
-                        'avatar' => "" !== $this->upload->data()['orig_name'] ? $this->upload->data()['orig_name'] : $data['user_data']->avatar
-                    ];
-                    $user_exist = $this->user_data_m->detail($this->session->userdata('id'))->row();
-                    if (!isset($user_exist)) {
-                        $db_operation = $this->user_data_m->insert($new_profile_data);
-                    } else {
-                        unset($new_profile_data['user_id']);
-                        $db_operation = $this->user_data_m->update($new_profile_data, $this->session->userdata('id'));
-                    }
-                    
-                    if($db_operation > 0){
-                        redirect('dashboard/user_profile');
-                    } else {
-                        $this->session->set_flashdata('query_error', $this->user_data_m->db_error_message());
-                        $this->session->set_flashdata('query_error_number', $this->user_data_m->db_error_number());
-                        redirect('dashboard/user_profile');
-                    }
-                }
+            $data_needed = [
+                'user_encrypted_password' => $user_encrypted_password,
+                'password_verification' => md5($password_verification),
+                'avatar' => $data['user_data']->avatar,
+                'page_data' => $data
+            ];
+            $result = $this->user_data_transaction($data_needed, $new_profile_data);
+            if ($result['is_error'] === FALSE) {
+                echo json_encode(['success' => "Record Added Successfully"]);
             } else {
-                $this->session->set_flashdata('password_verification_wrong', 'Password Verification Wrong');
-                redirect('dashboard/user_profile');
+                echo json_encode(['errors' => $result['errors']]);
             }
+            
         }
     }
 
@@ -120,5 +109,34 @@ class Dashboard extends MY_Controller {
 		$config['allowed_types']        = 'gif|jpg|png';
         $config['file_name']            = $new_file_name;
         $this->load->library('upload', $config);
+    }
+
+    private function user_data_transaction($data_needed, $new_profile_data){
+        if ($data_needed['user_encrypted_password'] === $data_needed['password_verification']) {
+            if ( ! $this->upload->do_upload('photo') && !isset($data_needed['avatar'])){
+                $error = $this->upload->display_errors();
+                return [
+                    'is_error' => TRUE,
+                    'errors' => $error
+                ];
+            }else{
+                $user_exist = $this->user_data_m->detail($this->session->userdata('id'))->row();
+                if (!isset($user_exist)) {
+                    $db_operation = $this->user_data_m->insert($new_profile_data);
+                } else {
+                    unset($new_profile_data['user_id']);
+                    $db_operation = $this->user_data_m->update($new_profile_data, $this->session->userdata('id'));
+                }
+                
+                return [
+                    'is_error' => FALSE
+                ];
+            }
+        } else {
+            return [
+                'is_error' => TRUE,
+                'errors' => 'Incorrect Password Verification'
+            ];
+        }
     }
 }
