@@ -48,6 +48,9 @@
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= site_url('auth/login') ?>">Login</a>
+                    </li>
                 </ul>
             </div>
         </div>

@@ -60,7 +60,7 @@
                   </div>
                   <div class="row" style="margin-top: 10px;">
                     <div class="col-md-4 col-md-offset-4"> 
-                      <a href='<?= site_url("appearance/detail"); ?>'><button class="btn btn-primary">Read More</button></a>
+                      <a href='<?= site_url("theme/detail"); ?>'><button class="btn btn-primary">Read More</button></a>
                       <a href="#"><button class="btn btn-primary">Install</button></a>
                     </div>
                   </div>

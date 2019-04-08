@@ -4,6 +4,17 @@ class User_model extends CI_Model {
     public function __construct() {
         parent::__construct();
     }
+    
+    public function insert($data) {
+        $this->db->insert($this->table, $data);
+        return $this->db->insert_id();
+    }
+    
+    public function update($data, $id) {
+        $this->db->where('user_id', $id);
+        $this->db->update($this->table, $data);
+        return $this->db->affected_rows();
+    }
 
     public function detail($id){
         return $this->db->get_where($this->table, ['user_id' => $id]);
@@ -16,9 +27,7 @@ class User_model extends CI_Model {
             FROM 
                 `users` 
             WHERE 
-                (`username` = ? 
-                OR `email` = ?)
-                AND `password` = ?
+                `username` = ? OR `email` = ? AND `password` = ?
         ";
         return $this->db->query($sql, [
             $data['user_auth'],
@@ -27,8 +36,7 @@ class User_model extends CI_Model {
         ]);
     }
 
-    public function insert($data) {
-        $this->db->insert($this->table, $data);
-        return $this->db->insert_id();
+    public function db_error_message(){
+        return $this->db->error();
     }
 }

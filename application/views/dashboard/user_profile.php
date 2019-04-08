@@ -35,21 +35,21 @@
                                     <div class="form-group">
                                         <label class="col-sm-2 col-sm-offset-1 control-label" for="first_name">First Name</label>
                                         <div class="col-sm-6">
-                                            <input type='text' name='first_name' class='form-control' id='first_name' value="<?= $user_data->first_name ?>">
+                                            <input type='text' name='first_name' class='form-control' id='first_name' value="<?= "" !== form_error('first_name') ? form_error('first_name') : $user_data->first_name ?>">
                                             <?= form_error('first_name') ?>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 col-sm-offset-1 control-label" for="last_name">Last Name</label>
                                         <div class="col-sm-6">
-                                            <input type='text' name='last_name' class='form-control' id='last_name' value="<?= $user_data->last_name ?>">
+                                            <input type='text' name='last_name' class='form-control' id='last_name' value="<?= "" !== form_error('last_name') ? form_error('last_name') : $user_data->last_name ?>">
                                             <?= form_error('last_name') ?>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 col-sm-offset-1 control-label" for="birth_date">Birth Date</label>
                                         <div class="col-sm-6">
-                                            <input type="date" class="form-control" name="birth_date" id="birth_date" value="<?= $user_data->birth_date ?>">
+                                            <input type="date" class="form-control" name="birth_date" id="birth_date" value="<?= "" !== form_error('birth_date') ? form_error('birth_date') : $user_data->birth_date ?>">
                                             <?= form_error('birth_date') ?>
                                         </div>
                                     </div>
@@ -71,7 +71,6 @@
                                         <label class="col-sm-2 col-sm-offset-1 control-label" for="photo">Photo</label>
                                         <div class="col-sm-6">
                                             <input type="file" name="photo" id="photo" accept="image/x-png,image/gif,image/jpeg">
-                                            <!-- <input type="hidden" name="existing_photo" value="<?// $user_data->avatar ?>"> -->
                                             <?= $this->session->flashdata('photo_error') ?>
                                             <img src="<?= base_url("storage/images/user_avatar/" . $user_data->avatar) ?>" alt="User Avatar" width="200">
                                         </div>

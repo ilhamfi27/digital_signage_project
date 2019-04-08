@@ -42,7 +42,7 @@ class MY_Controller extends CI_Controller {
         $profile = [
             'joined' => $user_base_data->verification_sent_date,
             'public_identity' => $public_identity,
-            'avatar' => !empty($user_identity) ? $user_identity->avatar : NULL
+            'avatar' => !empty($user_identity) ? $user_identity->avatar : 'user-default-avatar.jpg'
         ];
         $data['user_data'] = (object) $profile;
         $data['app_data'] = $add_data;

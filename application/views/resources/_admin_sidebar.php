@@ -25,6 +25,32 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MAIN NAVIGATION</li>
+            <?php if($this->session->level === "admin"){ ?>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-folder"></i> <span>Creators</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="<?= site_url('creator/new') ?>"><i class="fa fa-circle-o"></i> New Creator</a></li>
+                    <li><a href="<?= site_url('creator/list') ?>"><i class="fa fa-circle-o"></i> List Creator</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-folder"></i> <span>Plugin Categories</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="<?= site_url('category/new') ?>"><i class="fa fa-circle-o"></i> New Category</a></li>
+                    <li><a href="<?= site_url('category/list') ?>"><i class="fa fa-circle-o"></i> List Category</a></li>
+                </ul>
+            </li>
+            <?php } ?>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-folder"></i> <span>Add Ons</span>
@@ -49,9 +75,10 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?= base_url('appearance/') ?>"><i class="fa fa-circle-o"></i> Themes</a></li>
+                    <li><a href="<?= base_url('theme/') ?>"><i class="fa fa-circle-o"></i> Themes</a></li>
                     <?php if($this->session->level === "admin"){ ?>
-                    <li><a href="<?= base_url('appearance/new_theme') ?>"><i class="fa fa-circle-o"></i> New Theme</a></li>
+                    <li><a href="<?= base_url('theme/new') ?>"><i class="fa fa-circle-o"></i> New Theme</a></li>
+                    <li><a href="<?= base_url('theme/list') ?>"><i class="fa fa-circle-o"></i> List Theme</a></li>
                     <?php } ?>
                 </ul>
             </li>

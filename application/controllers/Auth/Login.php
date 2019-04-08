@@ -23,12 +23,12 @@ class Login extends MY_Controller{
             [
                 'field' => 'user_auth',
                 'label' => 'Username or Email',
-                'rules' => 'required|min_length[3]|max_length[30]|regex_match[/^[a-zA-Z0-9_.@]+$/]'
+                'rules' => 'required'
             ],
             [
                 'field' => 'password',
                 'label' => 'Password',
-                'rules' => 'required|min_length[3]|max_length[40]'
+                'rules' => 'required'
             ]
         ]);
 
@@ -39,22 +39,7 @@ class Login extends MY_Controller{
                 'user_auth' => $user_auth,
                 'password' => md5($password)
             ];
-            $user = $this->user->user_existence($data);
-            $user_num = $user->num_rows();
-            $user_data = $user->row();
-            if ($user_num > 0) {
-                $this->session->set_userdata(
-                    [
-                        'id'        => $user_data->user_id,
-                        'username'  => $user_data->username,
-                        'level'     => $user_data->level,
-                        'status'    => 'logged in'
-                    ]
-                );
-                redirect('dashboard/','refresh');
-            } else {
-                $this->load->view('auth/login/index');
-            }
+            $this->detailed_check($data);
         }
     }
 
@@ -66,6 +51,29 @@ class Login extends MY_Controller{
     private function has_session() {
         if ($this->session->status) {
             redirect('dashboard/');
+        }
+    }
+
+    public function detailed_check($data) {
+        $user = $this->user->user_existence($data);
+        $user_data = $user->row();
+        if($user_data->username === $data['user_auth'] || $user_data->email === $data['user_auth']){
+            if ($user_data->password === $data['password']) {
+            $this->session->set_userdata(
+                [
+                    'id'        => $user_data->user_id,
+                    'level'     => $user_data->level,
+                    'status'    => 'logged in'
+                    ]
+                );
+                redirect('dashboard/','refresh');
+            } else {
+                $this->session->set_flashdata('login_failure_message','Incorrect Password');
+                $this->load->view('auth/login/index');
+            } 
+        } else {
+            $this->session->set_flashdata('login_failure_message', 'Account Not Registered, Please Register For Login');
+            redirect('auth/login/');
         }
     }
 }

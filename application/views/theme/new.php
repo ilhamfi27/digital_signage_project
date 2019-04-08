@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <?= stick_template('resources/meta'); ?>
+  <?= $page_resource['meta'] ?>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
 <div class="wrapper">
 
-  <?= stick_template('resources/admin_header') ?>
+  <?= $page_resource['admin_header'] ?>
 
   <!-- =============================================== -->
 
   <!-- Left side column. contains the sidebar -->
-  <?= stick_template('resources/admin_sidebar') ?>
+  <?= $page_resource['admin_sidebar'] ?>
 
   <!-- =============================================== -->
 
@@ -34,7 +34,7 @@
         <p style="font-size: 25px">Input New Theme</p>
         </div>
         <div class="box-body">
-          <?= form_open_multipart('appearance/insert_new_theme',['class' => 'form-horizontal']) ?>
+          <?= form_open_multipart('theme/insert',['class' => 'form-horizontal']) ?>
             <div class="form-group">
               <label class="col-sm-2 control-label" for="title">Title</label>
               <div class="col-sm-10">
@@ -56,10 +56,9 @@
               <div class="col-sm-10">
                 <select id="category" class="form-control" name="category">
                   <option value="">-- Select Category --</option>
-                  <option value="Abstract">Abstract</option>
-                  <option value="Nature">Nature</option>
-                  <option value="Cartoon">Cartoon</option>
-                  <option value="Comics">Comics</option>
+                  <?php foreach($categories as $category): ?>
+                  <option value="<?= $category->id ?>"><?= $category->category_name ?></option>
+                  <?php endforeach; ?>
                 </select>
                 <?= form_error('category')?>
               </div>
@@ -68,7 +67,12 @@
             <div class="form-group">
               <label class="col-sm-2 control-label" for="creator">Creator</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="creator" name="creator" <?= set_value('creator') ?>>
+                <select id="creator" class="form-control" name="creator">
+                  <option value="">-- Select Creator --</option>
+                  <?php foreach($creators as $creator): ?>
+                  <option value="<?= $creator->id ?>"><?= $creator->name ?></option>
+                  <?php endforeach; ?>
+                </select>
                 <?= form_error('creator')?>
               </div>
             </div>
@@ -97,30 +101,13 @@
   </div>
   <!-- /.content-wrapper -->
 
-  <?= stick_template('resources/admin_footer') ?>
+  <?= $page_resource['admin_footer'] ?>
 
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
-
-<!-- jQuery 3 -->
-<script src="<?= base_url() ?>assets/vendor/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="<?= base_url() ?>assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- SlimScroll -->
-<script src="<?= base_url() ?>assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="<?= base_url() ?>assets/vendor/fastclick/lib/fastclick.js"></script>
-<!-- AdminLTE App -->
-<script src="<?= base_url() ?>assets/vendor/template_admin-lte/dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="<?= base_url() ?>assets/vendor/template_admin-lte/dist/js/demo.js"></script>
-<script>
-  $(document).ready(function () {
-    $('.sidebar-menu').tree()
-  })
-</script>
+<?= $page_resource['admin_scripts'] ?>
 </body>
 </html>
