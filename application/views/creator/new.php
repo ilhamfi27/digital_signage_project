@@ -24,53 +24,60 @@
                         <div class="box">
                             <!-- /.box-header -->
                             <div class="box-body">
-                                <?= form_open('creator/insert', ['class' => 'form-horizontal']) ?>
+                                <?= form_open_multipart('creator/insert', ['class' => 'form-horizontal', 'id'=>'new-creator-form']) ?>
                                     <div class="form-group">
                                         <label class="col-sm-2 col-sm-offset-1 control-label" for="name">Name</label>
                                         <div class="col-sm-6">
-                                            <input type='text' name='name' class='form-control' value="" placeholder="Name">
+                                            <input type='text' name='name' class='form-control' value="Rama" placeholder="Name">
                                             <?= form_error('name') ?>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 col-sm-offset-1 control-label" for="name">Address</label>
                                         <div class="col-sm-6">
-                                            <input type='text' name='address' class='form-control' value="" placeholder="Address">
+                                            <input type='text' name='address' class='form-control' value="Padasuka" placeholder="Address">
                                             <?= form_error('address') ?>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 col-sm-offset-1 control-label" for="name">Birth Place</label>
                                         <div class="col-sm-6">
-                                            <input type='text' name='birth_place' class='form-control' value="" placeholder="Birth Place">
+                                            <input type='text' name='birth_place' class='form-control' value="Bandung" placeholder="Birth Place">
                                             <?= form_error('birth_place') ?>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 col-sm-offset-1 control-label" for="name">Birth Date</label>
                                         <div class="col-sm-6">
-                                            <input type='date' name='birth_date' class='form-control' value="" placeholder="Birth Date">
+                                            <input type='date' name='birth_date' class='form-control' value="01/01/1999" placeholder="Birth Date">
                                             <?= form_error('birth_date') ?>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 col-sm-offset-1 control-label" for="name">Phone Number</label>
                                         <div class="col-sm-6">
-                                            <input type='text' name='phone_number' class='form-control' value="" placeholder="Phone Number">
+                                            <input type='text' name='phone_number' class='form-control' value="07895678546" placeholder="Phone Number">
                                             <?= form_error('phone_number') ?>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 col-sm-offset-1 control-label" for="name">Email</label>
                                         <div class="col-sm-6">
-                                            <input type='email' name='email' class='form-control' value="" placeholder="Email">
+                                            <input type='email' name='email' class='form-control' value="sirama@cnet.com" placeholder="Email">
                                             <?= form_error('email') ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 col-sm-offset-1 control-label" for="photo">Photo</label>
+                                        <div class="col-sm-6">
+                                            <input type="file" name="photo" id="photo" accept="image/x-png,image/gif,image/jpeg">
+                                            <?= $this->session->flashdata('photo_error') ?>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-3"></div>
                                         <div class="col-sm-6">
-                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                            <button type="submit" id="form-creator-button" class="btn btn-primary">Submit</button>
                                         </div>
                                     </div>
                                 <?= form_close() ?>
@@ -81,12 +88,10 @@
                     <!-- /.col -->
                 </div>
                 <!-- /.row -->
-
             </section>
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-
         <?= $page_resource['admin_footer'] ?>
     </div>
     <!-- ./wrapper -->

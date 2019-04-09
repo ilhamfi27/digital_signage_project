@@ -22,5 +22,7 @@
 <!-- data tables -->
 <script src="<?= base_url() ?>assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="<?= base_url() ?>assets/vendor/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- sweet alert -->
+<script src="<?= base_url() ?>assets/plugins/sweet-alert/sweetalert.min.js"></script>
 <!-- our own javascript -->
 <script src="<?= base_url() ?>assets/js/app.js"></script>

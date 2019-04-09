@@ -72,7 +72,7 @@
                                         <div class="col-sm-6">
                                             <input type="file" name="photo" id="photo" accept="image/x-png,image/gif,image/jpeg">
                                             <?= $this->session->flashdata('photo_error') ?>
-                                            <img src="<?= base_url("storage/images/user_avatar/" . $user_data->avatar) ?>" alt="User Avatar" width="200">
+                                            <img src="<?= base_url("storage/images/user_avatar/" . $user_data->avatar) ?>" id="user_avatar" alt="User Avatar" width="200" data-img-url="<?= base_url("storage/images/user_avatar/") ?>">
                                         </div>
                                     </div>
                                     <hr>
@@ -98,19 +98,10 @@
                     <!-- /.col -->
                 </div>
                 <!-- /.row -->
-
             </section>
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-        <div class="alert alert-success alert-dismissible floating-alert" id="change-profile-success" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <strong>Profil Change Success!</strong> <span class="change-profile-message"></span>.
-        </div>
-        <div class="alert alert-danger alert-dismissible floating-alert" id="change-profile-failed" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <strong>Profil Change Failed!</strong> <span class="change-profile-message"></span>
-        </div>
         <?= $page_resource['admin_footer'] ?>
     </div>
     <!-- ./wrapper -->
