@@ -91,9 +91,14 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?= site_url('front_display/index') ?>"><i class="fa fa-circle-o"></i> Content</a></li>
+                    <?php if($this->session->level === "admin"){ ?>
                     <li><a href="<?= site_url('front_display/indexLayout') ?>"><i class="fa fa-circle-o"></i> Layout</a></li>
+                    <?php } else { ?>
+                    <li><a href="<?= site_url('#') ?>"><i class="fa fa-circle-o"></i> Layout</a></li>
+                    <li><a href="<?= site_url('front_display/index') ?>"><i class="fa fa-circle-o"></i> Content</a></li>
+                     <li><a href="<?= site_url('front_display/munculcontent') ?>"><i class="fa fa-circle-o"></i> List Content</a></li>
                     <li><a href="<?= site_url('#')?>"><i class="fa fa-circle-o"></i> Play</a></li>
+                    <?php } ?>
                 </ul>
             </li>
             <li class="treeview">
