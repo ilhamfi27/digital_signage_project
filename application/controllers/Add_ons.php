@@ -11,22 +11,25 @@ class Add_ons extends MY_Controller{
 		$config['allowed_types'] = 'gif|jpg|png|jpeg';
 		$this->load->library('upload',$config);
 	}
+
 	public function index()	{
         $data['page_resource'] = parent::page_resources();
 		$data['addon'] = $this->add_on_model->all()->result();
 		$this->load->view('add_ons/index',$data);
 	}
+
 	public function details($id=0){
 
         $data['page_resource'] = parent::page_resources();
 		$data['id'] = $id;
-		$data = [
+		$data['addons'] = [
 			'judul' => "Memo",
 			'deskripsi' => "Memo untuk menyimpan catatan kecil",
 			'harga' => "IDR 8000",
 			'kategori' => "Produktifitas",
 			'pembuat' => "Tim Lab SI"
 		];
+		$data['addons'] = (object) $data['addons'];
 		$this->load->view('add_ons/details', $data);
 	}
 	public function new_addon(){
