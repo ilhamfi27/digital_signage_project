@@ -16,15 +16,13 @@ user_guide_src/cilexer/dist/*
 user_guide_src/cilexer/pycilexer.egg-info/*
 /vendor/
 
-storage/images/*
-!storage/images/index.html
+storage/*
+!storage/*/index.html
+!storage/*/user-default-avatar.jpg
 
 storage/cache/*
 !storage/cache/index.html
 
-storage/images/user_avatar/*
-!storage/images/user_avatar/index.html
-!storage/images/user_avatar/user-default-avatar.jpg
 
 # IDE Files
 #-------------------------
