@@ -75,7 +75,7 @@ class Add_ons extends MY_Controller{
 		]);
 
 		if ($this->form_validation->run() === FALSE) {
-			$this->load->view('add_ons/new_addon');
+			$this->load->view('add_ons/new_addon',$data);
 		} else {
 			if (!$this->upload->do_upload('foto')){
 				echo $this->upload->display_errors();
