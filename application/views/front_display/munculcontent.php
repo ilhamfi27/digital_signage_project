@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <?= stick_template('resources/meta'); ?>
+  <?= $page_resource['meta'] ?>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
 <div class="wrapper">
 
-  <?= stick_template('resources/admin_header') ?>
+  <?= $page_resource['admin_header'] ?>
 
   <!-- =============================================== -->
 
   <!-- Left side column. contains the sidebar -->
-  <?= stick_template('resources/admin_sidebar') ?>
+  <?= $page_resource['admin_sidebar'] ?>
 
   <!-- =============================================== -->
 
@@ -21,7 +21,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        FRONT DISPLAY
+        LIST CONTENT
       </h1>
     </section>
 
@@ -32,59 +32,72 @@
       <div class="box">
         <div class="box-header with-border">
   
+       <div class="col-lg-3 col-lg-offset-9">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for...">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button">Go</button>
+            </span>
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
 
         </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="panel panel-default">
-                <div class="panel-heading">
+        <div class="box-body">
+           <table id="list-data" class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Id</th>
+                  <th>Image</th>
+                  <th>Subject</th>
+                  <th>Description</th>
+                  <th>Date</th>
+                  <th>Category</th>
+                  <th>Keterangan</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php 
+                $no = 1;
+                foreach($content as $s):
+                ?>
+                <tr>
+                  <td><?php echo $no; ?></td>
+                  <td><?php echo $s->id; ?></td>
+                  <td><img src="<?=base_url().'./storage/images/'.$s->image;?>" width ="100" height ='100'></td>
+                  <td><?php echo $s->subject; ?></td>
+                  <td><?php echo $s->description; ?></td>
+                  <td><?php echo $s->date; ?></td>
+                  <td><?php echo $s->category; ?></td>
+                  <td>
+                    <a href="<?php echo site_url('front_display/editcontent/'.$s->id); ?>">
+                      <button class="btn btn-primary">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                      </button>
+                    </a>
+                    <a href="<?php echo site_url('front_display/hapuscontent/'.$s->id); ?>">
+                      <button class="btn btn-danger">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                      </button>
+                    </a>
+                  </td>
+                </tr>
+                <?php 
+                $no++;
+                endforeach;
+                ?>
+           </table>
 
-                  <center><h2 class="panel-title"><b>Add Content</b></h2>
-
-                </div>
-                <div class="panel-body">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class 
-                    </div>
-                  </div>
-                  <div class="row">
-                  	<table border="1">
-						<tr>
-							<td>Id</td>
-							<td>subject</td>
-							<td>description</td>
-							<td>image</td>
-							<td>date</td>
-							<td>category</td>
-							<td>Aksi</td>
-						</tr>
-						<?php foreach ($content as $s) {?>
-						<tr>
-							<td><?php echo $s->id; ?></td>
-							<td><?php echo $s->subject; ?></td>
-							<td><?php echo $s->description; ?></td>
-							<td><img src="<?=base_url().'./storage/images/'.$s->image;?>" width ="100" height ='100'></td>
-							<td><?php echo $s->date; ?></td>
-							<td><?php echo $s->category; ?></td>
-							<td>
-								<?php echo anchor('front_display/editcontent/'.$s->id,'Update')?> ||
-								<?php echo anchor('front_display/hapuscontent/'.$s->id,'Hapus')?>
-							</td>
-						</tr>
-						<?php }?>
-					</table>
-					<?php echo anchor('front_display/input','Tambah'); ?>
-                  </div>
-                   <div class="row" style="margin-top: 10px;">
-
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-          </div>
+        </div>
         <!-- /.box-body -->
+        <div class="box-footer">
+           </tfoot>
+                 <a href="<?php echo site_url('front_display/input'); ?>">
+                      <button class="btn btn-primary">
+                        <span class="fa fa-plus" aria-hidden="true"></span>
+                      </button>
+                  </a>
+        </div>
         <!-- /.box-footer-->
       </div>
       <!-- /.box -->
@@ -94,30 +107,13 @@
   </div>
   <!-- /.content-wrapper -->
 
-  <?= stick_template('resources/admin_footer') ?>
+  <?= $page_resource['admin_footer'] ?>
 
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
 </div>
-<!-- ./wrapper -->
 
-<!-- jQuery 3 -->
-<script src="<?= base_url() ?>assets/vendor/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="<?= base_url() ?>assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- SlimScroll -->
-<script src="<?= base_url() ?>assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="<?= base_url() ?>assets/vendor/fastclick/lib/fastclick.js"></script>
-<!-- AdminLTE App -->
-<script src="<?= base_url() ?>assets/vendor/template_admin-lte/dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="<?= base_url() ?>assets/vendor/template_admin-lte/dist/js/demo.js"></script>
-<script>
-  $(document).ready(function () {
-    $('.sidebar-menu').tree()
-  })
-</script>
+<?= $page_resource['admin_scripts'] ?>
 </body>
 </html>

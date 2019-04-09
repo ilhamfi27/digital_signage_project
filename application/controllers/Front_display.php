@@ -2,12 +2,15 @@
 
 class Front_display extends MY_Controller{
 	
-	public function __construct()	{
+	function __construct()	{
 		parent::__construct();
         parent::session_needed_except();
 		$this->load->helper('view_partial');
 		$this->load->helper('form', 'url');
+		$config['upload_path'] = './storage/images';
+		$config['allowed_types'] = 'gif|jpg|png';
 		$this->load->model('modelcontent');
+		$this->load->library('upload',$config);
 	}
 
 	public function index(){
@@ -22,33 +25,60 @@ class Front_display extends MY_Controller{
 	}
 
 	public function inputContent(){
-		$id 		= $this->input->post('id');
-		$subject 	= $this->input->post('subject');
-		$description 		= $this->input->post('description');
-		$date = $this->input->post('date');
-		$category = $this->input->post('category');
-		$config['upload_path'] = './storage/images';
-		$config['allowed_types'] = 'gif|jpg|png';
-		// $config['max_size'] = 10240;
-		// $config['max_width'] = 1024;
-		// $config['max_height'] = 768;
+		$data_input['page_resource'] = parent::page_resources();
+		$id 			= $this->input->post('id');
+		$subject 		= $this->input->post('subject');
+		$description 	= $this->input->post('description');
+		$date 			= $this->input->post('date');
+		$category 		= $this->input->post('category');
 		
-		$this->load->library('upload',$config);
-		if ( ! $this->upload->do_upload('image')){
-			echo $this->upload->display_errors();
-		}else{
-			// echo $this->upload->data()['file_name'];
-			$data_input = array(
-			'id' => $id,
-			'subject' => $subject,
-			'description' => $description,
-			'date' => $date,
-			'category' => $category,
-			'image' => $this->upload->data()['file_name'],
-		);
+		$this->form_validation->set_rules([
+			[
+				'field' => 'id',
+				'label'	=> 'Id`',
+				'rules' => 'required|min_length[4]'
+			],
+			[
+				'field' => 'subject',
+				'label'	=> 'Subject',
+				'rules' => 'required|min_length[5]'
+			],
+			[
+				'field' => 'description',
+				'label'	=> 'Description',
+				'rules' => 'required|min_length[10]'
+			],
+			[
+				'field' => 'category',
+				'label'	=> 'Category',
+				'rules' => 'required'
+			],
+			[
+				'field' => 'date',
+				'label'	=> 'Date',
+				'rules' => 'required'
+			]
+		]);
+		
+		if ($this->form_validation->run() === FALSE) {
+			$this->load->view('add_ons/new_addon');
+		} else {
+			if ( ! $this->upload->do_upload('image')){
+				echo $this->upload->display_errors();
+			}else{
+				// echo $this->upload->data()['file_name'];
+				$data_input = array(
+				'id' => $id,
+				'subject' => $subject,
+				'description' => $description,
+				'date' => $date,
+				'category' => $category,
+				'image' => $this->upload->data()['file_name'],
+			);
 			
-			$this->modelcontent->input_content($data_input,'content');
-			redirect('front_display/munculcontent',$data_input);
+				$this->modelcontent->input_content($data_input,'content');
+				redirect('front_display/munculcontent',$data_input);
+			}
 		}
 	}
 
@@ -58,42 +88,34 @@ class Front_display extends MY_Controller{
 		redirect('front_display/munculcontent');
 	}
 	public function editContent($id){
-		$data['page_resource'] = parent::page_resources();
+		$data_input['page_resource'] = parent::page_resources();
 		$where = array('id' => $id);
-		$data['content'] = $this->modelcontent->edit_content($where,'content')->result();
-		$this->load->view('front_display/editcontent',$data);
+		$data_input['content'] = $this->modelcontent->edit_content('content',$where)->row();
+		$this->load->view('front_display/editcontent',$data_input);
 	}
 	public function updateContent(){
 		$id 				= $this->input->post('id');
 		$subject 			= $this->input->post('subject');
 		$description 		= $this->input->post('description');
-		$config['upload_path'] = './storage/images';
-		$config['allowed_types'] = 'gif|jpg|png';
-		$date = $this->input->post('date');
-		$category = $this->input->post('category');	
+		$date 				= $this->input->post('date');
+		$category 			= $this->input->post('category');	
+		$image 				= $this->input->post('image');
 
-		$this->load->library('upload',$config);
-
-		if (!$this->upload->do_upload('image')){
-			echo $this->upload->display_errors();
-		}else{
-			// echo $this->upload->data()['file_name'];
-			$data = array(
+		
+			$data_input = array(
 				'subject' => $subject,
 				'description' => $description,
 				'date' => $date,
 				'category' => $category,
-				'image' => $this->upload->data()['file_name']
+				'image' => $image
 			);
-			$where = array('id' => $id);
-			$this->modelcontent->update_content($where,$data,'content');
+			$this->modelcontent->update_content(['id' => $id],$data_input,'content');
 			redirect('front_display/munculcontent');
-		}
 	}
 	public function munculcontent(){
-		$data['page_resource'] = parent::page_resources();
-		$data['content'] = $this->modelcontent->ambil_content()->result();
-		$this->load->view('front_display/munculcontent', $data);
+		$data_input['page_resource'] = parent::page_resources();
+		$data_input['content'] = $this->modelcontent->ambil_content()->result();
+		$this->load->view('front_display/munculcontent', $data_input);
 	}
 
 	public function indexLayout(){
