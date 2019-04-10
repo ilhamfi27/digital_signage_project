@@ -131,7 +131,7 @@ class Add_ons extends MY_Controller{
 	public function install_addon()	{
 
         $data['page_resource'] = parent::page_resources();
-		$this->load->view('add_ons/install_addon');
+		$this->load->view('add_ons/install_addon',$data);
 	}
 	public function new_creator(){
         $data['page_resource'] = parent::page_resources();
@@ -226,9 +226,9 @@ class Add_ons extends MY_Controller{
 		$id = $this->input->post('id');
 		$nama = $this->input->post('nama');
 		$alamat = $this->input->post('alamat');
-		$tempat_lahir = $this->input->post('tempat_lahir');
-		$tanggal_lahir = $this->input->post('tanggal_lahir');
-		$no_telp = $this->input->post('no_telp');
+		$tempat_lahir = $this->input->post('tempat');
+		$tanggal_lahir = $this->input->post('tanggal');
+		$no_telp = $this->input->post('telepon');
 		$email = $this->input->post('email');
 		
 		$data = array(

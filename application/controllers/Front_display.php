@@ -25,6 +25,7 @@ class Front_display extends MY_Controller{
 	}
 
 	public function inputContent(){
+		
 		$data_input['page_resource'] = parent::page_resources();
 		$id 			= $this->input->post('id');
 		$subject 		= $this->input->post('subject');
@@ -113,9 +114,28 @@ class Front_display extends MY_Controller{
 			redirect('front_display/munculcontent');
 	}
 	public function munculcontent(){
+		//pagination
+		// $this->load->database();
+  //       $paging = $this->modelcontent->paging();
+  //       $this->load->library('pagination');
+  //       $config['base_url'] = base_url().'index.php/Front_display/inputContent/';
+  //       $config['total_rows'] = $paging;
+  //       $config['per_page'] = 3;
+  //       $from = $this->uri->segment(3);
+  //       $this->pagination->initialize($config);     
+  //       $data_input['content'] = $this->modelcontent->paging_halaman($config['per_page'],$from);
+  //       $this->load->view('front_display/munculcontent',$data_input);
+
+
 		$data_input['page_resource'] = parent::page_resources();
 		$data_input['content'] = $this->modelcontent->ambil_content()->result();
 		$this->load->view('front_display/munculcontent', $data_input);
+	}
+	//Search
+	public function search(){
+		$keyword = $this->input->post('keyword');
+        $data_input['content'] = $this->modelcontent->search($keyword);
+        $this->load->view('front_display/munculcontent',$data_input);
 	}
 
 	public function indexLayout(){

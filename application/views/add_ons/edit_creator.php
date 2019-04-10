@@ -65,7 +65,7 @@
             <div class="form-group">
               <label class="col-sm-2 control-label">Tanggal Lahir</label>
               <div class="col-sm-10">
-                <input type="text" name="tanggal" class="form-control" id="tanggal" value="<?= $creator->tanggal_lahir ?>">
+                <input type="date" name="tanggal" class="form-control" id="tanggal" value="<?= $creator->tanggal_lahir ?>">
                 <?= form_error('tanggal')?>
               </div>
             </div>
