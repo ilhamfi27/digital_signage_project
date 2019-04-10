@@ -3,7 +3,6 @@ class Dashboard extends MY_Controller {
     public function __construct() {
         parent::__construct();
         parent::session_needed_except();
-        $this->load->helper('view_partial');
         $this->load->model("user_data_model", "user_data_m");
         $this->load->model("user_model", "user_m");
     }
@@ -30,8 +29,6 @@ class Dashboard extends MY_Controller {
     }
 
     public function insert_data_user() {
-        $data['page_resource'] = parent::page_resources();
-
         $first_name                 = $this->input->post('first_name');
         $last_name                  = $this->input->post('last_name');
         $birth_date                 = $this->input->post('birth_date');
@@ -78,12 +75,12 @@ class Dashboard extends MY_Controller {
             'first_name' => $first_name,
             'last_name' => $last_name,
             'birth_date' => $birth_date,
-            'gender' => $gender,
-            'avatar' => "" !== $this->upload->data()['orig_name'] ? $this->upload->data()['orig_name'] : $data['user_data']->avatar
+            'gender' => $gender//,
+            // 'avatar' => "" !== $this->upload->data()['orig_name'] ? $this->upload->data()['orig_name'] : $data['user_data']->avatar
         ];
 
         if ($this->form_validation->run() === FALSE) {
-            $errors = validation_errors();
+            $errors = validation_errors(NULL, NULL);
             echo json_encode(['errors' => $errors]);
         } else {
             $data_needed = [
@@ -94,11 +91,13 @@ class Dashboard extends MY_Controller {
             ];
             $result = $this->user_data_transaction($data_needed, $new_profile_data);
             if ($result['is_error'] === FALSE) {
-                echo json_encode(['success' => "Record Added Successfully"]);
+                echo json_encode([
+                    'success' => "Record Added Successfully",
+                    'new_image' => $result['new_image']
+                ]);
             } else {
                 echo json_encode(['errors' => $result['errors']]);
             }
-            
         }
     }
 
@@ -106,14 +105,14 @@ class Dashboard extends MY_Controller {
         // photo configuration
         $new_file_name                  = "p_".time()."_".$this->session->userdata('id');
         $config['upload_path']          = 'storage/images/user_avatar/';
-		$config['allowed_types']        = 'gif|jpg|png';
+        $config['allowed_types']        = 'gif|jpg|png';
         $config['file_name']            = $new_file_name;
         $this->load->library('upload', $config);
     }
 
     private function user_data_transaction($data_needed, $new_profile_data){
         if ($data_needed['user_encrypted_password'] === $data_needed['password_verification']) {
-            if ( ! $this->upload->do_upload('photo') && !isset($data_needed['avatar'])){
+            if (!$this->upload->do_upload('photo') && NULL === $data_needed['avatar']){
                 $error = $this->upload->display_errors();
                 return [
                     'is_error' => TRUE,
@@ -121,6 +120,7 @@ class Dashboard extends MY_Controller {
                 ];
             }else{
                 $user_exist = $this->user_data_m->detail($this->session->userdata('id'))->row();
+                $new_profile_data['avatar'] = "" !== $this->upload->data()['orig_name'] ? $this->upload->data()['orig_name'] : $data_needed['avatar'];
                 if (!isset($user_exist)) {
                     $db_operation = $this->user_data_m->insert($new_profile_data);
                 } else {
@@ -129,7 +129,8 @@ class Dashboard extends MY_Controller {
                 }
                 
                 return [
-                    'is_error' => FALSE
+                    'is_error' => FALSE,
+                    'new_image' => $new_profile_data['avatar']
                 ];
             }
         } else {

@@ -69,6 +69,7 @@
     width: 80%;
     text-align: center;
 }
-#change-profile-success, #change-profile-failed {
+#data-transaction-success,
+#data-transaction-failed {
     display: none;
 }
