@@ -3,7 +3,7 @@ class Add_ons extends MY_Controller{
 	
 	function __construct(){
 		parent::__construct();
-        parent::session_needed_except();
+        // parent::session_needed_except();
 		$this->load->helper('view_partial');
 		$this->load->model('add_on_model');
 		$this->load->model('add_on_creator_model');
@@ -19,17 +19,8 @@ class Add_ons extends MY_Controller{
 	}
 
 	public function details($id=0){
-
         $data['page_resource'] = parent::page_resources();
-		$data['id'] = $id;
-		$data['addons'] = [
-			'judul' => "Memo",
-			'deskripsi' => "Memo untuk menyimpan catatan kecil",
-			'harga' => "IDR 8000",
-			'kategori' => "Produktifitas",
-			'pembuat' => "Tim Lab SI"
-		];
-		$data['addons'] = (object) $data['addons'];
+        $data['addon']= $this->add_on_model->details($id)->row();
 		$this->load->view('add_ons/details', $data);
 	}
 	public function new_addon(){
