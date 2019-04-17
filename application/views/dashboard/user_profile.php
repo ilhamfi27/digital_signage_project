@@ -28,8 +28,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-2 col-sm-offset-1 control-label" for="username">Username</label>
                                         <div class="col-sm-6">
-                                            <input type='text' name='username' class='form-control' value="<?= $this->session->username; ?>" disabled>
-                                            <?= form_error('username') ?>
+                                            <input type='text'class='form-control' value="<?= $user_data->username ?>" disabled>
                                         </div>
                                     </div>
                                     <div class="form-group">

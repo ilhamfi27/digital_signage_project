@@ -21,7 +21,24 @@ class Plugin_model extends CI_Model{
     }
 
     public function details($id){
-        return $this->db->get_where($this->table,$id);	
+        return $this->db->get_where($this->table,['id' => $id]);	
+    }
+
+    public function full_detail($id){
+        $sql = "SELECT 
+                    `title`,
+                    `description`,
+                    `rating`,
+                    `category_name`,
+                    `name` AS creator_name,
+                    `photo_icon`,
+                    DATE_FORMAT(`uploaded_date`, \"%d %M %Y\") AS uploaded_date
+                FROM
+                    `plugins` p
+                JOIN `categories` c ON c.`id` = p.`id_category`
+                JOIN `creators` cr ON cr.`id` = p.`id_creator`
+                WHERE p.id = ?";
+        return $this->db->query($sql, [$id]);
     }
 
     public function update($data,$where){
@@ -48,5 +65,9 @@ class Plugin_model extends CI_Model{
 
         return $this->db->query($sql." WHERE p.`id` = ?", array($id));
         
+    }
+
+    public function new_last_id(){
+        return $this->db->insert_id();
     }
 }
