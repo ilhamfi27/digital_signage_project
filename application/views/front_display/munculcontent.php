@@ -34,9 +34,12 @@
   
        <div class="col-lg-3 col-lg-offset-9">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for...">
+            <!-- search -->
+            <input type="text" class="form-control" name ='keyword'placeholder="Search for...">
             <span class="input-group-btn">
-              <button class="btn btn-default" type="button">Go</button>
+            <a href="<?= site_url('front_display/search') ?>">
+              <button class="btn btn-default" type="button">Go</button>   
+              </a>
             </span>
           </div><!-- /input-group -->
         </div><!-- /.col-lg-6 -->
@@ -58,6 +61,8 @@
                 </thead>
                 <tbody>
                 <?php 
+                  //pagination
+                  // $paging = $this->uri->segment('3')+1;
                 $no = 1;
                 foreach($content as $s):
                 ?>
@@ -87,7 +92,10 @@
                 endforeach;
                 ?>
            </table>
-
+           <?php
+           //pagination
+              // echo $this->pagination->create_link();
+           ?>
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
