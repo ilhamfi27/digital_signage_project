@@ -5,10 +5,22 @@ class MY_Controller extends CI_Controller {
         parent::__construct();
     }
     
-    protected function session_needed_except($methods = []) {
+    protected function session_needed_except($methods = NULL) {
+        $methods = explode("|", $methods);
         $method_used = $this->router->fetch_method();
+        $actor_role = $this->session->userdata('status');
         if (!$this->session->status && !in_array($method_used, $methods)) {
             redirect('auth/login/', 'refresh');
+        }
+    }
+
+    protected function these_method_for($methods = NULL, $actors = NULL){
+        $methods = explode("|", $methods);
+        $actors = explode("|", $actors);
+        $method_used = $this->router->fetch_method();
+        $actor_role = $this->session->userdata('level');
+        if(in_array($method_used, $methods) && !in_array($actor_role, $actors)){
+            redirect('dashboard/');
         }
     }
 

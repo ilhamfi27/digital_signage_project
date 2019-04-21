@@ -32,113 +32,53 @@
       <div class="box">
         <div class="box-header with-border">
   
-       <div class="col-lg-3 col-lg-offset-9">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for...">
-            <span class="input-group-btn">
-              <button class="btn btn-default" type="button">Go</button>
-            </span>
-          </div><!-- /input-group -->
-        </div><!-- /.col-lg-6 -->
+         <div class="col-lg-3 col-lg-offset-9">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search for...">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Go</button>
+              </span>
+            </div><!-- /input-group -->
+          </div><!-- /.col-lg-6 -->
+
 
         </div>
         <div class="box-body">
           <div class="row">
-            <div class="col-md-6">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h3 class="panel-title">MEMO</h3>
-                </div>
-                <div class="panel-body">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <img src="<?= base_url('storage/images/memo.jpg') ?>" width="150" height="150"><br>
-                    </div>
-                    <div class="col-md-8">
-                     <p align="justify">it is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-                    </div>
-                  </div>
-                  <div class="row" style="margin-top: 10px;">
-                    <div class="col-md-8 col-md-offset-4"> 
-                      <a href='<?= site_url("add_ons/details"); ?>'><button class="btn btn-primary">Read More</button></a>
-                      <button class="btn btn-success">Buy</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h3 class="panel-title">MEMO</h3>
-                </div>
-                <div class="panel-body">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <img src="<?= base_url('storage/images/memo.jpg') ?>" width="150" height="150"><br>
-                    </div>
-                    <div class="col-md-8">
-                     <p align="justify">it is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-                    </div>
-                  </div>
-                  <div class="row" style="margin-top: 10px;">
-                   <div class="col-md-8 col-md-offset-4"> 
-                      <a href='<?= site_url("add_ons/details"); ?>'><button class="btn btn-primary">Read More</button></a>
-                      <button class="btn btn-success">Buy</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+           <div class="col-lg-3">
+              <h3>Kategori 1</h3>
             </div>
           </div>
           <div class="row">
+           <?php 
+              $no = 1;
+              foreach($addon as $row):
+            ?>
             <div class="col-md-6">
               <div class="panel panel-default">
                 <div class="panel-heading">
-                  <h3 class="panel-title">MEMO</h3>
+                  <h3 class="panel-title"><?php echo $row->judul; ?></h3>
                 </div>
                 <div class="panel-body">
                   <div class="row">
-                    <div class="col-md-4">
-                      <img src="<?= base_url('storage/images/memo.jpg') ?>" width="150" height="150"><br>
+                    <div class="col-md-5">
+                      <img  src="<?= base_url('storage/images/add_ons/') . $row->foto ?>" width='200' height='200'><br>
                     </div>
-                    <div class="col-md-8">
-                     <p align="justify">it is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+                    <div class="col-md-7">
+                     <p align="justify"><?php echo $row->deskripsi; ?></p>
                     </div>
                   </div>
                   <div class="row" style="margin-top: 10px;">
                     <div class="col-md-8 col-md-offset-4"> 
-                      <a href='<?= site_url("add_ons/details"); ?>'><button class="btn btn-primary">Read More</button></a>
+                      <a href='<?= site_url("add_ons/details/").$row->id ?>'><button class="btn btn-primary">Read More</button></a>
                       <button class="btn btn-success">Buy</button>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h3 class="panel-title">MEMO</h3>
-                </div>
-                <div class="panel-body">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <img src="<?= base_url('storage/images/memo.jpg') ?>" width="150" height="150"><br>
-                    </div>
-                    <div class="col-md-8">
-                     <p align="justify">it is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-                    </div>
-                  </div>
-                  <div class="row" style="margin-top: 10px;">
-                    <div class="col-md-8 col-md-offset-4"> 
-                      <a href='<?= site_url("add_ons/details"); ?>'><button class="btn btn-primary">Read More</button></a>
-                      <button class="btn btn-success">Buy</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+            <?php endforeach; ?>
+          </div>  
         </div>
         <!-- /.box-body -->
         <div class="box-footer">

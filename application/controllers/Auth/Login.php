@@ -7,7 +7,7 @@ class Login extends MY_Controller{
     public function __construct(){
         parent::__construct();
         $this->load->model('user_model', 'user');
-        parent::session_needed_except(['test_aja', 'index', 'create_session']);
+        parent::session_needed_except('test_aja|index|create_session');
     }
 
     public function index(){

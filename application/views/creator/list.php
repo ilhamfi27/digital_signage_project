@@ -61,8 +61,8 @@
                             $no = 1;
                             foreach($creators as $creator):
                             ?>
-                            <tr>
-                                <td><?php echo $no; ?></td>
+                            <tr id="<?= "creator-list-" . $creator->id ?>">
+                                <td class="no"><?php echo $no; ?></td>
                                 <td><?php echo $creator->name; ?></td>
                                 <td><?php echo $creator->address; ?></td>
                                 <td><?php echo $creator->birth_place; ?></td>
@@ -76,7 +76,7 @@
                                     <a href="<?php echo site_url('creator/edit/' . $creator->id); ?>" class="btn btn-primary">
                                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                     </a>
-                                    <a href="<?php echo site_url('creator/delete/' . $creator->id); ?>" class="btn btn-danger">
+                                    <a href="<?php echo site_url('creator/delete/' . $creator->id); ?>" data-action="<?php echo site_url('creator/delete/' . $creator->id); ?>" data-id="<?= $creator->id ?>" class="btn btn-danger delete-creator-button">
                                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                                     </a>
                                 </td>

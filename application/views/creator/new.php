@@ -24,7 +24,7 @@
                         <div class="box">
                             <!-- /.box-header -->
                             <div class="box-body">
-                                <?= form_open('creator/insert', ['class' => 'form-horizontal']) ?>
+                                <?= form_open_multipart('creator/insert', ['class' => 'form-horizontal', 'id'=>'new-creator-form']) ?>
                                     <div class="form-group">
                                         <label class="col-sm-2 col-sm-offset-1 control-label" for="name">Name</label>
                                         <div class="col-sm-6">
@@ -68,9 +68,16 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <label class="col-sm-2 col-sm-offset-1 control-label" for="photo">Photo</label>
+                                        <div class="col-sm-6">
+                                            <input type="file" name="photo" id="photo" accept="image/x-png,image/gif,image/jpeg">
+                                            <?= $this->session->flashdata('photo_error') ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         <div class="col-sm-3"></div>
                                         <div class="col-sm-6">
-                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                            <button type="submit" id="form-creator-button" class="btn btn-primary">Submit</button>
                                         </div>
                                     </div>
                                 <?= form_close() ?>
@@ -81,12 +88,10 @@
                     <!-- /.col -->
                 </div>
                 <!-- /.row -->
-
             </section>
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-
         <?= $page_resource['admin_footer'] ?>
     </div>
     <!-- ./wrapper -->

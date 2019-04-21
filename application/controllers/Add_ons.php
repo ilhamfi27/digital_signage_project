@@ -3,7 +3,7 @@ class Add_ons extends MY_Controller{
 	
 	function __construct(){
 		parent::__construct();
-        parent::session_needed_except();
+        // parent::session_needed_except();
 		$this->load->helper('view_partial');
 		$this->load->model('add_on_model');
 		$this->load->model('add_on_creator_model');
@@ -19,17 +19,8 @@ class Add_ons extends MY_Controller{
 	}
 
 	public function details($id=0){
-
         $data['page_resource'] = parent::page_resources();
-		$data['id'] = $id;
-		$data['addons'] = [
-			'judul' => "Memo",
-			'deskripsi' => "Memo untuk menyimpan catatan kecil",
-			'harga' => "IDR 8000",
-			'kategori' => "Produktifitas",
-			'pembuat' => "Tim Lab SI"
-		];
-		$data['addons'] = (object) $data['addons'];
+        $data['addon']= $this->add_on_model->details($id)->row();
 		$this->load->view('add_ons/details', $data);
 	}
 	public function new_addon(){
@@ -75,7 +66,7 @@ class Add_ons extends MY_Controller{
 		]);
 
 		if ($this->form_validation->run() === FALSE) {
-			$this->load->view('add_ons/new_addon');
+			$this->load->view('add_ons/new_addon',$data);
 		} else {
 			if (!$this->upload->do_upload('foto')){
 				echo $this->upload->display_errors();
@@ -131,7 +122,7 @@ class Add_ons extends MY_Controller{
 	public function install_addon()	{
 
         $data['page_resource'] = parent::page_resources();
-		$this->load->view('add_ons/install_addon');
+		$this->load->view('add_ons/install_addon',$data);
 	}
 	public function new_creator(){
         $data['page_resource'] = parent::page_resources();
@@ -226,9 +217,9 @@ class Add_ons extends MY_Controller{
 		$id = $this->input->post('id');
 		$nama = $this->input->post('nama');
 		$alamat = $this->input->post('alamat');
-		$tempat_lahir = $this->input->post('tempat_lahir');
-		$tanggal_lahir = $this->input->post('tanggal_lahir');
-		$no_telp = $this->input->post('no_telp');
+		$tempat_lahir = $this->input->post('tempat');
+		$tanggal_lahir = $this->input->post('tanggal');
+		$no_telp = $this->input->post('telepon');
 		$email = $this->input->post('email');
 		
 		$data = array(

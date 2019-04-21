@@ -18,7 +18,8 @@ class Add_on_model extends CI_Model{
     return $this->db->get('add_ons');
 	}
 	public function details($id){
-		return $this->db->get_where($this->table,$id);	
+		// return $this->db->get_where($this->table,$id);
+		return $this->db->get_where($this->table,['id'=>$id]);	
 	}
 	public function update($data,$where){
 		$this->db->where('id', $where);
