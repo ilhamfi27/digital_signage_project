@@ -109,9 +109,13 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?= site_url('#') ?>"><i class="fa fa-circle-o"></i> Payment</a></li>
+                    <?php if($this->session->level === "admin"){ ?>
+                    <li><a href="<?= site_url('#') ?>"><i class="fa fa-circle-o"></i> Billing</a></li>
+                    <?php } else { ?>
+                    <li><a href="<?= site_url('billing_new/create') ?>"><i class="fa fa-circle-o"></i> Payment</a></li>
                     <li><a href="<?= site_url('#') ?>"><i class="fa fa-circle-o"></i> Cetak</a></li>
                     <li><a href="<?= site_url('#')?>"><i class="fa fa-circle-o"></i> View</a></li>
+                    <?php } ?>
                 </ul>
             </li>
             <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
