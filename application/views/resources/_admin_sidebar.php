@@ -84,6 +84,7 @@
                     <?php if($this->session->level === "admin"){ ?>
                     <li><a href="<?= site_url('front_display_new/indexLayout') ?>"><i class="fa fa-circle-o"></i> Layout</a></li>
                     <li><a href="<?= site_url('front_display_new/input_content_category') ?>"><i class="fa fa-circle-o"></i> Content category</a></li>
+                    <li><a href="<?= site_url('front_display_new/munculcontent_category') ?>"><i class="fa fa-circle-o"></i> List Content category</a></li>
                     <?php } else { ?>
                     <li><a href="<?= site_url('#') ?>"><i class="fa fa-circle-o"></i> Layout</a></li>
                     <li><a href="<?= site_url('front_display_new/index') ?>"><i class="fa fa-circle-o"></i> Content</a></li>
