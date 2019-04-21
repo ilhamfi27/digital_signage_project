@@ -138,3 +138,4 @@ $db['new'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+
