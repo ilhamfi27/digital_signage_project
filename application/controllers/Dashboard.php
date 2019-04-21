@@ -14,8 +14,10 @@ class Dashboard extends MY_Controller {
 
     public function user_profile(){
         $user_db_data = $this->user_data_m->detail($this->session->userdata('id'))->row();
+        $user_base_db_data = $this->user_m->detail($this->session->userdata('id'))->row();
         $user_data = [
             'user_id'       => isset($user_db_data->user_id) ? $user_db_data->user_id : NULL,
+            'username'      => isset($user_base_db_data->username) ? $user_base_db_data->username : NULL,
             'first_name'    => isset($user_db_data->first_name) ? $user_db_data->first_name : NULL,
             'last_name'     => isset($user_db_data->last_name) ? $user_db_data->last_name : NULL,
             'birth_date'    => isset($user_db_data->birth_date) ? $user_db_data->birth_date : NULL,
