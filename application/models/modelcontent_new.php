@@ -1,8 +1,9 @@
 <?php
 
-	class modelcontent extends CI_Model{
+	class modelcontent_new extends CI_Model{
 		
 		function ambil_content(){
+			$this->db->join('content_category', 'content_category.id_content_category = content.id_content_category');
 			return $this->db->get('content');
 		}
 		function input_content($data){
@@ -16,6 +17,26 @@
 			return $this->db->get_where($table,$where);
 		}
 		function update_content($where,$data,$table){
+			$this->db->set($data);
+			$this->db->where($where);
+			$this->db->update($table);
+		}
+
+
+		function ambil_content_category(){
+			return $this->db->get('content_category');
+		}
+		function input_content_category($data){
+			$this->db->insert('content_category',$data);
+		}
+		function hapus_content_category($where,$data){
+			$this->db->where($where);
+			$this->db->delete($data);
+		}
+		function edit_content_category($table,$where){
+			return $this->db->get_where($table,$where);
+		}
+		function update_content_category($where,$data,$table){
 			$this->db->where($where);
 			$this->db->update($table,$data);
 		}

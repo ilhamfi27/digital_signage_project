@@ -21,7 +21,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        LIST CONTENT
+        LIST CONTENT Category
       </h1>
     </section>
 
@@ -35,10 +35,10 @@
        <div class="col-lg-3 col-lg-offset-9">
           <div class="input-group">
             <!-- search -->
-            <?php echo form_open('front_display/search') ?>
+            <?php echo form_open('front_display_new/search') ?>
             <input type="text" class="form-control" name ='keyword'placeholder="Search for...">
             <span class="input-group-btn">
-            <a href="<?= site_url('front_display/search') ?>">
+            <a href="<?= site_url('front_display_new/search') ?>">
               <button class="btn btn-default" type="button">Go</button>   
               </a>
             </span>
@@ -52,11 +52,6 @@
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>Id</th>
-                  <th>Image</th>
-                  <th>Subject</th>
-                  <th>Description</th>
-                  <th>Date</th>
                   <th>Category</th>
                   <th>Keterangan</th>
                 </tr>
@@ -66,23 +61,18 @@
                   //pagination
                   // $paging = $this->uri->segment('3')+1;
                 $no = 1;
-                foreach($content as $s):
+                foreach($content_category as $s):
                 ?>
                 <tr>
                   <td><?php echo $no; ?></td>
-                  <td><?php echo $s->id; ?></td>
-                  <td><img src="<?=base_url().'./storage/images/'.$s->image;?>" width ="100" height ='100'></td>
-                  <td><?php echo $s->subject; ?></td>
-                  <td><?php echo $s->description; ?></td>
-                  <td><?php echo $s->date; ?></td>
                   <td><?php echo $s->category; ?></td>
                   <td>
-                    <a href="<?php echo site_url('front_display/editcontent/'.$s->id); ?>">
+                    <a href="<?php echo site_url('front_display_new/editcontent_category/'.$s->id_content_category); ?>">
                       <button class="btn btn-primary">
                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                       </button>
                     </a>
-                    <a href="<?php echo site_url('front_display/hapuscontent/'.$s->id); ?>">
+                    <a href="<?php echo site_url('front_display_new/hapuscontent_category/'.$s->id_content_category); ?>">
                       <button class="btn btn-danger">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                       </button>
@@ -102,7 +92,7 @@
         <!-- /.box-body -->
         <div class="box-footer">
            </tfoot>
-                 <a href="<?php echo site_url('front_display/input'); ?>">
+                 <a href="<?php echo site_url('front_display_new/input_content_category'); ?>">
                       <button class="btn btn-primary">
                         <span class="fa fa-plus" aria-hidden="true"></span>
                       </button>
