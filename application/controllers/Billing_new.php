@@ -3,26 +3,24 @@
 class Billing_new extends MY_Controller
 {
 	
-	function __construct()
-	{
+	function __construct(){
 		parent:: __construct();
 		$this->load->model('dataModel_new');
 		$this->load->helper('url');
 	}
-	function index()
-	{
+	function index(){
 		// $dataArray['payment_code'] = $this->dataModel->tampil()->result();
-		
-		redirect('payment_verif_new/createVerif');
+		// $data['page_resource'] = parent::page_resources();
+		$this->load->view('billing/v_verif_new', $data);
+		// redirect('payment_verif_new/createVerif',$data);
 	}
-	function create()
-	{
+	function create(){
 		$data['page_resource'] = parent::page_resources();
 		$data['package'] = $this->dataModel_new->tampilPayment()->result();
 		$this->load->view('billing/inputkan_new', $data);
 	}
-	function aksiCreate()
-	{
+	function aksiCreate(){
+		// $data['page_resource'] = parent::page_resources();
 		$name = $this->input->post('name');
 		$phone_number = $this->input->post('phone_number');
 		$duration_first = $this->input->post('duration_first');

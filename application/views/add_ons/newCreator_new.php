@@ -46,11 +46,82 @@
               </div>
             </div>
 
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Image</label>
+              <div class="col-sm-10">
+                <input type="file" name="image">
+                <?= form_error('image')?>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Place Of Birth</label>
+              <div class="col-sm-10">
+                <input type="text" name="place_of_birth" class="form-control" id="place_of_birth">
+              <?= form_error('place_of_birth')?>
+              </div>
+           </div>
+
+           <div class="form-group">
+              <label class="col-sm-2 control-label">Date Of Birth</label>
+              <div class="col-sm-10">
+                <input type="date" name="date_of_birth" class="form-control" id="date_of_birth">
+              <?= form_error('date_of_birth')?>
+              </div>
+           </div>
+
+           <div class="form-group">
+              <label class="col-sm-2 control-label">Gender</label>
+              <div class="col-sm-10">
+                <select name ="gender" class="form-control" id="gender">
+                  <option value="Male" selected>Male</option>
+                  <option value="Female" selected>Female</option>
+                </select>
+              <?= form_error('gender')?>
+              </div>
+           </div>
+
+           <div class="form-group">
+              <label class="col-sm-2 control-label">Religion</label>
+              <div class="col-sm-10">
+                <select name ="religion" class="form-control" id="religion">
+                  <option value="Islam" selected>Islam</option>
+                  <option value="Christianity" selected>Christianity</option>
+                  <option value="Buddhism" selected>Buddhism</option>
+                  <option value="Confucianism" selected>Confucianism</option>
+                  <option value="Hinduism" selected>Hinduism</option>
+                </select>
+              <?= form_error('religion')?>
+              </div>
+           </div>
+
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Citizenship</label>
+              <div class="col-sm-10">
+                <input type="text" name="citizenship" class="form-control" id="citizenship">
+              <?= form_error('citizenship')?>
+              </div>
+           </div>
+
+
            <div class="form-group">
               <label class="col-sm-2 control-label">Address</label>
               <div class="col-sm-10">
                 <textarea class="form-control" id="address" rows="3" name="address"></textarea>
               <?= form_error('address')?>
+              </div>
+           </div>
+
+           <div class="form-group">
+              <label class="col-sm-2 control-label">Blood Gruop</label>
+              <div class="col-sm-10">
+                <select name ="blood_group" class="form-control" id="blood_group">
+                  <option value="A" selected>A</option>
+                  <option value="B" selected>B</option>
+                  <option value="AB" selected>AB</option>
+                  <option value="O" selected>O</option>
+                </select>
+              <?= form_error('blood_group')?>
               </div>
            </div>
 

@@ -17,7 +17,7 @@ class Add_ons_new extends MY_Controller{
 		$data['addon'] = $this->Add_on_model_new->all()->result();
 		$this->load->view('add_ons/index_new',$data);
 	}
-
+	
 	public function details($id=0){
         $data['page_resource'] = parent::page_resources();
         $data['addon']= $this->add_on_model_new->details($id)->row();
@@ -154,6 +154,12 @@ class Add_ons_new extends MY_Controller{
 		$address 	= $this->input->post('address');
 		$email 		= $this->input->post('email');
 		$phone 		= $this->input->post('phone_number');
+		$religion 		= $this->input->post('religion');
+		$blood_group 	= $this->input->post('blood_group');
+		$date_of_birth 		= $this->input->post('date_of_birth');
+		$place_of_birth		= $this->input->post('place_of_birth');
+		$gender 		= $this->input->post('gender');
+		$citizenship 	= $this->input->post('citizenship');
 		
 		$this->form_validation->set_rules([
 			[
@@ -175,22 +181,73 @@ class Add_ons_new extends MY_Controller{
 				'field' => 'phone_number',
 				'label'	=> 'phone_Number',
 				'rules' => 'required'
+			],
+			[
+				'field' => 'blood_group',
+				'label'	=> 'blood_group',
+				'rules' => 'required'
+			],
+			[
+				'field' => 'religion',
+				'label'	=> 'religion',
+				'rules' => 'required'
+			],
+			[
+				'field' => 'citizenship',
+				'label'	=> 'citizenship',
+				'rules' => 'required'
+			],
+			[
+				'field' => 'gender',
+				'label'	=> 'gender',
+				'rules' => 'required'
+			],
+			[
+				'field' => 'date_of_birth',
+				'label'	=> 'date_of_birth',
+				'rules' => 'required'
+			],
+			[
+				'field' => 'place_of_birth',
+				'label'	=> 'place_of_birth',
+				'rules' => 'required'
 			]
+
 		]);
+
+		// if ($this->form_validation->run() === FALSE) {
+		// 	$this->load->view('add_ons/newCreator_new',$data);
+		// } 
+		// else{
+		// 		$data = [
+		// 			'name' => $name,
+		// 			'address' => $address,
+		// 			'email' => $email,
+		// 			'phone_number' => $phone,
+		// 			'citizenship' => $citizenship,
+		// 			'gender' => $gender,
+		// 			'date_of_birth' => $date_of_birth,
+		// 			'place_of_birth' => $place_of_birth,
+		// 			'religion' => $religion,
+		// 			'blood_group' => $blood_group,
+		// 		];
+		// 		$this->Add_on_creator_model_new->insert_add_on($data);
+		// 		redirect('add_ons_new/list_creator');
+		// 	}
+
 
 		if ($this->form_validation->run() === FALSE) {
 			$this->load->view('add_ons/newCreator_new',$data);
-		} 
-		else{
-				$data = [
-					'name' => $name,
-					'address' => $address,
-					'email' => $email,
-					'phone_number' => $phone
-				];
-				$this->Add_on_creator_model_new->insert_add_on($data);
+		} else {
+			if ( ! $this->upload->do_upload('image')){
+				echo $this->upload->display_errors();
+			}else{
+				$data = $this->input->post();
+				$data['image'] = $this->upload->data('file_name');
+				$this->Add_on_creator_model_new->insert_creator($data);
 				redirect('add_ons_new/list_creator');
 			}
+		}
 		}
 	
 	public function detail_creator($id){
@@ -227,19 +284,33 @@ class Add_ons_new extends MY_Controller{
 		$this->form_validation->set_rules('address', 'Alamat', 'required');
 		$this->form_validation->set_rules('phone_number', 'Telepon', 'required');
 		$this->form_validation->set_rules('email', 'email', 'required');
+		$this->form_validation->set_rules('region', 'region', 'required');
+		$this->form_validation->set_rules('date_of_birth', 'date_of_birth', 'required');
+		$this->form_validation->set_rules('place_of_birth', 'place_of_birth', 'required');
+		$this->form_validation->set_rules('blood_group', 'blood_group', 'required');
+		$this->form_validation->set_rules('gender', 'gender', 'required');
+		$this->form_validation->set_rules('citizenship', 'citizenship', 'required');
+		if (!empty($_FILES['file']['name'])) {
+			
+			if ( ! $this->upload->do_upload('file')){
+				echo $this->upload->display_errors();
+			}else{
+			$data['image'] = $this->upload->data('file_name');
+			}
+		}
 		if ($this->form_validation->run() == FALSE) {
 			$this->edit_creator($this->input->post('id_creator'));
 		} else {
 			$id=$this->input->post('id_creator');
 			$data = $this->input->post();
-			$this->Add_on_creator_model_new->update($data,$id);
+			$this->Add_on_creator_model_new->update_creator($data,$id);
 			redirect('add_ons_new/list_creator');
 		}
 
 	}
 	public function delete_creator($data){
 		$where = array('id_creator'=>$data);
-		$this->Add_on_creator_model_new->delete_add_on($where);
+		$this->Add_on_creator_model_new->delete_creator($where);
 		redirect('add_ons_new/list_creator');
 	}
 

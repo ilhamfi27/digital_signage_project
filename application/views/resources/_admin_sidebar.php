@@ -50,11 +50,12 @@
                 <ul class="treeview-menu">
                     <li><a href="<?= site_url('add_ons_new/index') ?>"><i class="fa fa-circle-o"></i> Add Ons</a></li>
                     <li><a href="<?= site_url('add_ons_new/install_addon') ?>"><i class="fa fa-circle-o"></i> Installed Add On</a></li>
+                    
                     <?php if($this->session->level === "admin"){ ?>
-                    <li><a href="<?= site_url('add_ons_new/new_addon')?>"><i class="fa fa-circle-o"></i> New Add-on</a></li>
-                    <li><a href="<?= site_url('add_ons_new/new_creator') ?>"><i class="fa fa-circle-o"></i> New Creator</a></li>
-                    <li><a href="<?= site_url('add_ons_new/list_plugin') ?>"><i class="fa fa-circle-o"></i> List Add On</a></li>
-                    <li><a href="<?= site_url('add_ons_new/list_creator') ?>"><i class="fa fa-circle-o"></i> List Creator</a></li>
+                        <li><a href="<?= site_url('add_ons_new/new_addon')?>"><i class="fa fa-circle-o"></i> New Add-on</a></li>
+                        <li><a href="<?= site_url('add_ons_new/new_creator') ?>"><i class="fa fa-circle-o"></i> New Creator</a></li>
+                        <li><a href="<?= site_url('add_ons_new/list_plugin') ?>"><i class="fa fa-circle-o"></i> List Add On</a></li>
+                        <li><a href="<?= site_url('add_ons_new/list_creator') ?>"><i class="fa fa-circle-o"></i> List Creator</a></li>
                     <?php } ?>
                 </ul>
             </li>
@@ -102,11 +103,11 @@
                 </a>
                 <ul class="treeview-menu">
                     <?php if($this->session->level === "admin"){ ?>
-                    <li><a href="<?= site_url('#') ?>"><i class="fa fa-circle-o"></i> Billing</a></li>
+                    <li><a href="<?= site_url('#') ?>"><i class="fa fa-circle-o"></i> View Payment</a></li>
                     <?php } else { ?>
                     <li><a href="<?= site_url('billing_new/create') ?>"><i class="fa fa-circle-o"></i> Payment</a></li>
-                    <li><a href="<?= site_url('#') ?>"><i class="fa fa-circle-o"></i> Cetak</a></li>
-                    <li><a href="<?= site_url('#')?>"><i class="fa fa-circle-o"></i> View</a></li>
+                    <li><a href="<?= site_url('payment_verif_new/index') ?>"><i class="fa fa-circle-o"></i> View</a></li>
+                    <li><a href="<?= site_url('#')?>"><i class="fa fa-circle-o"></i> Add-ons</a></li>
                     <?php } ?>
                 </ul>
             </li>
