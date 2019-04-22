@@ -21,7 +21,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        LIST ADD ON
+        LIST CREATOR
       </h1>
     </section>
 
