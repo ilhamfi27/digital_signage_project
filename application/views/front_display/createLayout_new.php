@@ -37,7 +37,107 @@
         </div>
         <div class="box-body">
           <?= form_open_multipart('front_display_new/inputLayout',['class' => 'form-horizontal']) ?>
-
+            <div class="box-body">
+         
+          <div class="row">
+            <div class="col-md-6">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title"></h3>
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-5">
+                      <img  src="" width='200' height='200'><br>
+                    </div>
+                    <div class="col-md-7">
+                     <p align="justify"></p>
+                    </div>
+                  </div>
+                  <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-8 col-md-offset-4"> 
+                      <a href=''><button class="btn btn-primary">Read More</button></a>
+                      <button class="btn btn-success">Buy</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+           
+           <div class="col-md-6">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title"></h3>
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-5">
+                      <img  src="" width='200' height='200'><br>
+                    </div>
+                    <div class="col-md-7">
+                     <p align="justify"></p>
+                    </div>
+                  </div>
+                  <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-8 col-md-offset-4"> 
+                      <a href=''><button class="btn btn-primary">Read More</button></a>
+                      <button class="btn btn-success">Buy</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+           
+           <div class="col-md-6">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title"></h3>
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-5">
+                      <img  src="" width='200' height='200'><br>
+                    </div>
+                    <div class="col-md-7">
+                     <p align="justify"></p>
+                    </div>
+                  </div>
+                  <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-8 col-md-offset-4"> 
+                      <a href=''><button class="btn btn-primary">Read More</button></a>
+                      <button class="btn btn-success">Buy</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+           
+           <div class="col-md-6">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title"></h3>
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-5">
+                      <img  src="" width='200' height='200'><br>
+                    </div>
+                    <div class="col-md-7">
+                     <p align="justify"></p>
+                    </div>
+                  </div>
+                  <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-8 col-md-offset-4"> 
+                      <a href=''><button class="btn btn-primary">Read More</button></a>
+                      <button class="btn btn-success">Buy</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+           
+          </div>  
+        </div>
         
           <?= form_close() ?>
          </div>
