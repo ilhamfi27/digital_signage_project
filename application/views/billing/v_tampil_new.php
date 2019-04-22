@@ -20,9 +20,6 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        Payment
-      </h1>
     </section>
 
     <!-- Main content -->
@@ -32,36 +29,95 @@
       <div class="box">
         <div class="box-header with-border">
           <center>
-            <p style="font-size: 25px">Input Payment</p>
+            <p style="font-size: 25px">View Payment</p>
           </center>
         </div>
         
          </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="panel panel-red">
-                    <div class="panel-heading">
-                                    <div class="row">
-                                        <div class="col-xs-3">
-                                            <i class="fa fa-support fa-5x"></i>
+          
+            <div class="col-md-6">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title"></h3>
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-5">
+                      <div class="col-xs-3">
+                                            <i class="fa fa-tasks fa-5x"></i>
                                         </div>
                                         <div class="col-xs-9 text-right">
-                                            <div class="huge">13</div>
-                                            <div>Support Tickets!</div>
+                                            <!-- <div class="huge">13</div>
+                                            <div>Support Tickets!</div> -->
                                         </div>
-                                    </div>
-                                </div>
-                                <a href="#">
-                                    <div class="panel-footer">
-                                        <span class="pull-left">View Details</span>
-                                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                         <div><hr width="800px"></div>
+                                         <div>No. Transaksi ...</div>
+                                          <div>Nama ...</div>
+                                           <div>Paket ...</div>
+                                            <div>Tanggal ...</div>
+                                          <div><hr width="800px"></div>
+                                           <div>Total pembayaran ...</div>
+                                           <div><hr width="800px"></div>
+                    </div>
+                    <div class="col-md-7">
+                     <p align="justify"></p>
+                    </div>
+                  </div>
+                  <div class="row" style="margin-top: 125px;">
+                    <div class="col-md-8 col-md-offset-4"> 
+                      <a href='#'><button class="btn btn-primary">Cetak</button></a>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          <div class="col-md-6">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title"></h3>
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-5">
+                      <div class="col-xs-3">
+                                            <i class="fa fa-tasks fa-5x"></i>
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <div class="huge"><h2>20</h2></div>
+                                            <div><h4>Days</h4></div>
+                                        </div>
+                                        <div><hr width="800px"></div>
+                                        <div><hr width="800px"></div>
+                                        	Jika ingin menambahkan masa aktif, silahkan klik "Update" di bawah ini. Apabila ingin unistall add-ons tertentu, silahkan klik "Unistall".
+                    </div>
+                    <div class="col-md-7">
+                     <p align="justify"></p>
+                    </div>
+                  </div>
+                  <div class="row" style="margin-top: 90px;">
+                    <div class="col-md-8 col-md-offset-4"> 
+                      <a href='#'><button class="btn btn-primary">Update</button></a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+                      <button class="btn btn-success">Unistall</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+         
+          </div>  
+        </div>
 
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
+        <!-- /.box-body -->
+      	
+        <!-- /.box-footer-->
+      </div>
+      <!-- /.box -->
         <!-- /.box-body -->
       </div>
+
       <!-- /.box -->
 
     </section>
