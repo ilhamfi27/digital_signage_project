@@ -6,7 +6,7 @@
 			return $this->db->get('layout');
 		}
 		function input_layout($data){
-			$this->db->insert('content',$data);
+			$this->db->insert('layout',$data);
 		}
 		function hapus_layout($where,$data){
 			$this->db->where($where);

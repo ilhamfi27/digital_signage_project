@@ -9,7 +9,7 @@ class Front_display_new extends MY_Controller{
 		$this->load->helper('form', 'url');
 		$config['upload_path'] = './storage/images/front_display';
 		$config['allowed_types'] = 'gif|jpg|png';
-		$this->load->model('modelcontent_new');
+		$this->load->model('modellayout_new');
 		$this->load->library('upload',$config);
 	}
 
@@ -189,17 +189,66 @@ class Front_display_new extends MY_Controller{
 		
 	}
 
-	public function indexLayout(){
-		$data['page_resource'] = parent::page_resources();
-		$this->load->model('modellayout_new');
-		//$data['layout'] = $this->modellayout->ambil_content()->result();
-		$this->load->view('front_display/tampil2_new',$data);
-	}
+	// public function indexLayout(){
+	// 	$data['page_resource'] = parent::page_resources();
+	// 	$this->load->model('modellayout_new');
+	// 	//$data['layout'] = $this->modellayout->ambil_content()->result();
+	// 	$this->load->view('front_display/tampil2_new',$data);
+	// }
 	public function inputLayout(){
 		$data['page_resource'] = parent::page_resources();
-		//$this->load->view('front_display/createContent_new',$data);
+		$data['layout'] = $this->modellayout_new->ambil_layout()->result();
+		$name 		= $this->input->post('name');
+		$url 	= $this->input->post('url');
+
+		$this->form_validation->set_rules([
+
+			[
+				'field' => 'name',
+				'label'	=> 'name',
+				'rules' => 'required|min_length[5]'
+			],
+			[
+				'field' => 'url',
+				'label'	=> 'url',
+				'rules' => 'required'
+			],
+		]);
+		
+		if ($this->form_validation->run() === FALSE) {
+			$this->load->view('front_display/createLayout_new',$data);
+		} else{
+				$data = $this->input->post();
+				$data['file'] = $this->upload->data('file_name');
+				$this->modelcontent_new->input_content($data,'layout');
+				redirect('front_display_new/muncullayout');
+			}
 	}
 
+	public function hapusLayout($id){
+		$where = array('id_Layout' => $id);
+		$this->modellayout_new->hapus_layout($where,'layout');
+		redirect('front_display_new/munculLayout');
+	}
+	public function editLayout($id){
+		$data['page_resource'] = parent::page_resources();
+		$where = array('id_layout' => $id);
+		$data['layout'] = $this->modellayout_new->edit_layout('layout',$where)->row();
+		$this->load->view('front_display/editlayout_new',$data);
+	}
+	public function updateLayout(){
+		$layout			= $this->input->post('layout');
+		$url = $this->post('url');
+	
+			$this->modellayout_new->update_layout(['id_layout' => $this->input->post('id_layout')],['layout' => $layout],'content_category');
+			redirect('front_display_new/munculLayout');
+	}
+	public function munculLayout(){
+
+		$data['page_resource'] = parent::page_resources();
+		$data['layout'] = $this->modellayout_new->ambil_layout()->result();
+		$this->load->view('front_display/muncullayout_new', $data);
+	}
 	/*public function index(){
 		$data['dropdown_data'] = array(
 					'samll_video'=>'Small video',
