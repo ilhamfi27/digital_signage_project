@@ -83,13 +83,13 @@
                     `blood_group` 
                   FROM `creator` WHERE 1 -->
                   <td><?php echo $no; ?></td>
-                  <td><?php echo $row->email; ?></td>
-                  <td><?php echo $row->phone_number; ?></td>
-                  <td><?php echo $row->name; ?></td>
-                  <td><?php echo $row->address; ?></td>
                   <td><?php echo $row->image; ?></td>
+                  <td><?php echo $row->name; ?></td>
                   <td><?php echo $row->place_of_birth; ?></td>
                   <td><?php echo $row->date_of_birth; ?></td>
+                  <td><?php echo $row->email; ?></td>
+                  <td><?php echo $row->phone_number; ?></td>
+                  <td><?php echo $row->address; ?></td>
                   <td><?php echo $row->gender; ?></td>
                   <td><?php echo $row->religion; ?></td>
                   <td><?php echo $row->citizenship; ?></td>
