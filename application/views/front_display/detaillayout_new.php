@@ -21,7 +21,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        CREATE LAYOUT
+        DETAIL LAYOUT
       </h1>
     </section>
 
@@ -32,29 +32,12 @@
       <div class="box">
         <div class="box-header with-border">
           <center>
-            <p style="font-size: 25px">Create Layout</p>
+            <p style="font-size: 25px">Detail Layout</p>
           </center>
         </div>
         <div class="box-body">
-        <?= form_open_multipart('front_display_new/inputLayout',['class' => 'form-horizontal']) ?>
+        <?= form_open_multipart('#',['class' => 'form-horizontal']) ?>
       <div class="box-body">
-         
-          <div class="row">
-            <div class="col-md-6">
-              <div class="panel panel-default">
-                
-                <div class="panel-body">
-                  <div class="row">
-                    <div class="col-md-6 col-md-offset-3" style="font-size: 3em;">
-                      <i class="fa fa-plus-circle fa-5x"></i>
-                    </div>
-                  </div>
-                  <div class="row" style="margin-top: 10px;">
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
            
             <div class="col-md-6">
               <div class="panel panel-default">
@@ -62,7 +45,7 @@
                 <div class="panel-body">
                   <div class="row">
                     <div class="col-md-6">
-                      <a href="<?= site_url('front_display_new/detailLayout') ?>"><img src="https://storage.lookit.hk/company/58b98ec201c8f01cd08eaf23/layout/5aed7c01fd962569b3fc7606/1525518790010_list_preview.jpg" width="470" height="200"></a>
+                      <a href=""><img src="https://storage.lookit.hk/company/58b98ec201c8f01cd08eaf23/layout/5aed7c01fd962569b3fc7606/1525518790010_list_preview.jpg" width="470" height="200"></a>
                       Layout 1
                     </div>
                   </div>
@@ -72,14 +55,14 @@
               </div>
             </div>
 
-            <div class="col-md-6">
+             <div class="col-md-6">
               <div class="panel panel-default">
                 
                 <div class="panel-body">
                   <div class="row">
-                    <div class="col-md-6">
-                      <a href=""><img src="https://storage.lookit.hk/company/58b98ec201c8f01cd08eaf23/layout/5aed94bffd962569b3fc7635/1525520626307_list_preview.jpg" width="470" height="200"></a>
-                      Layout 2
+                    <div>
+                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br><br>
+                     <button class="btn btn-success">Input Content</button>
                     </div>
                   </div>
                   <div class="row" style="margin-top: 10px;">

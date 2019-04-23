@@ -10,6 +10,7 @@ class Front_display_new extends MY_Controller{
 		$config['upload_path'] = './storage/images/front_display';
 		$config['allowed_types'] = 'gif|jpg|png';
 		$this->load->model('modellayout_new');
+		$this->load->model('modelcontent_new');
 		$this->load->library('upload',$config);
 	}
 
@@ -248,6 +249,12 @@ class Front_display_new extends MY_Controller{
 		$data['page_resource'] = parent::page_resources();
 		$data['layout'] = $this->modellayout_new->ambil_layout()->result();
 		$this->load->view('front_display/muncullayout_new', $data);
+	}
+
+	public function detailLayout(){
+		$data['page_resource'] = parent::page_resources();
+		$data['layout'] = $this->modellayout_new->ambil_layout()->result();
+		$this->load->view('front_display/detaillayout_new',$data);
 	}
 	/*public function index(){
 		$data['dropdown_data'] = array(
