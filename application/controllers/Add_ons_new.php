@@ -3,7 +3,7 @@ class Add_ons_new extends MY_Controller{
 	
 	function __construct(){
 		parent::__construct();
-        // parent::session_needed_except();
+        parent::session_needed_except();
 		$this->load->helper('view_partial');
 		$this->load->model('Add_on_model_new');
 		$this->load->model('Add_on_creator_model_new');
@@ -113,30 +113,32 @@ class Add_ons_new extends MY_Controller{
 	public function edit_plugin($id){
         $data['page_resource'] = parent::page_resources();
 		$where = array('id'=>$id);
-		$data['addon']=$this->add_on_model_new->details($where)->row();
+		$data['plugins'] = $this->Add_on_model_new->all($id)->row(1);
+		$data['creator'] = $this->Add_on_creator_model_new->all();
+		// $data['addon']=$this->Add_on_model_new->details($where)->row();
 		$this->load->view('add_ons/edit_addon_new',$data);
 	}
 	public function update_add_on(){
-		$id = $this->input->post('id');
-		$foto = $this->input->post('foto');
-		$judul = $this->input->post('judul');
-		$deskripsi = $this->input->post('deskripsi');
-		$kategori = $this->input->post('kategori');
-		$pembuat = $this->input->post('pembuat');
-		$harga = $this->input->post('harga');
-		$screenshot = $this->input->post('screenshot');
+		$id_plugin = $this->input->post('id');
+		$uploaded = $this->input->post('uploaded');
+		$title = $this->input->post('title');
+		$description = $this->input->post('description');
+		$ratings = $this->input->post('ratings');
+		$date = $this->input->post('date');
+		$price = $this->input->post('price');
+		$creator = $this->input->post('id_creator');
 	
 		$data = array(
-			'foto'=>$foto,
-			'judul'=>$judul,
-			'deskripsi'=>$deskripsi,
-			'kategori'=>$kategori,
-			'pembuat'=>$pembuat,
-			'harga'=>$harga,
-			'screenshot'=>$screenshot
+			'uploaded'=>$uploaded,
+			'title'=>$title,
+			'description'=>$description,
+			'ratings'=>$ratings,
+			'date'=>$date,
+			'price'=>$price,
+			'creator'=>$creator
 		);
-		$this->add_on_model_new->update($data,$id);
-		redirect('add_ons_new/list_addon');
+		$this->Add_on_model_new->update($data,$id_plugin);
+		redirect('add_ons_new/list_plugin');
 
 	}
 	public function install_addon()	{
@@ -274,7 +276,6 @@ class Add_ons_new extends MY_Controller{
 	}
 	public function edit_creator($id){
 		$data['page_resource'] = parent::page_resources();
-
 		$where = array('id_creator'=>$id);
 		$data['creator']=$this->Add_on_creator_model_new->details($where)->row();
 		$this->load->view('add_ons/edit_creator_new',$data);
@@ -284,7 +285,7 @@ class Add_ons_new extends MY_Controller{
 		$this->form_validation->set_rules('address', 'Alamat', 'required');
 		$this->form_validation->set_rules('phone_number', 'Telepon', 'required');
 		$this->form_validation->set_rules('email', 'email', 'required');
-		$this->form_validation->set_rules('region', 'region', 'required');
+		$this->form_validation->set_rules('religion', 'region', 'required');
 		$this->form_validation->set_rules('date_of_birth', 'date_of_birth', 'required');
 		$this->form_validation->set_rules('place_of_birth', 'place_of_birth', 'required');
 		$this->form_validation->set_rules('blood_group', 'blood_group', 'required');

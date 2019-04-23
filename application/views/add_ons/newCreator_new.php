@@ -74,8 +74,8 @@
               <label class="col-sm-2 control-label">Gender</label>
               <div class="col-sm-10">
                 <select name ="gender" class="form-control" id="gender">
-                  <option value="Male" selected>Male</option>
-                  <option value="Female" selected>Female</option>
+                  <option value="Male" >Male</option>
+                  <option value="Female" >Female</option>
                 </select>
               <?= form_error('gender')?>
               </div>
@@ -85,11 +85,11 @@
               <label class="col-sm-2 control-label">Religion</label>
               <div class="col-sm-10">
                 <select name ="religion" class="form-control" id="religion">
-                  <option value="Islam" selected>Islam</option>
-                  <option value="Christianity" selected>Christianity</option>
-                  <option value="Buddhism" selected>Buddhism</option>
-                  <option value="Confucianism" selected>Confucianism</option>
-                  <option value="Hinduism" selected>Hinduism</option>
+                  <option value="Islam" >Islam</option>
+                  <option value="Christianity" >Christianity</option>
+                  <option value="Buddhism" >Buddhism</option>
+                  <option value="Confucianism" >Confucianism</option>
+                  <option value="Hinduism" >Hinduism</option>
                 </select>
               <?= form_error('religion')?>
               </div>
@@ -116,10 +116,10 @@
               <label class="col-sm-2 control-label">Blood Gruop</label>
               <div class="col-sm-10">
                 <select name ="blood_group" class="form-control" id="blood_group">
-                  <option value="A" selected>A</option>
-                  <option value="B" selected>B</option>
-                  <option value="AB" selected>AB</option>
-                  <option value="O" selected>O</option>
+                  <option value="A" >A</option>
+                  <option value="B" >B</option>
+                  <option value="AB" >AB</option>
+                  <option value="O" >O</option>
                 </select>
               <?= form_error('blood_group')?>
               </div>
