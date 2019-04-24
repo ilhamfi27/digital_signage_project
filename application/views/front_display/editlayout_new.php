@@ -21,7 +21,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        EDIT CONTENT
+        EDIT LAYOUT
       </h1>
     </section>
 
@@ -32,62 +32,43 @@
       <div class="box">
         <div class="box-header with-border">
           <center>
-            <p style="font-size: 25px">Edit Content</p>
+            <p style="font-size: 25px">Edit Layout</p>
           </center>
         </div>
         <div class="box-body">
-          <?= form_open_multipart('front_display_new/updatecontent',['class' => 'form-horizontal']) ?>
+          <?= form_open_multipart('front_display_new/updateLayout',['class' => 'form-horizontal']) ?>
            <?php// foreach($content as $content){ ?>
             <!--  -->
 
-             <div class="form-group">
-              <label class="col-sm-2 control-label">Subject</label>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">URL</label>
               <div class="col-sm-10">
-                <input type="text" name="subject" class="form-control" id="subject"  value="<?= $content->subject ?>">
-                <?= form_error('subject')?>
+                <input type="text" name="url" class="form-control" id="url"  value="<?= $layout->url ?>">
+                <?= form_error('url')?>
               </div>
             </div>
 
-           <div class="form-group">
-              <label class="col-sm-2 control-label">Description</label>
+             <div class="form-group">
+              <label class="col-sm-2 control-label">Name</label>
               <div class="col-sm-10">
-                <textarea class="form-control" id="description" rows="3" name="description"><?= $content->description ?></textarea>
-                <?= form_error('description')?>
+                <input type="text" name="name" class="form-control" id="name"  value="<?= $layout->name ?>">
+                <?= form_error('name')?>
               </div>
-           </div>
-
-           <div class="form-group">
-              <label class="col-sm-2 control-label">Date</label>
-              <div class="col-sm-10">
-                <input type="date" class="form-control" id="date" name="date" value="<?= $content->date ?>">
-                <?= form_error('date')?>
-              </div>
-           </div>
-
+            </div>
+         
 
             <div class="form-group">
-              <label class="col-sm-2 control-label">file</label>
+              <label class="col-sm-2 control-label">Image</label>
               <div class="col-sm-10">
-                <input type="file" name="file">
-                <?= form_error('file')?>
+                <input type="file" name="image">
+                <?= form_error('image')?>
               </div>
             </div>
 
-           <div class="form-group">
-              <label class="col-sm-2 control-label">Category</label>
-              <div class="col-sm-10">
-                <select class="form-control" name="id_content_category">
-                  <?php foreach ($content_category as $a):   ?>
-                    <option value="<?php echo $a->id_content_category?>" <?php echo $a->id_content_category == $content->id_content_category ? 'selected' : '' ?>><?php echo $a->category ?></option>
-                  <?php endforeach; ?>
-                </select>
-                  <?=form_error('id_content_category')  ?>
-              </div>
-            </div>
-
+           
             <div class="form-group">
               <div class="col-sm-offset-2 col-sm-10">
-                <input type="hidden" name="id_content" value="<?php echo $content->id_content ?>">
+                <input type="hidden" name="id_layout" value="<?php echo $layout->id_layout ?>">
                 <button type="submit" class="btn btn-default">Submit</button>
               </div>
             </div>

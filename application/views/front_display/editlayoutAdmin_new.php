@@ -21,7 +21,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        CREATE LAYOUT
+        EDIT LAYOUT
       </h1>
     </section>
 
@@ -32,33 +32,38 @@
       <div class="box">
         <div class="box-header with-border">
           <center>
-            <p style="font-size: 25px">Create Layout</p>
+            <p style="font-size: 25px">Edit Layout</p>
           </center>
         </div>
         <div class="box-body">
-        <?= form_open_multipart('front_display_new/inputLayout',['class' => 'form-horizontal']) ?>
-      <div class="box-body">
-         
-          <div class="row">
-            <div class="col-md-6">
-              <div class="panel panel-default" style="padding: 15px;font-size: 3em;">
-                <div style="height: 250px; width: 100%;text-align: center">
-                  <i class="fa fa-plus-circle fa-5x"></i>
-                </div>
+          <?= form_open_multipart('front_display_new/updateLayoutAdmin',['class' => 'form-horizontal']) ?>
+           <?php// foreach($content as $content){ ?>
+            <!--  -->
+
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Position</label>
+              <div class="col-sm-10">
+                <input type="text" name="position" class="form-control" id="position"  value="<?= $layout->position ?>">
+                <?= form_error('position')?>
+              </div>
+            </div>         
+
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Image</label>
+              <div class="col-sm-10">
+                <input type="file" name="image">
+                <?= form_error('image')?>
               </div>
             </div>
 
-            <?php foreach ($layout as $lay): ?>
-              <div class="col-md-6">
-                <div class="panel panel-default" style="padding: 15px">
-                  <a href="<?php echo site_url('front_display_new/detaillayout/'.$lay->id_layout) ?>"><img style="width: 100%;height: 250px" src="<?php echo site_url('storage/images/front_display/'.$lay->image) ?>"></a>
-                  <p>Layout <?php echo $lay->id_layout ?></p>
-                </div>
+           
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <input type="hidden" name="id_layout" value="<?php echo $layout->id_layout ?>">
+                <button type="submit" class="btn btn-default">Submit</button>
               </div>
-            <?php endforeach ?>
-          </div>  
-        </div>
-        
+            </div>
+              <?php// } ?>
           <?= form_close() ?>
          </div>
         <!-- /.box-body -->

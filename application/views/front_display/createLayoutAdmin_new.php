@@ -21,7 +21,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        CREATE CONTENT
+        CREATE LAYOUT
       </h1>
     </section>
 
@@ -32,57 +32,27 @@
       <div class="box">
         <div class="box-header with-border">
           <center>
-            <p style="font-size: 25px">Create Content</p>
+            <p style="font-size: 25px">Create Layout</p>
           </center>
         </div>
         <div class="box-body">
-          <?= form_open_multipart('front_display_new/inputContent',['class' => 'form-horizontal']) ?>
-
-             <div class="form-group">
-              <label class="col-sm-2 control-label">Subject</label>
-              <div class="col-sm-10">
-                <input type="text" name="subject" class="form-control" id="subject">
-                <?= form_error('subject')?>
-              </div>
-            </div>
-
-           <div class="form-group">
-              <label class="col-sm-2 control-label">Description</label>
-              <div class="col-sm-10">
-                <textarea class="form-control" id="description" rows="3" name="description"></textarea>
-                <?= form_error('description')?>
-              </div>
-           </div>
-
-           <div class="form-group">
-              <label class="col-sm-2 control-label">Date</label>
-              <div class="col-sm-10">
-                <input type="date" class="form-control" id="date" name="date">
-                <?= form_error('date')?>
-              </div>
-           </div>
-
+          <?= form_open_multipart('front_display_new/inputLayoutAdmin',['class' => 'form-horizontal']) ?>
 
             <div class="form-group">
-              <label class="col-sm-2 control-label">file</label>
+              <label class="col-sm-2 control-label">Position</label>
               <div class="col-sm-10">
-                <input type="file" name="file">
-                <?= form_error('file')?>
+                <input type="text" name="position" class="form-control" id="position">
+                <?= form_error('position')?>
               </div>
             </div>
 
            <div class="form-group">
-              <label class="col-sm-2 control-label">Category</label>
+              <label class="col-sm-2 control-label">image</label>
               <div class="col-sm-10">
-                <select class="form-control" name="id_content_category">
-                  <?php foreach ($content_category as $a):   ?>
-                    <option value="<?php echo $a->id_content_category?>"><?php echo $a->category ?></option>
-                  <?php endforeach; ?>
-                  <?=form_error('content_category[category]')  ?>
-                </select>
-                <?= form_error('category')?>
+                <input type="file" class="form-control" id="image" name="image">
+                <?= form_error('image')?>
               </div>
-            </div>
+           </div>
 
             <div class="form-group">
               <div class="col-sm-offset-2 col-sm-10">

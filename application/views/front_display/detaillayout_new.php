@@ -40,20 +40,11 @@
       <div class="box-body">
            
             <div class="col-md-6">
-              <div class="panel panel-default">
-                
-                <div class="panel-body">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <a href=""><img src="https://storage.lookit.hk/company/58b98ec201c8f01cd08eaf23/layout/5aed7c01fd962569b3fc7606/1525518790010_list_preview.jpg" width="470" height="200"></a>
-                      Layout 1
-                    </div>
-                  </div>
-                  <div class="row" style="margin-top: 10px;">
-                  </div>
+                <div class="panel panel-default" style="padding: 15px">
+                  <a href="<?php echo site_url('front_display_new/detaillayout/'.$layout->id_layout) ?>"><img style="width: 100%;height: 250px" src="<?php echo site_url('storage/images/front_display/'.$layout->image) ?>"></a>
+                  <p>Layout <?php echo $layout->id_layout ?></p>
                 </div>
               </div>
-            </div>
 
              <div class="col-md-6">
               <div class="panel panel-default">
