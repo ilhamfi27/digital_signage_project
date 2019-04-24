@@ -32,7 +32,7 @@
       <div class="box">
         <div class="box-header with-border">
           <center>
-            <p style="font-size: 25px">Input Payment</p>
+            <p style="font-size: 25px">Input Billing</p>
           </center>
         </div>
         <div class="box-body">
@@ -50,14 +50,14 @@
               <label class="col-sm-2 control-label">Duration First</label>
               <div class="col-sm-10">
             
-              <input type="date" name="duration_first">
+              <input type="date" name="duration_first" class="form-control">
               </div>
            </div>
             <div class="form-group">
               <label class="col-sm-2 control-label">Duration Last</label>
               <div class="col-sm-10">
             
-              <input type="date" name="duration_last">
+              <input type="date" name="duration_last" class="form-control">
               </div>
            </div>
 
@@ -92,6 +92,7 @@
 
             <div class="form-group">
               <div class="col-sm-offset-2 col-sm-10">
+              	<input type="hidden" name="user_id" value="<?php echo $this->session->userdata('id') ?>">
                 <button type="submit" name='submit' value="Kirim" class="btn btn-default">Submit</button>
               </div>
             </div>

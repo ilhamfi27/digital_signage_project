@@ -44,19 +44,22 @@
                   <div class="row">
                     <div class="col-md-5">
                       <div class="col-xs-3">
-                                            <i class="fa fa-tasks fa-5x"></i>
+                                            </i><img src="../storage/images/icon.jpeg" width="200px">
                                         </div>
                                         <div class="col-xs-9 text-right">
                                             <!-- <div class="huge">13</div>
                                             <div>Support Tickets!</div> -->
                                         </div>
                                          <div><hr width="800px"></div>
-                                         <div>No. Transaksi ...</div>
-                                          <div>Nama ...</div>
-                                           <div>Paket ...</div>
-                                            <div>Tanggal ...</div>
+                                         <?php if ($billing): ?>
+                                         	<div>No. Transaksi <?php echo $billing->id_billing; ?></div>
+                                          <div>Nama <?php echo $billing->name; ?></div>
+                                           <div>Paket <?php echo $billing->id_package; ?></div>
+                                            <div>Tanggal <?php echo $billing->date; ?></div>
                                           <div><hr width="800px"></div>
-                                           <div>Total pembayaran ...</div>
+                                           <div>Total pembayaran Rp.<?php echo $billing->price; ?></div>
+                                         <?php endif ?>
+                                         
                                            <div><hr width="800px"></div>
                     </div>
                     <div class="col-md-7">
@@ -65,7 +68,11 @@
                   </div>
                   <div class="row" style="margin-top: 125px;">
                     <div class="col-md-8 col-md-offset-4"> 
-                      <a href='#'><button class="btn btn-primary">Cetak</button></a>
+                    	<?php if ($billing): ?>
+                    		<a href="<?= site_url('payment_verif_new/cetak/'.$this->session->userdata('id')) ?>"><button class="btn btn-primary">Cetak</button></a>
+                    		<?php else : ?>
+                    			<a class="btn btn-primary btn-disabled">Cetak</a>
+                    	<?php endif ?>
                       
                     </div>
                   </div>
@@ -85,7 +92,7 @@
                                             <i class="fa fa-tasks fa-5x"></i>
                                         </div>
                                         <div class="col-xs-9 text-right">
-                                            <div class="huge"><h2>20</h2></div>
+                                            <div class="huge"><h2><?php echo $billing ? date_diff(date_create(date('Y-m-d')),date_create($billing->duration_last))->days : '0' ?></h2></div>
                                             <div><h4>Days</h4></div>
                                         </div>
                                         <div><hr width="800px"></div>
@@ -98,7 +105,7 @@
                   </div>
                   <div class="row" style="margin-top: 90px;">
                     <div class="col-md-8 col-md-offset-4"> 
-                      <a href='#'><button class="btn btn-primary">Update</button></a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+                      <a href='<?= site_url('billing_new/update/'.$billing->id_billing) ?>'><button class="btn btn-primary">Update</button></a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
                       <button class="btn btn-success">Unistall</button>
                     </div>
                   </div>

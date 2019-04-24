@@ -102,7 +102,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <?php if($this->session->level === "admin"){ ?>
-                    <li><a href="<?= site_url('#') ?>"><i class="fa fa-circle-o"></i> View Payment</a></li>
+                    <li><a href="<?= site_url('billing_new/view_admin') ?>"><i class="fa fa-circle-o"></i> View Payment</a></li>
                     <?php } else { ?>
                     <li><a href="<?= site_url('billing_new/create') ?>"><i class="fa fa-circle-o"></i> Payment</a></li>
                     <li><a href="<?= site_url('payment_verif_new/index') ?>"><i class="fa fa-circle-o"></i> View</a></li>
