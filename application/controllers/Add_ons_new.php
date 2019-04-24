@@ -106,9 +106,9 @@ class Add_ons_new extends MY_Controller{
 	}
 
 	public function delete_plugin($data){
-		$where = array('id'=>$data);
-		$this->add_on_model_new->delete_plugin($where);
-		redirect('add_ons_new/list_addon');
+		$where = array('id_plugin'=>$data);
+		$this->Add_on_model_new->delete_plugin($where);
+		redirect('add_ons_new/list_plugin');
 	}
 	public function edit_plugin($id){
         $data['page_resource'] = parent::page_resources();
@@ -261,7 +261,7 @@ class Add_ons_new extends MY_Controller{
 
         $data['page_resource'] = parent::page_resources();
 		$data['addon'] = $this->add_on_model_new->all()->result();
-		$this->load->view('add_ons/list_addon_new',$data);
+		$this->load->view('add_ons/list_plugin_new',$data);
 	}
 	public function list_plugin(){
 

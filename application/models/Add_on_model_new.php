@@ -17,7 +17,7 @@ class Add_on_model_new extends CI_Model{
 	
 	function delete_plugin($where){
 		$this->db->where($where);
-		$this->db->delete('add_ons');
+		$this->db->delete('plugins');
 		return $this->db->affected_rows();
 	}
 	public function all($id = null){

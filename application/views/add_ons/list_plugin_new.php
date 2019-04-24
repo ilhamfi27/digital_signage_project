@@ -91,7 +91,11 @@
                 </tfoot>
            </table>
         </div>
-        <!-- /.box-body -->
+         <a href="<?php echo site_url('add_ons_new/new_addon/' . $row->id_creator); ?>">
+                      <button class="btn btn-success">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                      </button>
+                    </a>
         <div class="box-footer">
           Footer
         </div>
