@@ -18,9 +18,9 @@ class Add_ons_new extends MY_Controller{
 		$this->load->view('add_ons/index_new',$data);
 	}
 	
-	public function details($id=0){
+	public function details($id){
         $data['page_resource'] = parent::page_resources();
-        $data['addon']= $this->add_on_model_new->details($id)->row();
+        $data['plugins']= $this->Add_on_model_new->details($id)->row(1);
 		$this->load->view('add_ons/details_new', $data);
 	}
 	public function details_creator($id=0){

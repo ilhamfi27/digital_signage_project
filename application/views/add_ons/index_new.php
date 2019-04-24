@@ -67,7 +67,7 @@
                   <div class="row" style="margin-top: 10px;">
                     <div class="col-md-8 col-md-offset-4"> 
                       <?php if($this->session->level === "admin"){ ?>
-                         <a href='<?= site_url("add_ons_new/details/")?>'><button class="btn btn-primary">Read More</button></a>
+                         <a href='<?= site_url("add_ons_new/details/".$row->id_plugin)?>'><button class="btn btn-primary">Read More</button></a>
                       <?php } ?>
                       <?php if($this->session->level !== "admin"){ ?>
                           <a href='<?= site_url("add_ons_new/details/")?>'><button class="btn btn-primary">Read More</button></a>
