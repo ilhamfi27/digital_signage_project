@@ -43,14 +43,22 @@
 
         </div>
         <div class="box-body">
-           <table id="list-data" class="table table-bordered table-hover">
+          <div class="table-responsive">
+            <table id="list-data" class="table table-bordered table-hover">
                 <thead>
                 <tr>
                   <th>No</th>
+                  <th>Image</th>
+                  <th>Name</th>
+                  <th>Place Of Birth</th>
+                  <th>Date Of Birth</th>
                   <th>Email</th>
                   <th>Phone Number</th>
-                  <th>Name</th>
                   <th>Address</th>
+                  <th>Gender</th>
+                  <th>Religion</th>
+                  <th>Citizenship</th>
+                  <th>Blood Group</th>
                   <th>Keterangan</th>
                 </tr>
                 </thead>
@@ -60,12 +68,32 @@
                 foreach($creator as $row):
                 ?>
                 <tr>
-<!--SELECT `id_creator`, `email`, `phone_number`, `name`, `address` FROM `creator` -->
+                  <!-- SELECT 
+                    `id_creator`, 
+                    `email`, 
+                    `phone_number`, 
+                    `name`, 
+                    `address`, 
+                    `image`, 
+                    `place_of_birth`, 
+                    `date_of_birth`, 
+                    `gender`, 
+                    `religion`, 
+                    `citizenship`, 
+                    `blood_group` 
+                  FROM `creator` WHERE 1 -->
                   <td><?php echo $no; ?></td>
+                  <td><?php echo $row->image; ?></td>
+                  <td><?php echo $row->name; ?></td>
+                  <td><?php echo $row->place_of_birth; ?></td>
+                  <td><?php echo $row->date_of_birth; ?></td>
                   <td><?php echo $row->email; ?></td>
                   <td><?php echo $row->phone_number; ?></td>
-                  <td><?php echo $row->name; ?></td>
                   <td><?php echo $row->address; ?></td>
+                  <td><?php echo $row->gender; ?></td>
+                  <td><?php echo $row->religion; ?></td>
+                  <td><?php echo $row->citizenship; ?></td>
+                  <td><?php echo $row->blood_group; ?></td>
                   <td>
                     <a href="<?php echo site_url('add_ons_new/edit_creator/' . $row->id_creator); ?>">
                       <button class="btn btn-primary">
@@ -84,7 +112,8 @@
                 endforeach;
                 ?>
                 </tfoot>
-           </table>
+            </table>
+          </div>
            <a href="<?php echo site_url('add_ons_new/insert_creator/' . $row->id_creator); ?>">
                       <button class="btn btn-success">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>

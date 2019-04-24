@@ -36,60 +36,65 @@
           </center>
         </div>
         <div class="box-body">
-          <?= form_open_multipart('add_ons/update_add_on',['class' => 'form-horizontal']) ?>
-          <input type="hidden" name="id" value="<?= $addon->id ?>">
+          <?= form_open_multipart('Add_ons_new/update_add_on',['class' => 'form-horizontal']) ?>
+          <input type="hidden" name="id" value="<?= $plugins->id_plugin ?>">
             <div class="form-group">
-              <label class="col-sm-2 control-label">Judul</label>
+              <label class="col-sm-2 control-label">Title</label>
               <div class="col-sm-10">
-                <input type="text" name="judul" class="form-control" id="judul" value="<?= $addon->judul ?>">
-                <?= form_error('judul')?>
+                <input type="text" name="title" class="form-control" id="title" value="<?= $plugins->title ?>">
+                <?= form_error('title')?>
               </div>
             </div>
 
             <div class="form-group">
-              <label class="col-sm-2 control-label">Foto</label>
+              <label class="col-sm-2 control-label">Uploaded</label>
               <div class="col-sm-10">
-                <input type="file" name="foto">
-                <?= form_error('foto')?>
+                <input type="file" name="uploaded">
+                <?= form_error('uploaded')?>
               </div>
             </div>
 
            <div class="form-group">
-              <label class="col-sm-2 control-label">Deskripsi</label>
+              <label class="col-sm-2 control-label">Description</label>
               <div class="col-sm-10">
-                <textarea class="form-control" id="deskripsi" rows="3" name="deskripsi"><?= $addon->deskripsi ?></textarea>
-                <?= form_error('deskripsi')?>
+                <textarea class="form-control" id="description" rows="3" value="<?= $plugins->description?>" name="description"><?= $plugins->description ?></textarea>
+                <?= form_error('description')?>
               </div>
            </div>
 
-           <div class="form-group">
-              <label class="col-sm-2 control-label">Harga</label>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Ratings</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="harga" name="harga" value="<?= $addon->harga ?>">
-                <?= form_error('harga')?>
+                <input type="text" class="form-control" id="ratings" name="ratings" value="<?= $plugins->ratings?>">
+                <?= form_error('ratings')?>
               </div>
            </div>
-
-           <div class="form-group">
-              <label class="col-sm-2 control-label">Kategori</label>
-              <div class="col-sm-10">
-                <select id="kategori" class="form-control" name="kategori">
-                  <option>kategori</option>
-                  <option selected>1</option>
-                  <option selected>2</option>
-                  <option selected>3</option>
-                  <option selected>4</option>
-                  <option selected>5</option>
-                </select>
-                <?= form_error('kategori')?>
-              </div>
-            </div>
             
             <div class="form-group">
-              <label class="col-sm-2 control-label">Pembuat</label>
+              <label class="col-sm-2 control-label">Date</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="pembuat" name="pembuat" value="<?= $addon->pembuat?>">
-                <?= form_error('pembuat')?>
+                <input type="date" class="form-control" id="date" name="date" value="<?= $plugins->date?>">
+                <?= form_error('date')?>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Price</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="price" name="price" value="<?= $plugins->price?>">
+                <?= form_error('price')?>
+              </div>
+           </div>
+
+           <div class="form-group">
+              <label class="col-sm-2 control-label">Creator</label>
+              <div class="col-sm-10">
+                <select name="id_creator" class="form-control">
+                  <?php foreach ($creator->result() as $c): ?>
+                    <option value="<?php echo $c->id_creator ?>" <?php echo $plugins->id_creator == $c->id_creator ? 'selected' : '' ?>><?php echo $c->name ?></option>
+                  <?php endforeach ?>
+                </select>
+                <?= form_error('name')?>
               </div>
             </div>
 

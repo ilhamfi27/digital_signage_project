@@ -38,7 +38,7 @@
                 <div class="col-md-9">
                   <h2><?= $addon->name ?></h2>
                   <span style="font-size: 30px; font-weight: 700; position: absolute; top: 10px; right: 20px;"><?= $addon->price?></span>
-                  <p style="font-size: 16px;">Creator :<a href=" <?= site_url('add_ons/detail_creator/lab_si')?>"> <?= $addon->creator ?></p></a>
+                  <p style="font-size: 16px;">Creator :<a href=" <?= site_url('add_ons/detail_creator_new')?>"> <?= $addon->creator ?></p></a>
                   <p style="font-size: 16px;"><?= $addon->date?></p>
                   <!-- <p style="font-size: 16px;">Rating</p> -->
                   <?php for ($i=0; $i < 5; $i++) { ?>
