@@ -17,7 +17,7 @@ class Add_on_model_new extends CI_Model{
 	
 	function delete_plugin($where){
 		$this->db->where($where);
-		$this->db->delete('add_ons');
+		$this->db->delete('plugins');
 		return $this->db->affected_rows();
 	}
 	public function all($id = null){
@@ -31,11 +31,9 @@ class Add_on_model_new extends CI_Model{
 		JOIN creator on creator.id_creator = plugins.id_creator');
 					}
 	public function details($id){
-	return $this->db->query('SELECT plugins.title, creator.name, plugins.date, plugins.ratings, add_ons.price, plugins.uploaded
-							FROM plugins JOIN creator ON plugins.id_creator = creator.id_creator 
-							JOIN add_ons on add_ons.id_plugin = plugins.id_plugin');
-		
-		return $this->db->get_where($this->table,['id_plugin'=>$id]);	
+		$this->db->join('creator', 'creator.id_creator = plugins.id_creator');
+		$this->db->join('add_ons', 'add_ons.id_plugin = plugins.id_plugin');
+		return $this->db->get_where('plugins',['plugins.id_plugin'=>$id]);	
 	}
 	public function update($data,$id){
 		$price = $data['price'];
