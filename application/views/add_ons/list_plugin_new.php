@@ -54,7 +54,7 @@
                   <th>Date</th>
                   <th>Price</th>
                   <th>Creator</th>
-                 <!--  <th>Keterangan</th> -->
+                  <th>Keterangan</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -71,23 +71,18 @@
                   <td><?php echo $row->date; ?></td>
                   <td><?php echo $row->price; ?></td>
                   <td><?php echo $row->name; ?></td>
-                  <!-- <td>
-                    <a href="<?php echo site_url('add_ons_new/details/' . $row->id); ?>">
-                      <button class="btn btn-success">
-                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                      </button>
-                    </a>
-                    <a href="<?php echo site_url('add_ons_new/edit_plugin/' . $row->id); ?>">
+                  <td>
+                    <a href="<?php echo site_url('add_ons_new/edit_plugin/' . $row->id_plugin); ?>">
                       <button class="btn btn-primary">
                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                       </button>
                     </a>
-                    <a href="<?php echo site_url('add_ons_new/delete_plugin/' . $row->id); ?>">
+                    <a href="<?php echo site_url('add_ons_new/delete_plugin/' . $row->id_plugin); ?>">
                       <button class="btn btn-danger">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                       </button>
                     </a>
-                  </td> -->
+                  </td>
                 </tr>
                 <?php 
                 $no++;
@@ -96,7 +91,11 @@
                 </tfoot>
            </table>
         </div>
-        <!-- /.box-body -->
+         <a href="<?php echo site_url('add_ons_new/new_addon/' . $row->id_creator); ?>">
+                      <button class="btn btn-success">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                      </button>
+                    </a>
         <div class="box-footer">
           Footer
         </div>
@@ -111,7 +110,7 @@
 
   <?= $page_resource['admin_footer'] ?>
 
-  <!-- Add the sidebar's background. This div must be placed
+ <!--  Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
 </div>

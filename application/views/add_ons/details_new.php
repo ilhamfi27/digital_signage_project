@@ -33,13 +33,13 @@
             <div class="box-body">
               <div class="row">
                 <div class="col-md-3">
-                  <img src="<?= base_url('storage/images/add_ons/') . $addon->foto ?>" class="img-responsive">
+                  <img src="<?= base_url('storage/images/add_ons/') . $plugins->uploaded ?>" class="img-responsive">
                 </div>
                 <div class="col-md-9">
-                  <h2><?= $addon->name ?></h2>
-                  <span style="font-size: 30px; font-weight: 700; position: absolute; top: 10px; right: 20px;"><?= $addon->price?></span>
-                  <p style="font-size: 16px;">Creator :<a href=" <?= site_url('add_ons/detail_creator/lab_si')?>"> <?= $addon->pembuat ?></p></a>
-                  <p style="font-size: 16px;">27 February 2019</p>
+                  <h2><?= $plugins->name ?></h2>
+                  <span style="font-size: 30px; font-weight: 700; position: absolute; top: 10px; right: 20px;"><?= $plugins->price?></span>
+                  <p style="font-size: 16px;">Creator :<a href=" <?= site_url('add_ons/detail_creator_new')?>"> <?= $plugins->name ?></p></a>
+                  <p style="font-size: 16px;"><?= $plugins->date?></p>
                   <!-- <p style="font-size: 16px;">Rating</p> -->
                   <?php for ($i=0; $i < 5; $i++) { ?>
                   <span class="fa fa-star"></span>
@@ -54,7 +54,7 @@
 
               <div class="row">
                 <div class="col-md-12"> 
-                  <p align="justify" style="position: relative; margin-top: 20px;"><?= $addon->deskripsi?> </p>
+                  <p align="justify" style="position: relative; margin-top: 20px;"><?= $plugins->description?> </p>
                 </div>
               </div>
               <div class="row">

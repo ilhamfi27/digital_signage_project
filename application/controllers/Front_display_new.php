@@ -9,6 +9,7 @@ class Front_display_new extends MY_Controller{
 		$this->load->helper('form', 'url');
 		$config['upload_path'] = './storage/images/front_display';
 		$config['allowed_types'] = 'gif|jpg|png';
+		$this->load->model('modellayout_new');
 		$this->load->model('modelcontent_new');
 		$this->load->library('upload',$config);
 	}
@@ -85,7 +86,9 @@ class Front_display_new extends MY_Controller{
 		// $date 				= $this->input->post('date');
 		// $id_content_category 			= $this->input->post('id_content_category');	
 		// $file 				= $this->input->post('file');
-
+		$this->form_validation->set_rules('subject', 'subject', 'required');
+		$this->form_validation->set_rules('description', 'description', 'required');
+		$this->form_validation->set_rules('date', 'date', 'required');
 		
 		$data = $this->input->post();
 		if (!empty($_FILES['file']['name'])) {
@@ -96,8 +99,13 @@ class Front_display_new extends MY_Controller{
 			$data['file'] = $this->upload->data('file_name');
 			}
 		}
-		$this->modelcontent_new->update_content(['id_content' => $this->input->post('id_content')],$data,'content');
-		redirect('front_display_new/munculcontent');
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->editContent($this->input->post('id_content'));
+		} else {
+			$this->modelcontent_new->update_content(['id_content' => $this->input->post('id_content')],$data,'content');
+			redirect('front_display_new/munculcontent');
+		}
 	}
 	public function munculcontent(){
 		//pagination
@@ -155,10 +163,16 @@ class Front_display_new extends MY_Controller{
 		$this->load->view('front_display/editcontent_category_new',$data);
 	}
 	public function updateContent_category(){
+		$this->form_validation->set_rules('category', 'category', 'required');
+		
+		if ($this->form_validation->run() == FALSE) {
+			$this->editContent_category($this->input->post('id_content_category'));
+		} else {
 		$category			= $this->input->post('category');
-	
+		
 			$this->modelcontent_new->update_content_category(['id_content_category' => $this->input->post('id_content_category')],['category' => $category],'content_category');
 			redirect('front_display_new/munculcontent_category');
+		}
 	}
 	public function munculcontent_category(){
 		//pagination
@@ -197,8 +211,115 @@ class Front_display_new extends MY_Controller{
 	}
 	public function inputLayout(){
 		$data['page_resource'] = parent::page_resources();
-		//$this->load->view('front_display/createContent_new',$data);
+		$data['layout'] = $this->modellayout_new->ambil_layout()->result();
+		
+		$this->load->view('front_display/createLayout_new',$data);
 	}
+
+	public function hapusLayout($id){
+		$where = array('id_Layout' => $id);
+		$this->modellayout_new->hapus_layout($where,'layout');
+		redirect('front_display_new/munculLayout');
+	}
+	public function editLayout($id){
+		$data['page_resource'] = parent::page_resources();
+		$where = array('id_layout' => $id);
+		$data['layout'] = $this->modellayout_new->edit_layout('layout',$where)->row();
+		$this->load->view('front_display/editlayout_new',$data);
+	}
+	public function updateLayout(){
+		$layout			= $this->input->post('layout');
+		$position = $this->post('position');
+		$this->form_validation->set_rules('position', 'position', 'required');
+		
+	
+			$this->modellayout_new->update_layout(['id_layout' => $this->input->post('id_layout')],['position' => $position],'layout');
+			redirect('front_display_new/munculLayout');
+	}
+	public function munculLayout(){
+
+		$data['page_resource'] = parent::page_resources();
+		$data['layout'] = $this->modellayout_new->ambil_layout()->result();
+		$this->load->view('front_display/muncullayout_new', $data);
+	}
+
+	public function detailLayout($id){
+		$data['page_resource'] = parent::page_resources();
+		$data['layout'] = $this->modellayout_new->ambil_layout($id)->row(1);
+		$this->load->view('front_display/detaillayout_new',$data);
+	}
+	
+
+
+	public function inputLayoutAdmin(){
+		$data['page_resource'] = parent::page_resources();
+		$data['layout'] = $this->modellayout_new->ambil_layoutAdmin()->result();
+		$position 	= $this->input->post('position');
+
+		$this->form_validation->set_rules([
+
+			[
+				'field' => 'position',
+				'label'	=> 'position',
+				'rules' => 'required'
+			],
+			
+		]);
+		
+		if ($this->form_validation->run() === FALSE) {
+			$this->load->view('front_display/createLayoutAdmin_new',$data);
+		} else{
+			if ( ! $this->upload->do_upload('image')){
+				echo $this->upload->display_errors();
+			}else{
+				$data = $this->input->post();
+				$data['image'] = $this->upload->data('file_name');
+				$this->modellayout_new->input_layoutAdmin($data,'layout');
+				redirect('front_display_new/munculLayoutAdmin');
+			}
+		}
+	}
+
+	public function hapusLayoutAdmin($id){
+		$where = array('id_Layout' => $id);
+		$this->modellayout_new->hapus_layoutAdmin($where,'layout');
+		redirect('front_display_new/munculLayoutAdmin');
+	}
+	public function editLayoutAdmin($id){
+		$data['page_resource'] = parent::page_resources();
+		$where = array('id_layout' => $id);
+		$data['layout'] = $this->modellayout_new->ambil_layoutAdmin()->row(1);
+		$this->load->view('front_display/editlayoutAdmin_new',$data);
+	}
+	public function updateLayoutAdmin(){
+		$layout			= $this->input->post('layout');
+		$position = $this->input->post('position');
+		$this->form_validation->set_rules('position', 'position', 'required');
+
+		if (!empty($_FILES['file']['name'])) {
+			
+			if ( ! $this->upload->do_upload('image')){
+				echo $this->upload->display_errors();
+			}else{
+			$data['image'] = $this->upload->data('file_name');
+			}
+		}
+	
+
+		if ($this->form_validation->run() === FALSE) {
+			$this->editLayoutAdmin($this->input->post('id_layout'));
+		} else{
+			$this->modellayout_new->update_layoutAdmin(['id_layout' => $this->input->post('id_layout')],['position' => $position],'layout');
+			redirect('front_display_new/munculLayoutAdmin');
+			}
+	}
+	public function munculLayoutAdmin(){
+
+		$data['page_resource'] = parent::page_resources();
+		$data['layout'] = $this->modellayout_new->ambil_layoutAdmin()->result();
+		$this->load->view('front_display/muncullayoutAdmin_new', $data);
+	}
+
 
 	/*public function index(){
 		$data['dropdown_data'] = array(

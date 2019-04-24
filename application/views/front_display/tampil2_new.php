@@ -44,7 +44,7 @@
                 <div class="panel-body">
                   <div class="row">
                     <div class="col-md-12">
-                      <center><img src="<?= base_url('storage/images/logo.png') ?>" width="300" height="300"><br>
+                      <center><img src="<?= base_url('storage/images/icon.jpeg') ?>" width="400"><br>
                     </div>
                   </div>
                   <div class="row">
@@ -54,7 +54,7 @@
                   </div>
                    <div class="row" style="margin-top: 10px;">
                     <div class="col-md-12"> 
-                      <center><a href='<?= base_url("front_display/inputLayout"); ?>'><button class="btn btn-primary">Create Layout</button></a>
+                      <center><a href='<?= base_url("front_display_new/inputLayout"); ?>'><button class="btn btn-primary">Create Layout</button></a>
                     </div>
                   </div>
                 </div>
