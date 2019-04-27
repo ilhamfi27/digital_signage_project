@@ -33,16 +33,42 @@
             <div class="box-body">
               <div class="row">
                 <div class="col-md-3">
-                  <img src="<?= base_url('storage/images/memo.jpg') ?>" class="img-responsive">
+                  <img src="<?= base_url('storage/images/add_ons/') . $creator->image ?>" class="img-responsive">
                 </div>
                 <div class="col-md-9">
-                  <h2>Sherli yualinda</h2>
-                  <p style="font-size: 16px;">Jalan Sunan Ampel No 102A</p>
-                  <p style="font-size: 16px;">lamongan, 11 November 1999</p>
-                  <p style="font-size: 16px;">085856079291</p>
-                  <p style="font-size: 16px;">yualindasherli@gmail.com</p>
+                  <h2><?= $creator->name ?></h2>
+                  <dl class="row">  
+                      <dt class="col-md-3">Email</dt>
+                      <dd class="col-md-9"><?= $creator->email?></dd>
+
+                      <dt class="col-md-3">Phone Number</dt>
+                      <dd class="col-md-9"><?= $creator->phone_number?></dd>
+
+                      <dt class="col-md-3">Address</dt>
+                      <dd class="col-md-9"><?= $creator->address?></dd>
+
+                      <dt class="col-md-3">Place Of Birth</dt>
+                      <dd class="col-md-9"><?= $creator->place_of_birth?></dd>
+
+                      <dt class="col-md-3">Date Of Birth</dt>
+                      <dd class="col-md-9"><?= $creator->date_of_birth?></dd>
+
+                      <dt class="col-md-3">Gender</dt>
+                      <dd class="col-md-9"><?= $creator->gender?></dd>
+
+                      <dt class="col-md-3">Religion</dt>
+                      <dd class="col-md-9"><?= $creator->religion?></dd>
+
+                      <dt class="col-md-3">Citizenship</dt>
+                      <dd class="col-md-9"><?= $creator->citizenship?></dd>
+
+                      <dt class="col-md-3">Blood Group</dt>
+                      <dd class="col-md-9"><?= $creator->blood_group?></dd>
+                  </dl> 
                 </div>
               </div>
+
+            <!-- End Box Body -->
           </div>
         </div>
       </div>
@@ -53,7 +79,6 @@
 
   <?= $page_resource['admin_footer'] ?>
 </div>
-
 <?= $page_resource['admin_scripts'] ?>
 </body>
 </html>

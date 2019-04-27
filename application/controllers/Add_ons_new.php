@@ -23,10 +23,10 @@ class Add_ons_new extends MY_Controller{
         $data['plugins']= $this->Add_on_model_new->details($id)->row(1);
 		$this->load->view('add_ons/details_new', $data);
 	}
-	public function details_creator($id=0){
+	public function details_creator($id){
         $data['page_resource'] = parent::page_resources();
-        $data['addon']= $this->add_on_model_new->details($id)->row();
-		$this->load->view('add_ons/details_new', $data);
+        $data['creator'] = $this->Add_on_creator_model_new->details($id)->row(1);
+		$this->load->view('add_ons/detail_creator_new', $data);
 	}
 	// public function new_addon(){
  //        $data['page_resource'] = parent::page_resources();
@@ -232,6 +232,7 @@ class Add_ons_new extends MY_Controller{
 		// 			'place_of_birth' => $place_of_birth,
 		// 			'religion' => $religion,
 		// 			'blood_group' => $blood_group,
+		// 			'made' => "add on"
 		// 		];
 		// 		$this->Add_on_creator_model_new->insert_add_on($data);
 		// 		redirect('add_ons_new/list_creator');

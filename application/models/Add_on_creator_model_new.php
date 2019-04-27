@@ -18,7 +18,7 @@ class Add_on_creator_model_new extends CI_Model{
     return $this->db->get('creator');
 	}
 	public function details($id){
-		return $this->db->get_where($this->table,$id);	
+		return $this->db->get_where($this->table,['id_creator' => $id]);	
 	}
 	public function update_creator($data,$where){
 		$this->db->where('id_creator', $where);
