@@ -21,6 +21,14 @@ class m_payment_new extends CI_Model
 	{
 		return $this->db->get('periode_pembayaran');
 	}
+	function tampilBilling($id)
+	{
+		$this->db->join('transaction','billing.id_billing=transaction.id_billing');
+		$this->db->join('package','billing.id_package=package.id_package');
+		$this->db->where('user_id',$id);
+		return $this->db->get('billing');
+
+	}
 	function input_data($data)
 	{
 		$this->db->insert('payment_code',$data);
