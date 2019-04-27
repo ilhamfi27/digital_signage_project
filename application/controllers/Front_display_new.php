@@ -61,6 +61,7 @@ class Front_display_new extends MY_Controller{
 				echo $this->upload->display_errors();
 			}else{
 				$data_content_category = $this->input->post();
+				$data_content_category['user_id'] = $this->session->userdata('id');
 				$data_content_category['file'] = $this->upload->data('file_name');
 				$this->modelcontent_new->input_content($data_content_category,'content');
 				redirect('front_display_new/munculcontent');
@@ -248,8 +249,51 @@ class Front_display_new extends MY_Controller{
 		$data['layout'] = $this->modellayout_new->ambil_layout($id)->row(1);
 		$this->load->view('front_display/detaillayout_new',$data);
 	}
-	
 
+	public function inputLayoutContent(){
+		$kanan = $this->input->post('id_content_kanan');
+		$kiri = $this->input->post('id_content_kiri');
+		$id_layout = $this->input->post('id_layout');
+
+		$kanan_input = $this->db->insert('cl', array('id_layout' => $id_layout,'position' => 'kanan', 'id_content' => $kanan));
+		if ($kanan_input) {
+			$kiri_input = $this->db->insert('cl', array('id_layout' => $id_layout,'position' => 'kiri', 'id_content' => $kiri));
+		}
+		redirect('front_display_new/detaillayout/'.$id_layout);
+	}
+
+	// public function hapusLayoutContent(){
+	// 	$this->modellayout_new->hapus_layout($where,'cl');
+	// 	redirect('front_display_new/munculLayoutContent');
+	// }
+	// public function editLayoutContent($id){
+	// 	$data['page_resource'] = parent::page_resources();
+	// 	$where = array('id_layout' => $id);
+	// 	$data['layout'] = $this->modellayout_new->edit_layout('cl',$where)->row();
+	// 	$this->load->view('front_display/editlayoutContent_new',$data);
+	// }
+	// public function updateLayoutContent(){
+	// 	$cl			= $this->input->post('cl');
+	// 	$position = $this->post('position');
+	// 	$this->form_validation->set_rules('position', 'position', 'required');
+		
+	
+	// 		$this->modellayout_new->update_layout(['id_layout' => $this->input->post('id_layout')],['position' => $position],'layout');
+	// 		redirect('front_display_new/munculLayout');
+	// }
+	// public function munculLayoutContent(){
+
+	// 	$data['page_resource'] = parent::page_resources();
+	// 	$data['layout'] = $this->modellayout_new->ambil_layout()->result();
+	// 	$this->load->view('front_display/muncullayout_new', $data);
+	// }
+
+	public function detailInput($id){
+		$data['page_resource'] = parent::page_resources();
+		$data['layout'] = $this->modellayout_new->ambil_layout($id)->row(1);
+		$data['content'] = $this->modelcontent_new->ambil_content($id);
+		$this->load->view('front_display/insertContent_new',$data);
+	}
 
 	public function inputLayoutAdmin(){
 		$data['page_resource'] = parent::page_resources();
