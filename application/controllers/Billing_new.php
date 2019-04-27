@@ -32,51 +32,79 @@ class Billing_new extends MY_Controller
 							'phone_number' => $phone_number,
 							'duration_first' => $duration_first,
 							'duration_last' => $duration_last,
-							'method' => $method,
-						'package_method'=> $package_method
+							
+						'id_package'=> $package_method,
+						'user_id' => $this->session->userdata('id'),
 					);
+		
 		$this->form_validation->set_rules('name','Name','trim|required');
 		$this->form_validation->set_rules('phone_number','Phone_number','trim|required');
 		$this->form_validation->set_rules('duration_first','Duration_first','trim|required');
 		$this->form_validation->set_rules('duration_last','Duration_last','trim|required');
 		$this->form_validation->set_rules('method','Method','trim|required');
 		if ($this->form_validation->run() === FALSE) {
-		$data['transaction'] = $this->dataModel->tampilPayment()->result();
+		$data['transaction'] = $this->dataModel_new->tampilPayment()->result();
 		$this->load->view('billing_new/inputkan_new', $data);
 
         } else {
-	        $this->dataModel_new->input_data($dataArray,'transaction');
+	        $this->dataModel_new->input_data($dataArray);
+	        $dataTransaksi= array('method' => $method,
+						'id_billing' => $this->db->insert_id(),
+						'date' => date('d-m-Y'));
+	        $this->dataModel_new->input_data_transaksi($dataTransaksi);
 			redirect('billing_new/index');
         }
 
     }
 
 	function update($id){
-		$where = array('id' => $id);
-		$dataArray['metode'] = $this->dataModel->edit_data($where,'metode')->result();
-		$this->load->view('edit_pembayaran',$dataArray);
+		$where = array('id_billing' => $id);
+		$dataArray['page_resource'] = parent::page_resources();
+		$dataArray['billing'] = $this->dataModel_new->edit_billing($where,'billing')->row(1);
+		$dataArray['package'] = $this->dataModel_new->tampilPayment()->result();
+		$this->load->view('billing/edit_pembayaran',$dataArray);
 	}
-	function aksiUpdate(){
-		$nama = $this->input->post('nama');
-		$metode_pembayaran = $this->input->post('metode_pembayaran');
+	function update_billing(){
+		$name = $this->input->post('name');
+		$phone_number = $this->input->post('phone_number');
+		$duration_first = $this->input->post('duration_first');
+		$duration_last = $this->input->post('duration_last');
+		$method = $this->input->post('method');
+		$package_method = $this->input->post('package_method');
 
-		$dataArray = array('nama' => $nama,
-						'metode_pembayaran'=> $metode_pembayaran
+		$dataArray = array('name' => $name,
+							'phone_number' => $phone_number,
+							'duration_first' => $duration_first,
+							'duration_last' => $duration_last,
+							
+						'id_package'=> $package_method,
+						'user_id' => $this->session->userdata('id'),
 					);
-	 
-		$where = array(
-			'id' => $id
-		);
-	 
-		$this->dataModel->update_data($where,$dataArray,'metode');
-		redirect('billing/index');
+		
+		$this->form_validation->set_rules('name','Name','trim|required');
+		$this->form_validation->set_rules('phone_number','Phone_number','trim|required');
+		$this->form_validation->set_rules('duration_first','Duration_first','trim|required');
+		$this->form_validation->set_rules('duration_last','Duration_last','trim|required');
+		$this->form_validation->set_rules('method','Method','trim|required');
+		if ($this->form_validation->run() === FALSE) {
+			$this->update($this->session->userdata('id'));
+        } else {
+        	$dataArray = $this->input->post();
+        	$dataArray['date'] = date('d-m-Y');
+	        $this->dataModel_new->update_billing($dataArray, $this->session->userdata('id'));
+			redirect('billing_new/index');
+        }
 	}
 	function deleteData($id){
 		// $where = array('id' => $id);
 		$this->dataModel->hapus($id,'payment');
 		redirect('billing/index');
 	}
-
+public function view_admin()
+{
+	$data['page_resource'] = parent::page_resources();
+		$data['billing'] = $this->dataModel_new->tampil_admin()->result();
+		$this->load->view('billing/viewAdmin', $data);}
 
 }
 

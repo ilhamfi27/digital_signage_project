@@ -85,7 +85,8 @@
                     <?php if($this->session->level === "admin"){ ?>
                     <li><a href="<?= site_url('front_display_new/input_content_category') ?>"><i class="fa fa-circle-o"></i> Content category</a></li>
                     <li><a href="<?= site_url('front_display_new/munculcontent_category') ?>"><i class="fa fa-circle-o"></i> List Content category</a></li>
-                    <li><a href="<?= site_url('#') ?>"><i class="fa fa-circle-o"></i> Layout</a></li>
+                    <li><a href="<?= site_url('front_display_new/inputLayoutAdmin') ?>"><i class="fa fa-circle-o"></i> Layout</a></li>
+                    <li><a href="<?= site_url('front_display_new/munculLayoutAdmin') ?>"><i class="fa fa-circle-o"></i>List Layout</a></li>
                     <?php } else { ?>
                     <li><a href="<?= site_url('front_display_new/index') ?>"><i class="fa fa-circle-o"></i>Input Content</a></li>
                      <li><a href="<?= site_url('front_display_new/munculcontent') ?>"><i class="fa fa-circle-o"></i> List Content</a></li>
@@ -103,7 +104,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <?php if($this->session->level === "admin"){ ?>
-                    <li><a href="<?= site_url('#') ?>"><i class="fa fa-circle-o"></i> View Payment</a></li>
+                    <li><a href="<?= site_url('billing_new/view_admin') ?>"><i class="fa fa-circle-o"></i> View Payment</a></li>
                     <?php } else { ?>
                     <li><a href="<?= site_url('billing_new/create') ?>"><i class="fa fa-circle-o"></i> Payment</a></li>
                     <li><a href="<?= site_url('payment_verif_new/index') ?>"><i class="fa fa-circle-o"></i> View</a></li>

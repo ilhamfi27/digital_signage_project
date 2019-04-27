@@ -21,7 +21,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        LIST LAYOUT
+        LIST USER PAYMENT
       </h1>
     </section>
 
@@ -34,15 +34,10 @@
   
        <div class="col-lg-3 col-lg-offset-9">
           <div class="input-group">
-            <!-- search -->
-            <?php echo form_open('front_display_new/search') ?>
-            <input type="text" class="form-control" name ='keyword'placeholder="Search for...">
+            <input type="text" class="form-control" placeholder="Search for...">
             <span class="input-group-btn">
-            <a href="<?= site_url('front_display_new/search') ?>">
-              <button class="btn btn-default" type="button">Go</button>   
-              </a>
+              <button class="btn btn-default" type="button">Go</button>
             </span>
-            <?php echo form_close() ?>
           </div><!-- /input-group -->
         </div><!-- /.col-lg-6 -->
 
@@ -52,56 +47,57 @@
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>File</th>
-                  <th>Name</th>
-                  <th>URL</th>
-                  <th>Keterangan</th>
+                  <th>Id_Billing</th>
+                  <th>Id_package</th>
+                  <th>User_id</th>
+                  <th>Duration_first</th>
+                  <th>Duration_last</th>
+                  <th>phone_number</th>
+                  <th>name</th>
+                 <!--  <th>Keterangan</th> -->
                 </tr>
                 </thead>
                 <tbody>
                 <?php 
-                  //pagination
-                  // $paging = $this->uri->segment('3')+1;
                 $no = 1;
-                foreach($layout as $s):
+                foreach($billing as $row):
                 ?>
                 <tr>
                   <td><?php echo $no; ?></td>
-                  <td><img src="<?=base_url().'./storage/images/front_display/'.$s->image;?>" width ="100" height ='100'></td>
-                  <td><?php echo $s->name; ?></td>
-                  <td><?php echo $s->url; ?></td>
-                  <td>
-                    <a href="<?php echo site_url('front_display_new/editLayout/'.$s->id_layout); ?>">
+                  <td><?php echo $row->id_billing; ?></td>
+                  <td><?php echo $row->id_package; ?></td>
+                  <td><?php echo $row->user_id; ?></td>
+                  <td><?php echo $row->duration_first; ?></td>
+                  <td><?php echo $row->duration_last; ?></td>
+                  <td><?php echo $row->phone_number; ?></td>
+                  <td><?php echo $row->name; ?></td>
+                  <!-- <td>
+                    <a href="<?php echo site_url('add_ons_new/details/' . $row->id); ?>">
+                      <button class="btn btn-success">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                      </button>
+                    </a>
+                    <a href="<?php echo site_url('add_ons_new/edit_plugin/' . $row->id); ?>">
                       <button class="btn btn-primary">
                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                       </button>
                     </a>
-                    <a href="<?php echo site_url('front_display_new/hapusLayout/'.$s->id_layout); ?>">
+                    <a href="<?php echo site_url('add_ons_new/delete_plugin/' . $row->id); ?>">
                       <button class="btn btn-danger">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                       </button>
                     </a>
-                  </td>
+                  </td> -->
                 </tr>
                 <?php 
                 $no++;
                 endforeach;
                 ?>
+                </tfoot>
            </table>
-           <?php
-           //pagination
-              // echo $this->pagination->create_link();
-           ?>
         </div>
         <!-- /.box-body -->
-        <div class="box-footer">
-           </tfoot>
-                 <a href="<?php echo site_url('front_display_new/inputLayout'); ?>">
-                      <button class="btn btn-primary">
-                        <span class="fa fa-plus" aria-hidden="true"></span>
-                      </button>
-                  </a>
-        </div>
+       
         <!-- /.box-footer-->
       </div>
       <!-- /.box -->

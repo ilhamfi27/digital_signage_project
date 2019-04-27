@@ -52,9 +52,8 @@
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>File</th>
-                  <th>Name</th>
-                  <th>URL</th>
+                  <th>Image</th>
+                  <th>Position</th>
                   <th>Keterangan</th>
                 </tr>
                 </thead>
@@ -68,15 +67,14 @@
                 <tr>
                   <td><?php echo $no; ?></td>
                   <td><img src="<?=base_url().'./storage/images/front_display/'.$s->image;?>" width ="100" height ='100'></td>
-                  <td><?php echo $s->name; ?></td>
-                  <td><?php echo $s->url; ?></td>
+                  <td><?php echo $s->position; ?></td>
                   <td>
-                    <a href="<?php echo site_url('front_display_new/editLayout/'.$s->id_layout); ?>">
+                    <a href="<?php echo site_url('front_display_new/editLayoutAdmin/'.$s->id_layout); ?>">
                       <button class="btn btn-primary">
                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                       </button>
                     </a>
-                    <a href="<?php echo site_url('front_display_new/hapusLayout/'.$s->id_layout); ?>">
+                    <a href="<?php echo site_url('front_display_new/hapusLayoutAdmin/'.$s->id_layout); ?>">
                       <button class="btn btn-danger">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                       </button>
@@ -96,7 +94,7 @@
         <!-- /.box-body -->
         <div class="box-footer">
            </tfoot>
-                 <a href="<?php echo site_url('front_display_new/inputLayout'); ?>">
+                 <a href="<?php echo site_url('front_display_new/inputLayoutAdmin'); ?>">
                       <button class="btn btn-primary">
                         <span class="fa fa-plus" aria-hidden="true"></span>
                       </button>

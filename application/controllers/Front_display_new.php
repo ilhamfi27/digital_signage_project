@@ -61,6 +61,7 @@ class Front_display_new extends MY_Controller{
 				echo $this->upload->display_errors();
 			}else{
 				$data_content_category = $this->input->post();
+				$data_content_category['user_id'] = $this->session->userdata('id');
 				$data_content_category['file'] = $this->upload->data('file_name');
 				$this->modelcontent_new->input_content($data_content_category,'content');
 				redirect('front_display_new/munculcontent');
@@ -212,31 +213,8 @@ class Front_display_new extends MY_Controller{
 	public function inputLayout(){
 		$data['page_resource'] = parent::page_resources();
 		$data['layout'] = $this->modellayout_new->ambil_layout()->result();
-		$name 		= $this->input->post('name');
-		$url 	= $this->input->post('url');
-
-		$this->form_validation->set_rules([
-
-			[
-				'field' => 'name',
-				'label'	=> 'name',
-				'rules' => 'required|min_length[5]'
-			],
-			[
-				'field' => 'url',
-				'label'	=> 'url',
-				'rules' => 'required'
-			],
-		]);
 		
-		if ($this->form_validation->run() === FALSE) {
-			$this->load->view('front_display/createLayout_new',$data);
-		} else{
-				$data = $this->input->post();
-				$data['file'] = $this->upload->data('file_name');
-				$this->modelcontent_new->input_content($data,'layout');
-				redirect('front_display_new/muncullayout');
-			}
+		$this->load->view('front_display/createLayout_new',$data);
 	}
 
 	public function hapusLayout($id){
@@ -252,11 +230,11 @@ class Front_display_new extends MY_Controller{
 	}
 	public function updateLayout(){
 		$layout			= $this->input->post('layout');
-		$url = $this->post('url');
-		$this->form_validation->set_rules('layout', 'layout', 'required');
-		$this->form_validation->set_rules('url', 'url', 'required');
+		$position = $this->post('position');
+		$this->form_validation->set_rules('position', 'position', 'required');
+		
 	
-			$this->modellayout_new->update_layout(['id_layout' => $this->input->post('id_layout')],['layout' => $layout],'content_category');
+			$this->modellayout_new->update_layout(['id_layout' => $this->input->post('id_layout')],['position' => $position],'layout');
 			redirect('front_display_new/munculLayout');
 	}
 	public function munculLayout(){
@@ -266,73 +244,124 @@ class Front_display_new extends MY_Controller{
 		$this->load->view('front_display/muncullayout_new', $data);
 	}
 
-	public function detailLayout(){
+	public function detailLayout($id){
 		$data['page_resource'] = parent::page_resources();
-		$data['layout'] = $this->modellayout_new->ambil_layout()->result();
+		$data['layout'] = $this->modellayout_new->ambil_layout($id)->row(1);
 		$this->load->view('front_display/detaillayout_new',$data);
 	}
 
+	public function inputLayoutContent(){
+		$kanan = $this->input->post('id_content_kanan');
+		$kiri = $this->input->post('id_content_kiri');
+		$id_layout = $this->input->post('id_layout');
+
+		$kanan_input = $this->db->insert('cl', array('id_layout' => $id_layout,'position' => 'kanan', 'id_content' => $kanan));
+		if ($kanan_input) {
+			$kiri_input = $this->db->insert('cl', array('id_layout' => $id_layout,'position' => 'kiri', 'id_content' => $kiri));
+		}
+		redirect('front_display_new/detaillayout/'.$id_layout);
+	}
+
+	// public function hapusLayoutContent(){
+	// 	$this->modellayout_new->hapus_layout($where,'cl');
+	// 	redirect('front_display_new/munculLayoutContent');
+	// }
+	// public function editLayoutContent($id){
+	// 	$data['page_resource'] = parent::page_resources();
+	// 	$where = array('id_layout' => $id);
+	// 	$data['layout'] = $this->modellayout_new->edit_layout('cl',$where)->row();
+	// 	$this->load->view('front_display/editlayoutContent_new',$data);
+	// }
+	// public function updateLayoutContent(){
+	// 	$cl			= $this->input->post('cl');
+	// 	$position = $this->post('position');
+	// 	$this->form_validation->set_rules('position', 'position', 'required');
+		
+	
+	// 		$this->modellayout_new->update_layout(['id_layout' => $this->input->post('id_layout')],['position' => $position],'layout');
+	// 		redirect('front_display_new/munculLayout');
+	// }
+	// public function munculLayoutContent(){
+
+	// 	$data['page_resource'] = parent::page_resources();
+	// 	$data['layout'] = $this->modellayout_new->ambil_layout()->result();
+	// 	$this->load->view('front_display/muncullayout_new', $data);
+	// }
+
+	public function detailInput($id){
+		$data['page_resource'] = parent::page_resources();
+		$data['layout'] = $this->modellayout_new->ambil_layout($id)->row(1);
+		$data['content'] = $this->modelcontent_new->ambil_content($id);
+		$this->load->view('front_display/insertContent_new',$data);
+	}
 
 	public function inputLayoutAdmin(){
 		$data['page_resource'] = parent::page_resources();
-		$data['layout'] = $this->modellayout_new->ambil_layout()->result();
-		$name 		= $this->input->post('name');
-		$url 	= $this->input->post('url');
+		$data['layout'] = $this->modellayout_new->ambil_layoutAdmin()->result();
+		$position 	= $this->input->post('position');
 
 		$this->form_validation->set_rules([
 
 			[
-				'field' => 'name',
-				'label'	=> 'name',
-				'rules' => 'required|min_length[5]'
-			],
-			[
-				'field' => 'url',
-				'label'	=> 'url',
+				'field' => 'position',
+				'label'	=> 'position',
 				'rules' => 'required'
 			],
+			
 		]);
 		
 		if ($this->form_validation->run() === FALSE) {
-			$this->load->view('front_display/createLayout_new',$data);
+			$this->load->view('front_display/createLayoutAdmin_new',$data);
 		} else{
+			if ( ! $this->upload->do_upload('image')){
+				echo $this->upload->display_errors();
+			}else{
 				$data = $this->input->post();
-				$data['file'] = $this->upload->data('file_name');
-				$this->modelcontent_new->input_content($data,'layout');
-				redirect('front_display_new/muncullayout');
+				$data['image'] = $this->upload->data('file_name');
+				$this->modellayout_new->input_layoutAdmin($data,'layout');
+				redirect('front_display_new/munculLayoutAdmin');
 			}
+		}
 	}
 
 	public function hapusLayoutAdmin($id){
 		$where = array('id_Layout' => $id);
-		$this->modellayout_new->hapus_layout($where,'layout');
-		redirect('front_display_new/munculLayout');
+		$this->modellayout_new->hapus_layoutAdmin($where,'layout');
+		redirect('front_display_new/munculLayoutAdmin');
 	}
 	public function editLayoutAdmin($id){
 		$data['page_resource'] = parent::page_resources();
 		$where = array('id_layout' => $id);
-		$data['layout'] = $this->modellayout_new->edit_layout('layout',$where)->row();
-		$this->load->view('front_display/editlayout_new',$data);
+		$data['layout'] = $this->modellayout_new->ambil_layoutAdmin()->row(1);
+		$this->load->view('front_display/editlayoutAdmin_new',$data);
 	}
 	public function updateLayoutAdmin(){
 		$layout			= $this->input->post('layout');
-		$url = $this->post('url');
-		$this->form_validation->set_rules('layout', 'layout', 'required');
-		$this->form_validation->set_rules('url', 'url', 'required');
+		$position = $this->input->post('position');
+		$this->form_validation->set_rules('position', 'position', 'required');
+
+		if (!empty($_FILES['file']['name'])) {
+			
+			if ( ! $this->upload->do_upload('image')){
+				echo $this->upload->display_errors();
+			}else{
+			$data['image'] = $this->upload->data('file_name');
+			}
+		}
 	
 
 		if ($this->form_validation->run() === FALSE) {
-			$this->load->view('front_display/createLayoutAdmin_new',$data);
+			$this->editLayoutAdmin($this->input->post('id_layout'));
 		} else{
-			$this->modellayout_new->update_layout(['id_layout' => $this->input->post('id_layout')],['layout' => $layout],'content_category');
+			$this->modellayout_new->update_layoutAdmin(['id_layout' => $this->input->post('id_layout')],['position' => $position],'layout');
 			redirect('front_display_new/munculLayoutAdmin');
 			}
 	}
 	public function munculLayoutAdmin(){
 
 		$data['page_resource'] = parent::page_resources();
-		$data['layout'] = $this->modellayout_new->ambil_layout()->result();
-		$this->load->view('front_display/muncullayout_new', $data);
+		$data['layout'] = $this->modellayout_new->ambil_layoutAdmin()->result();
+		$this->load->view('front_display/muncullayoutAdmin_new', $data);
 	}
 
 

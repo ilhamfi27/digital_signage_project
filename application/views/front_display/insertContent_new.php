@@ -21,7 +21,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        CREATE LAYOUT
+        INSERT YOUR CONTENT
       </h1>
     </section>
 
@@ -32,30 +32,42 @@
       <div class="box">
         <div class="box-header with-border">
           <center>
-            <p style="font-size: 25px">Create Layout</p>
+            <p style="font-size: 25px">Insert your Content</p>
           </center>
         </div>
         <div class="box-body">
-          <?= form_open_multipart('front_display_new/inputLayoutAdmin',['class' => 'form-horizontal']) ?>
+          <?= form_open('front_display_new/inputLayoutContent',['class' => 'form-horizontal']) ?>
 
-            <div class="form-group">
-              <label class="col-sm-2 control-label">Position</label>
+
+           <div class="form-group">
+              <label class="col-sm-2 control-label">Layout Kiri</label>
               <div class="col-sm-10">
-                <input type="text" name="position" class="form-control" id="position">
-                <?= form_error('position')?>
+                <select class="form-control" name="id_content_kiri">
+                  <?php foreach ($content->result() as $s):   ?>
+                    <option value="<?php echo $s->id_content?>"><?php echo $s->file ?></option>
+                  <?php endforeach; ?>
+                  <?=form_error('content[file]')  ?>
+                </select>
+                <?= form_error('file')?>
               </div>
             </div>
 
-           <div class="form-group">
-              <label class="col-sm-2 control-label">image</label>
+             <div class="form-group">
+              <label class="col-sm-2 control-label">Layout Kanan</label>
               <div class="col-sm-10">
-                <input type="file" class="form-control" id="image" name="image">
-                <?= form_error('image')?>
+                <select class="form-control" name="id_content_kanan">
+                  <?php foreach ($content->result() as $s):   ?>
+                    <option value="<?php echo $s->id_content?>"><?php echo $s->file ?></option>
+                  <?php endforeach; ?>
+                  <?=form_error('content[file]')  ?>
+                </select>
+                <?= form_error('file')?>
               </div>
-           </div>
+            </div>
 
             <div class="form-group">
               <div class="col-sm-offset-2 col-sm-10">
+                <input type="hidden" name="id_layout" value="<?php echo $layout->id_layout; ?>">
                 <button type="submit" class="btn btn-default">Submit</button>
               </div>
             </div>
