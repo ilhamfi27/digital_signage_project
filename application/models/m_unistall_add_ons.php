@@ -6,9 +6,6 @@ class m_unistall_add_ons extends CI_Model
 	private $table = 'plugins';
 	function tampil()
 	{
-		$this->db->select("payment.id AS id,payment.nama AS nama,periode_pembayaran.periode AS metode_pembayaran")
-					->from("payment")
-					->join("periode_pembayaran", "payment.metode_pembayaran = periode_pembayaran.id");
 		return $this->db->get();
 
 	}

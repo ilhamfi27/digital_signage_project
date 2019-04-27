@@ -13,7 +13,7 @@ class Unistall_add_ons extends MY_Controller
 		$this->load->helper('url');
 	}
 	public function index(){
-	$this->load->view('delete_add_ons');
+	$this->load->view('billing/delete_add_ons');
 	}
 	public function delete()
 	{

@@ -105,7 +105,7 @@
                   </div>
                   <div class="row" style="margin-top: 90px;">
                     <div class="col-md-8 col-md-offset-4"> 
-                      <a href='<?= site_url('billing_new/update/'.$billing->id_billing) ?>'><button class="btn btn-primary">Update</button></a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+                      <a href='<?= $billing? site_url('billing_new/update/'. $billing->id_billing) : site_url('billing_new/create') ?>'><button class="btn btn-primary"><?php echo $billing ? 'Update' : 'Beli' ?></button></a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
                       <button class="btn btn-success">Unistall</button>
                     </div>
                   </div>

@@ -48,10 +48,11 @@ class dataModel_new extends CI_Model
 		$name = $data['name'];
 		$duration_first = $data['duration_first'];
 		$duration_last = $data['duration_last'];
-		$phone_number = $data['phone_number'];
+		$email = $data['email'];
 		$method = $data['method'];
 		$id_package = $data['id_package'];
-		$this->db->query("UPDATE `billing` JOIN transaction ON transaction.id_billing = billing.id_billing SET `name` = '$name', `duration_first` = '$duration_last', `duration_last` = '$duration_last', `phone_number` = '$phone_number', `method` = '$method', `id_package` = '$id_package', `user_id` = '$id' WHERE `user_id` = '$id'");
+		$kode = $data['kode'];
+		$this->db->query("UPDATE `billing` JOIN transaction ON transaction.id_billing = billing.id_billing SET `name` = '$name', `duration_first` = '$duration_last', `duration_last` = '$duration_last', `email` = '$email', `kode` = '$kode', `method` = '$method', `id_package` = '$id_package', `user_id` = '$id' WHERE `user_id` = '$id'");
 	}
 }
 

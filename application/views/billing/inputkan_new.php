@@ -62,10 +62,10 @@
            </div>
 
            <div class="form-group">
-              <label class="col-sm-2 control-label">Phone Number</label>
+              <label class="col-sm-2 control-label">Email</label>
               <div class="col-sm-10">
-                <input type="text" name="phone_number" class="form-control" id="phone_number">
-              <?= form_error('phone_number')?>
+                <input type="text" name="email" class="form-control" id="email">
+              <?= form_error('email')?>
               </div>
            </div>
 
