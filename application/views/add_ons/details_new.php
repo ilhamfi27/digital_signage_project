@@ -36,7 +36,7 @@
                   <img src="<?= base_url('storage/images/add_ons/') . $plugins->uploaded ?>" class="img-responsive">
                 </div>
                 <div class="col-md-9">
-                  <h2><?= $plugins->name ?></h2>
+                  <h2><?= $plugins->title ?></h2>
                   <span style="font-size: 30px; font-weight: 700; position: absolute; top: 10px; right: 20px;"><?= $plugins->price?></span>
                   <p style="font-size: 16px;">Creator :<a href=" <?= site_url('Add_ons_new/details_creator/'.$plugins->id_creator)?>"> <?= $plugins->name ?></p></a>
                   <p style="font-size: 16px;"><?= $plugins->date?></p>
@@ -57,43 +57,7 @@
                   <p align="justify" style="position: relative; margin-top: 20px;"><?= $plugins->description?> </p>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <p style="font-size:20px" align="center">Sreenshoots</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <center>
-                  <img src="<?= base_url('storage/images/memo.jpg')?>" width="400px" height="300px">
-                  <P>Gambar 1</P>
-                  </center>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <nav aria-label="Page navigation" class="col-md-offset-4">
-                    <ul class="pagination">
-                      <li class="disabled">
-                        <a href="#" aria-label="Previous">
-                          <span aria-hidden="true">&laquo;</span>
-                        </a>
-                      </li>
-                      <li><a href="#">1</a></li>
-                      <li><a href="#">2</a></li>
-                      <li><a href="#">3</a></li>
-                      <li><a href="#">4</a></li>
-                      <li><a href="#">5</a></li>
-                      <li>
-                        <a href="#" aria-label="Next">
-                          <span aria-hidden="true">&raquo;</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </nav>
-                  <!-- end nav -->
-                </div>
-              </div>
+             
               <hr>
               <div class="row">
                 <div class="col-md-12">
