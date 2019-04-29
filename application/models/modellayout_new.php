@@ -64,4 +64,12 @@
 			$this->db->where($where);
 			$this->db->update($table);
 		}
+
+		public function finall($id_layout, $id_user)
+		{
+			$this->db->select('cl.*, content.*');
+			$this->db->join('content', 'content.id_content = cl.id_content');
+			$this->db->join('layout', 'layout.id_layout = cl.id_layout');
+			return $this->db->get_where('cl', ['layout.id_layout' => $id_layout, 'content.user_id' => $id_user]);
+		}
 	}

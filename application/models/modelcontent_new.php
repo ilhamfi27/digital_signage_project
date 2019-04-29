@@ -8,6 +8,7 @@
 					return $this->db->get_where('content',array('user_id' => $this->session->userdata('id')));
 			}
 			return $this->db->get('content');
+			// return $this->db->query('CALL content()');
 		}
 		function input_content($data){
 			$this->db->insert('content',$data);

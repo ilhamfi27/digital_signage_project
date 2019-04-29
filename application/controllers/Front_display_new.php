@@ -11,6 +11,7 @@ class Front_display_new extends MY_Controller{
 		$config['allowed_types'] = 'gif|jpg|png';
 		$this->load->model('modellayout_new');
 		$this->load->model('modelcontent_new');
+		$this->load->model('Add_on_model_new');
 		$this->load->library('upload',$config);
 	}
 
@@ -292,6 +293,7 @@ class Front_display_new extends MY_Controller{
 		$data['page_resource'] = parent::page_resources();
 		$data['layout'] = $this->modellayout_new->ambil_layout($id)->row(1);
 		$data['content'] = $this->modelcontent_new->ambil_content($id);
+		$data['plugins'] = $this->Add_on_model_new->all();
 		$this->load->view('front_display/insertContent_new',$data);
 	}
 
@@ -362,6 +364,11 @@ class Front_display_new extends MY_Controller{
 		$data['page_resource'] = parent::page_resources();
 		$data['layout'] = $this->modellayout_new->ambil_layoutAdmin()->result();
 		$this->load->view('front_display/muncullayoutAdmin_new', $data);
+	}
+
+	public function vieww($id_layout, $id_user){
+		$data['cl'] = $this->modellayout_new->finall($id_layout, $id_user)->result();
+		$this->load->view('front_display/final', $data);
 	}
 
 
