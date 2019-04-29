@@ -21,6 +21,8 @@ class Add_ons_new extends MY_Controller{
 	public function details($id){
         $data['page_resource'] = parent::page_resources();
         $data['plugins']= $this->Add_on_model_new->details($id)->row(1);
+        $data['id_plugin'] = $id;
+        $data['comment'] = $this->Add_on_model_new->semua_comment($id);
 		$this->load->view('add_ons/details_new', $data);
 	}
 	public function details_creator($id){
@@ -113,8 +115,8 @@ class Add_ons_new extends MY_Controller{
 	public function edit_plugin($id){
         $data['page_resource'] = parent::page_resources();
 		$where = array('id'=>$id);
-		$data['plugins'] = $this->Add_on_model_new->all($id)->row(1);
 		$data['creator'] = $this->Add_on_creator_model_new->all();
+		$data['plugins'] = $this->Add_on_model_new->all($id)->row(1);
 		// $data['addon']=$this->Add_on_model_new->details($where)->row();
 		$this->load->view('add_ons/edit_addon_new',$data);
 	}
@@ -277,8 +279,7 @@ class Add_ons_new extends MY_Controller{
 	}
 	public function edit_creator($id){
 		$data['page_resource'] = parent::page_resources();
-		$where = array('id_creator'=>$id);
-		$data['creator']=$this->Add_on_creator_model_new->details($where)->row();
+		$data['creator']=$this->Add_on_creator_model_new->details($id)->row();
 		$this->load->view('add_ons/edit_creator_new',$data);
 	}
 	public function update_creator(){
@@ -314,6 +315,13 @@ class Add_ons_new extends MY_Controller{
 		$where = array('id_creator'=>$data);
 		$this->Add_on_creator_model_new->delete_creator($where);
 		redirect('add_ons_new/list_creator');
+	}
+
+	public function comment()
+	{
+		var_dump($this->input->post());
+		$this->Add_on_model_new->tambah_comment($this->input->post());
+		redirect('add_ons_new/details/'.$this->input->post('id_plugin'));
 	}
 
 }

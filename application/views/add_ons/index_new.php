@@ -70,7 +70,7 @@
                          <a href='<?= site_url("add_ons_new/details/".$row->id_plugin)?>'><button class="btn btn-primary">Read More</button></a>
                       <?php } ?>
                       <?php if($this->session->level !== "admin"){ ?>
-                          <a href='<?= site_url("add_ons_new/details/")?>'><button class="btn btn-primary">Read More</button></a>
+                         <a href='<?= site_url("add_ons_new/details/".$row->id_plugin)?>'><button class="btn btn-primary">Read More</button></a>
                          <a href="<?= site_url("billing_new/create")?>"><button class="btn btn-success">Buy</button></a>
                       <?php } ?>
                     </div>

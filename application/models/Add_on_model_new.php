@@ -50,6 +50,19 @@ class Add_on_model_new extends CI_Model{
 		return $this->db->affected_rows();
 	}
 
+	public function tambah_comment($data)
+	{
+		$this->db->insert('comment', $data);
+	}
+
+	public function semua_comment($id)
+	{
+		$this->db->select('users.username, comment.*');
+		$this->db->join('users', 'users.user_id = comment.user_id');
+		$this->db->join('plugins', 'plugins.id_plugin = comment.id_plugin');
+		return $this->db->get_where('comment', ['plugins.id_plugin' => $id]);
+	}
+
 }
 
 ?>
