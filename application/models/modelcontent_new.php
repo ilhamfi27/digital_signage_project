@@ -1,13 +1,14 @@
-<?php
+	<?php
 
 	class modelcontent_new extends CI_Model{
 		
 		function ambil_content($id= null){
-			$this->db->join('content_category', 'content_category.id_content_category = content.id_content_category');
 			if ($id != null) {
-					return $this->db->get_where('content',array('user_id' => $this->session->userdata('id')));
+				$my = $this->session->userdata('id');
+				return $this->db->query('CALL content($my)');
 			}
-			return $this->db->get('content');
+			// $this->db->join('content_category', 'content_category.id_content_category = content.id_content_category');
+			return $this->db->query('CALL content_join()');
 			// return $this->db->query('CALL content()');
 		}
 		function input_content($data){
