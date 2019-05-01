@@ -27,7 +27,7 @@ class Add_on_model_new extends CI_Model{
 		// from add_ons JOIN plugins ON add_ons.id_plugin = plugins.id_plugin 
 		// JOIN creator on creator.id_creator = plugins.id_creator WHERE plugins.id_plugin = '$id'");
 		}
-    return $this->db->query('SELECT add_ons.price, plugins.uploaded, plugins.description, plugins.title, plugins.ratings, plugins.date, creator.name, plugins.id_plugin, plugins.id_creator
+    return $this->db->query('SELECT add_ons.price, plugins.uploaded, plugins.description, plugins.title, plugins.ratings, tgl(plugins.date) as date, creator.name, plugins.id_plugin, plugins.id_creator
 		from add_ons JOIN plugins ON add_ons.id_plugin = plugins.id_plugin 
 		JOIN creator on creator.id_creator = plugins.id_creator');
 					}
