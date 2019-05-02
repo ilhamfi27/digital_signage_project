@@ -27,14 +27,27 @@
   //       function paging(){
   //       return $this->db->get('content')->num_rows();
   //       }
+		
 		//Seacrh
-		function search($keyword){
-            $this->db->like('id',$keyword);
-            $this->db->or_like('subject',$keyword);
+		// function search($keyword){
+  //           $this->db->like('id',$keyword);
+  //           $this->db->or_like('subject',$keyword);
+  //           $this->db->or_like('date',$keyword);
+  //           $this->db->or_like('category',$keyword);
+  //           $this->db->or_like('description',$keyword);
+  //           $query=$this->db->get('content');
+  //           return $query->result();
+  //       }
+
+
+        public function search($keyword){
+			$this->db->select('id','date','category','subject','description');
+			$this->db->from('content');
+			$this->db->like('id',$keyword);
+			$this->db->or_like('subject',$keyword);
             $this->db->or_like('date',$keyword);
             $this->db->or_like('category',$keyword);
             $this->db->or_like('description',$keyword);
-            $query=$this->db->get('content');
-            return $query->result();
-        }
+			return $this->db->get()->result();
+		}
 	}

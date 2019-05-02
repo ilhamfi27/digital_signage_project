@@ -135,7 +135,8 @@ class Front_display extends MY_Controller{
 	public function search(){
 		$keyword = $this->input->post('keyword');
         $data_input['content'] = $this->modelcontent->search($keyword);
-        $this->load->view('front_display/munculcontent',$data_input);
+        $this->load->view('front_display/searchcontent',$data_input);
+		
 	}
 
 	public function indexLayout(){

@@ -35,12 +35,14 @@
        <div class="col-lg-3 col-lg-offset-9">
           <div class="input-group">
             <!-- search -->
+            <?php echo form_open('front_display/search') ?>
             <input type="text" class="form-control" name ='keyword'placeholder="Search for...">
             <span class="input-group-btn">
             <a href="<?= site_url('front_display/search') ?>">
               <button class="btn btn-default" type="button">Go</button>   
               </a>
             </span>
+            <?php echo form_close() ?>
           </div><!-- /input-group -->
         </div><!-- /.col-lg-6 -->
 

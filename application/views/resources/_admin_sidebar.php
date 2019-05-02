@@ -48,13 +48,14 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?= site_url('add_ons/index') ?>"><i class="fa fa-circle-o"></i> Add Ons</a></li>
-                    <li><a href="<?= site_url('add_ons/install_addon') ?>"><i class="fa fa-circle-o"></i> Installed Add On</a></li>
+                    <li><a href="<?= site_url('add_ons_new/index') ?>"><i class="fa fa-circle-o"></i> Add Ons</a></li>
+                    <!-- <li><a href="<?= site_url('add_ons_new/install_addon') ?>"><i class="fa fa-circle-o"></i> Installed Add On</a></li> -->
+                    
                     <?php if($this->session->level === "admin"){ ?>
-                    <li><a href="<?= site_url('add_ons/new_addon')?>"><i class="fa fa-circle-o"></i> New Add-on</a></li>
-                    <li><a href="<?= site_url('add_ons/new_creator') ?>"><i class="fa fa-circle-o"></i> New Creator</a></li>
-                    <li><a href="<?= site_url('add_ons/list_addon') ?>"><i class="fa fa-circle-o"></i> List Add On</a></li>
-                    <li><a href="<?= site_url('add_ons/list_creator') ?>"><i class="fa fa-circle-o"></i> List Creator</a></li>
+                        <li><a href="<?= site_url('add_ons_new/new_addon')?>"><i class="fa fa-circle-o"></i> New Add-on</a></li>
+                        <li><a href="<?= site_url('add_ons_new/new_creator') ?>"><i class="fa fa-circle-o"></i> New Creator</a></li>
+                        <li><a href="<?= site_url('add_ons_new/list_plugin') ?>"><i class="fa fa-circle-o"></i> List Add On</a></li>
+                        <li><a href="<?= site_url('add_ons_new/list_creator') ?>"><i class="fa fa-circle-o"></i> List Creator</a></li>
                     <?php } ?>
                 </ul>
             </li>
@@ -82,11 +83,14 @@
                 </a>
                 <ul class="treeview-menu">
                     <?php if($this->session->level === "admin"){ ?>
-                    <li><a href="<?= site_url('front_display/indexLayout') ?>"><i class="fa fa-circle-o"></i> Layout</a></li>
+                    <li><a href="<?= site_url('front_display_new/input_content_category') ?>"><i class="fa fa-circle-o"></i> Content category</a></li>
+                    <li><a href="<?= site_url('front_display_new/munculcontent_category') ?>"><i class="fa fa-circle-o"></i> List Content category</a></li>
+                    <li><a href="<?= site_url('front_display_new/inputLayoutAdmin') ?>"><i class="fa fa-circle-o"></i> Layout</a></li>
+                    <li><a href="<?= site_url('front_display_new/munculLayoutAdmin') ?>"><i class="fa fa-circle-o"></i>List Layout</a></li>
                     <?php } else { ?>
-                    <li><a href="<?= site_url('#') ?>"><i class="fa fa-circle-o"></i> Layout</a></li>
-                    <li><a href="<?= site_url('front_display/index') ?>"><i class="fa fa-circle-o"></i> Content</a></li>
-                     <li><a href="<?= site_url('front_display/munculcontent') ?>"><i class="fa fa-circle-o"></i> List Content</a></li>
+                    <li><a href="<?= site_url('front_display_new/index') ?>"><i class="fa fa-circle-o"></i>Input Content</a></li>
+                     <li><a href="<?= site_url('front_display_new/munculcontent') ?>"><i class="fa fa-circle-o"></i> List Content</a></li>
+                    <li><a href="<?= site_url('front_display_new/indexLayout') ?>"><i class="fa fa-circle-o"></i> Layout</a></li>
                     <li><a href="<?= site_url('#')?>"><i class="fa fa-circle-o"></i> Play</a></li>
                     <?php } ?>
                 </ul>
@@ -99,9 +103,13 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?= site_url('#') ?>"><i class="fa fa-circle-o"></i> Payment</a></li>
-                    <li><a href="<?= site_url('#') ?>"><i class="fa fa-circle-o"></i> Cetak</a></li>
-                    <li><a href="<?= site_url('#')?>"><i class="fa fa-circle-o"></i> View</a></li>
+                    <?php if($this->session->level === "admin"){ ?>
+                    <li><a href="<?= site_url('billing_new/view_admin') ?>"><i class="fa fa-circle-o"></i> View Payment</a></li>
+                    <?php } else { ?>
+                    <li><a href="<?= site_url('billing_new/create') ?>"><i class="fa fa-circle-o"></i> Payment</a></li>
+                    <li><a href="<?= site_url('payment_verif_new/index') ?>"><i class="fa fa-circle-o"></i> View</a></li>
+                    <li><a href="<?= site_url('#')?>"><i class="fa fa-circle-o"></i> Add-ons</a></li>
+                    <?php } ?>
                 </ul>
             </li>
             <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
