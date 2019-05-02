@@ -43,6 +43,13 @@ class m_payment_new extends CI_Model
 			$this->db->where($where);
 			$this->db->update($table,$data);
 	}
+
+	public function update_status($id)
+	{
+		$this->db->set(['status' => 1]);
+	        	$this->db->where('id_billing', $id);
+	        	return $this->db->update('billing');
+	}
 }
 
  ?>

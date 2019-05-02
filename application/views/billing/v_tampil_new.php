@@ -87,13 +87,19 @@
                 </div>
                 <div class="panel-body">
                   <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-12">
                       <div class="col-xs-3">
-                                            <i class="fa fa-tasks fa-5x"></i>
+                                        <i class="fa fa-tasks fa-5x"></i>
                                         </div>
                                         <div class="col-xs-9 text-right">
-                                            <div class="huge"><h2><?php echo $billing ? date_diff(date_create(date('Y-m-d')),date_create($billing->duration_last))->days : '0' ?></h2></div>
+                                          <?php $status = isset($billing->status) ? $billing->status : null ?>
+                                          <?php if ($status == 2): ?>
+                                              <h2>Belum Dibayar</h2>
+                                              <a class="btn btn-sm btn-primary mb-3" href="<?php echo site_url('payment_verif_new/createVerif') ?>">Bayar</a>
+                                            <?php else : ?>
+                                              <div class="huge"><h2><?php echo $billing ? date_diff(date_create(date('Y-m-d')),date_create($billing->duration_last))->days : '0'?></h2></div>
                                             <div><h4>Days</h4></div>
+                                          <?php endif ?>
                                         </div>
                                         <div><hr width="800px"></div>
                                         <div><hr width="800px"></div>

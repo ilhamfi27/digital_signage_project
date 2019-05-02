@@ -21,7 +21,7 @@ class dataModel_new extends CI_Model
 	}
 	function tampil_admin()
 	{
-		return $this->db->get('billing');
+		return $this->db->query('CALL p_view_admin');
 	}
 	function input_data($data)
 	{
@@ -54,6 +54,7 @@ class dataModel_new extends CI_Model
 		$kode = $data['kode'];
 		$this->db->query("UPDATE `billing` JOIN transaction ON transaction.id_billing = billing.id_billing SET `name` = '$name', `duration_first` = '$duration_last', `duration_last` = '$duration_last', `email` = '$email', `kode` = '$kode', `method` = '$method', `id_package` = '$id_package', `user_id` = '$id' WHERE `user_id` = '$id'");
 	}
+	
 }
 
  ?>

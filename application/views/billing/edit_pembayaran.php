@@ -82,7 +82,7 @@
            <div class="form-group">
               <label class="col-sm-2 control-label"> Pilih Paket & Price</label>
               <div class="col-sm-10">
-                <select name="id_package" class="form-control" value="<?= $billing->package_method ?>">
+                <select name="package_method" class="form-control" value="<?= $billing->package_method ?>">
                   <?php foreach($package as $m): ?>
                   <option value="<?= $m->id_package?>"><?= $m->name . " - " . "Rp." .$m->price ?></option>
                   <?php endforeach; ?>
