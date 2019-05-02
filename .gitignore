@@ -29,6 +29,12 @@ storage/images/user_avatar/*
 !storage/images/user_avatar/index.html
 !storage/images/user_avatar/user-default-avatar.jpg
 
+storage/images/front_display/*
+!storage/images/front_display/index.html
+
+storage/images/add_ons/*
+!storage/images/add_ons/index.html
+
 # IDE Files
 #-------------------------
 /nbproject/

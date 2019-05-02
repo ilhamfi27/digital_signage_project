@@ -6,7 +6,7 @@ class Migration_seed_admin_data extends CI_Migration {
     }
     public function up(){
         foreach ($this->seed_data_admin as $data) {
-            $sql = "INSERT INTO `digital_signage`.`users` (
+            $sql = "INSERT INTO `users` (
                 `user_id`,
                 `username`,
                 `email`,
@@ -30,7 +30,7 @@ class Migration_seed_admin_data extends CI_Migration {
         $sql = "
         DELETE
             FROM
-            `digital_signage`.`users`
+            `users`
             WHERE `user_id` = 1;
         ";
         $this->db->query($sql);

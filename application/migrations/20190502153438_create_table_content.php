@@ -23,8 +23,7 @@ class Migration_create_table_content extends CI_Migration {
                     'constraint' => 255,
                 ],
                 'date' => [
-                    'type' => 'date',
-                    
+                    'type' => 'date'
                 ],
                 'subject' => [
                     'type' => 'varchar',
