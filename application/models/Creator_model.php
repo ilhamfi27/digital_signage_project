@@ -5,12 +5,12 @@ class Creator_model extends CI_Model{
         parent::__construct();
     }
     
-    function insert($data){
+    public function insert($data){
         $this->db->insert($this->table,$data);
         return $this->db->affected_rows();
     }
 
-    function delete($where){
+    public function delete($where){
         $db_debug = $this->db->db_debug; //save setting
         $this->db->db_debug = FALSE; //disable debugging for queries
 

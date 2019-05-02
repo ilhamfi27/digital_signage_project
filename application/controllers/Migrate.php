@@ -22,7 +22,43 @@ class Migrate extends MY_Controller {
                                         ->version;
         $data['files'] = $this->inside_dir();
         $data['migration_status'] = $migration_status;
-        $this->load->view("migration_view", $data);
+        $data['very_early_version'] = $data['files'][0]['version'];
+        $data['very_last_version'] = end($data['files'])['version'];
+        $this->load->view("migration_views/index", $data);
+    }
+
+    public function create_new_migration_file() {
+        $new_file_name = $this->input->post("new_migration_file");
+        $new_file_name = implode("_",explode(" ",strtolower($new_file_name)));
+        if($this->make_new_file($new_file_name)){
+            redirect("migrate/");
+        } else {
+            redirect("migrate/");
+        }
+    }
+
+    private function make_new_file($file_name) {
+        $folder = APPPATH.'migrations/';
+        date_default_timezone_set('Asia/Jakarta');
+        $timestamp = date("YmdHis");
+        $filename = $folder.$timestamp."_".$file_name.".php";
+        if (!file_exists($filename)) {
+            (!is_dir($folder)) ? mkdir($folder, 0777, TRUE) : NULL;
+            $handle = fopen($filename, 'w+') or die('cannot open the file');
+            $resource_file = fopen('application/migration_source_code.txt', "r") or die("Unable to open file!");
+            $upper_content = "<?php\nclass Migration_".$file_name." extends CI_Migration {";
+            fwrite($handle, $upper_content);
+            while(! feof($resource_file))  {
+                $result = fgets($resource_file);
+                fwrite($handle, $result);
+            }
+            fclose($resource_file);
+            fclose($handle);
+        } else {
+            echo "the file is exists";
+            return FALSE;
+        }
+        return TRUE;
     }
     
     private function is_it_executed($version = NULL){
@@ -37,6 +73,7 @@ class Migrate extends MY_Controller {
     private function inside_dir(){
         $dir = APPPATH . "migrations";
         $files = array();
+        $index = 0;
         if (is_dir($dir)) {
             if ($d = opendir($dir)) {
                 while (($file = readdir($d)) !== FALSE) {
@@ -44,7 +81,9 @@ class Migrate extends MY_Controller {
                         $file_name = explode("_",$file);
                         $version = $file_name[0];
                         array_shift($file_name);
-                        $files[$version] = implode("_", $file_name);
+                        $files[$index]['version'] = $version;
+                        $files[$index]['file_name'] = implode("_", $file_name);
+                        $index++;
                     }
                 }
                 closedir($d);

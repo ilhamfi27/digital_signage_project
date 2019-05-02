@@ -1,7 +1,8 @@
 var base_url = "http://localhost/digital_signage_project/";
 $(document).ready(function () {
     $("#theme-screenshots-carousel").carousel();
-    console.log('ready!');
+    console.log('hai');
+    $("#list-data-theme").DataTable();
 });
 // fade out login fail message
 $('.login-fail-alert-js').ready(function () {

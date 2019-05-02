@@ -14,7 +14,7 @@ class MY_Controller extends CI_Controller {
         }
     }
 
-    protected function these_method_for($methods = NULL, $actors = NULL){
+    protected function these_method_for($methods = NULL, $actors = NULL) {
         $methods = explode("|", $methods);
         $actors = explode("|", $actors);
         $method_used = $this->router->fetch_method();
@@ -24,7 +24,7 @@ class MY_Controller extends CI_Controller {
         }
     }
 
-    protected function email_config(){
+    protected function email_config() {
         return [
             'protocol'  => 'smtp',
             'smtp_host' => 'smtp.gmail.com',
@@ -38,12 +38,12 @@ class MY_Controller extends CI_Controller {
         ];
     }
 
-    protected function local_timestamp(){
+    protected function local_timestamp() {
         date_default_timezone_set("Asia/Jakarta");
         return date('Y-m-d h:i:s');
     }
 
-    protected function page_resources($add_data = NULL){
+    protected function page_resources($add_data = NULL) {
         $this->load->model("user_data_model");
         $this->load->model("user_model");
 

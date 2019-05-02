@@ -61,7 +61,7 @@ class Register extends MY_Controller{
         }
     }
 
-    protected function send_verification_email($email, $id){
+    protected function send_verification_email($email, $id) {
         $config = parent::email_config();
         $this->email_handler->initialize($config);
         $this->email_handler->from($config['smtp_user']);
@@ -86,7 +86,7 @@ class Register extends MY_Controller{
         return $this->email_handler->send();
     }
 
-    private function random_activation_code($length = 64){
+    private function random_activation_code($length = 64) {
         $set =  '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.
         '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.
         '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

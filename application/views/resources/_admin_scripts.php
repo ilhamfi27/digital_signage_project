@@ -26,3 +26,8 @@
 <script src="<?= base_url() ?>assets/plugins/sweet-alert/sweetalert.min.js"></script>
 <!-- our own javascript -->
 <script src="<?= base_url() ?>assets/js/app.js"></script>
+<script>
+    // $("#list-data-theme").DataTable({
+    //     responsive: true
+    // });
+</script>

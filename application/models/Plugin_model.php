@@ -26,6 +26,7 @@ class Plugin_model extends CI_Model{
 
     public function full_detail($id){
         $sql = "SELECT 
+                    p.`id` AS id,
                     `title`,
                     `description`,
                     `rating`,
@@ -42,8 +43,9 @@ class Plugin_model extends CI_Model{
     }
 
     public function update($data,$where){
-        $this->db->where($where);
+        $this->db->where(['id' => $where]);
         $this->db->update($this->table,$data);
+        return $this->db->affected_rows();
     }
 
     public function detailed_plugin($id = NULL){

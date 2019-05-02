@@ -7,16 +7,16 @@ class Creator extends MY_Controller {
         $this->load->model('creator_model', 'creator_m');
     }
 
-    public function index(){
+    public function index() {
         
     }
 
-    public function new(){
+    public function new() {
         $data['page_resource'] = parent::page_resources();
         $this->load->view('creator/new', $data);
     }
 
-    public function insert(){
+    public function insert() {
         // $data['page_resource'] = parent::page_resources();
         
         $name           = $this->input->post('name');
@@ -85,7 +85,7 @@ class Creator extends MY_Controller {
         }
     }
 
-    public function edit($id){
+    public function edit($id) {
         $data['page_resource'] = parent::page_resources();
         $creators = $this->creator_m->detail($id)->row();
         $data['creator'] = [
@@ -102,7 +102,7 @@ class Creator extends MY_Controller {
         $this->load->view('creator/edit', $data);
     }
 
-    public function update(){
+    public function update() {
         // $data['page_resource'] = parent::page_resources();
         
         $id             = $this->input->post('id');
@@ -173,7 +173,7 @@ class Creator extends MY_Controller {
         }
     }
 
-    public function delete($id){
+    public function delete($id) {
         $id = $this->input->post("id");
         $db_result = $this->creator_m->delete(['id' => $id]);
         if ($db_result) {
@@ -187,19 +187,19 @@ class Creator extends MY_Controller {
         }
     }
 
-    public function detail($id){
+    public function detail($id) {
         $data['page_resource'] = parent::page_resources();
         $data['creator'] = $this->creator_m->detail($id)->row();
         $this->load->view('creator/detail', $data);
     }
 
-    public function list(){
+    public function list() {
         $data['page_resource'] = parent::page_resources();
         $data['creators'] = $this->creator_m->all()->result();
         $this->load->view('creator/list', $data);
     }
 
-    private function photo_upload_config(){
+    private function photo_upload_config() {
         // photo configuration
         $new_file_name                  = "c_".time()."_".$this->session->userdata('id');
         $config['upload_path']          = 'storage/images/creator_photo';
@@ -208,9 +208,9 @@ class Creator extends MY_Controller {
         $this->load->library('upload', $config);
     }
 
-    private function creator_data_input_transaction($data){
+    private function creator_data_input_transaction($data) {
         $this->photo_upload_config();
-        if (!$this->upload->do_upload('photo')){
+        if (!$this->upload->do_upload('photo')) {
             $error = $this->upload->display_errors();
             return [
                 'is_error' => TRUE,
@@ -225,7 +225,7 @@ class Creator extends MY_Controller {
         }
     }
 
-    private function creator_data_update_transaction($data){
+    private function creator_data_update_transaction($data) {
         $this->photo_upload_config();
         $photo = $this->creator_m->detail($data['id'])->row()->photo;
         $where = ['id' => $data['id']];

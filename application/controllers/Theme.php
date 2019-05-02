@@ -12,10 +12,12 @@ class Theme extends MY_Controller{
         $this->load->model('category_model','category_m');
         $this->load->model('plugin_model','plugin_m');
         $this->load->model('media_model','media_m');
+        $this->load->model('comment_model','comment_m');
     }
     
     public function index()	{
         $data['page_resource'] = parent::page_resources();
+        $data['themes'] = $this->plugin_m->all()->result();
         $this->load->view('theme/index', $data);
     }
 
@@ -113,9 +115,8 @@ class Theme extends MY_Controller{
         }
     }
     
-    public function detail($id){
+    public function details($id) {
         $data['page_resource'] = parent::page_resources();
-        $data['theme'] = $this->plugin_m->full_detail($id)->row();
         /**
          * full_detail returns a single row
          * title
@@ -125,23 +126,98 @@ class Theme extends MY_Controller{
          * creator_name
          * uploaded_date
          */
-        $data['screenshots'] = $this->media_m->media_for($id)->result();
+        $data['theme'] = $this->plugin_m->full_detail($id)->row();
         /**
          * media_for returns multiple row
          * file_name
          * url
          * type
          */
+        $data['screenshots'] = $this->media_m->media_for($id)->result();
+        /**
+         * `content`,
+         * `commented_object`,
+         * c.`object_id`,
+         * c.`user_id`,
+         * `date_time`,
+         * username,
+         * full_name,
+	     * user_avatar
+         */
+        $data['comments'] = $this->comment_m->object_comments($id)->result();
         $this->load->view('theme/detail', $data);
     }
 
-    public function list(){
+    public function edit($id) {
+        $data['page_resource'] = parent::page_resources();
+        $data['creators'] = $this->creator_m->all()->result();
+        $data['categories'] = $this->category_m->all()->result();
+        $data['theme'] = $this->plugin_m->details($id)->row();
+        $this->load->view('theme/edit',$data);
+    }
+
+    public function update() {
+        $data['page_resource'] = parent::page_resources();
+        $title 		    = $this->input->post('title');
+        $description 	= $this->input->post('description');
+        $category 	    = $this->input->post('category');
+        $creator 	    = $this->input->post('creator');
+        $id 	        = $this->input->post('id');
+        $data['theme'] = $this->plugin_m->details($id)->row();
+        $this->form_validation->set_rules([
+        	[
+        		'field' => 'title',
+        		'label'	=> 'Title',
+        		'rules' => 'trim|required|min_length[4]'
+        	],
+        	[
+        		'field' => 'description',
+        		'label'	=> 'Description',
+        		'rules' => 'trim|required|min_length[4]'
+        	],
+        	[
+        		'field' => 'category',
+        		'label'	=> 'Category',
+        		'rules' => 'trim|required'
+        	],
+        	[
+        		'field' => 'creator',
+        		'label'	=> 'Creator',
+        		'rules' => 'trim|required'
+        	]
+        ]);
+
+        if ($this->form_validation->run() === FALSE) {
+        	$this->load->view('theme/edit',$data);
+        } else {
+            $new_theme_data = [
+                'updated_date' => parent::local_timestamp(),
+                'title' => $title,
+                'description' => $description,
+                'id_creator' => $creator,
+                'id_category' => $category
+            ];
+            $this->plugin_m->update($new_theme_data, $id) > 0 ? redirect("theme/details/".$id) : $this->load->view('theme/edit',$data);;
+        }
+    }
+
+    public function delete($id) {
+        $result = $this->plugin_m->delete(['id' => $id]);
+        if ($result) {
+            redirect("theme/list");
+        } else {
+            redirect("theme/list");
+        }
+        
+    }
+
+    public function list() {
         $data['page_resource'] = parent::page_resources();
         $data['detailed_data'] = $this->plugin_m->detailed_plugin()->result();
         $this->load->view('theme/list', $data);
     }
 
-    private function screenshots_upload_config($title, $id, $upload_path, $img_queue = NULL){
+    private function screenshots_upload_config($title, $id, $upload_path, $img_queue = NULL) {
         // screenshots upload configuration
         $new_file_name                  = "screenshot_".time()."_".$id."_".$img_queue;
         $config['upload_path']          = $upload_path;
@@ -151,7 +227,7 @@ class Theme extends MY_Controller{
         $this->upload->initialize($config);
     }
 
-    private function theme_photo_upload_config($title){
+    private function theme_photo_upload_config($title) {
         // photo configuration
         $new_file_name                  = "thm_".time()."_".md5($title);
         $config['upload_path']          = "storage/images/theme_photo/";

@@ -79,9 +79,12 @@
     <div class="container-fluid">
         <div class="content_box">
             <div class="left_bar">
-                <ul class=" nav-tabs--vertical nav" role="navigation">
+                <ul class=" nav-tabs--vertical nav">
                     <li class="nav-item">
-                        <a href="#migration-list" class="nav-link active" data-toggle="tab" role="tab" aria-controls="migration-list">Migration List</a>
+                        <a href="<?= site_url('migrate/') ?>" class="nav-link">Migration List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?= site_url('migrate/add_migration_file') ?>" class="nav-link active">Add Migration File</a>
                     </li>
                 </ul>
             </div>
@@ -89,52 +92,6 @@
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="migration-list" role="tabpanel">
                         <h1>Migration list</h1>
-                        <?= $migration_status ?>
-                        <table class="table table-bordered" id="migration-table" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Migration Name</th>
-                                    <th>Version</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php 
-                                $no = 1;
-                                foreach ($files as $key => $value) : 
-                                ?>
-                                <tr>
-                                    <td><?= $no ?></td>
-                                    <td><?= $value ?></td>
-                                    <td><?= $key ?></td>
-                                    <td>
-                                        <?php if ($no <= $migration_version) { ?>
-                                        <span class="badge badge-success">Migrated</span>
-                                        <?php } else { ?>
-                                        <span class="badge badge-warning">Pending</span>
-                                        <?php } ?>
-                                    </td>
-                                    <td>
-                                        <?php if ($no <= $migration_version) { ?>
-                                        <a href="<?= site_url("migrate/execute/") . ($no-1) ?>"><button class="btn btn-sm btn-danger">Rollback</button></a>
-                                        <?php } else { ?>
-                                        <a href="<?= site_url("migrate/execute/") . $no ?>"><button class="btn btn-sm btn-success">Migrate</button></a>
-                                        <?php } ?>
-                                    </td>
-                                </tr>
-                                <?php $no++; ?>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <a href="<?= base_url("migrate/execute"); ?>"><button type="button" class="btn btn-primary">Migrate All</button></a>
-                                <a href="<?= base_url("migrate/execute/0"); ?>"><button type="button" class="btn btn-danger">Rollback All</button></a>
-                                <a href="<?= base_url("migrate/"); ?>"><button type="button" class="btn btn-success"><span class="ion-android-refresh"></span></button></a>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -145,13 +102,5 @@
     <script src="<?= base_url("assets/vendor/bootstrap_v4/js/bootstrap.min.js"); ?>"></script>
     <script src="<?= base_url("assets/vendor/datatables.net-bs4/js/jquery.dataTables.js"); ?>"></script>
     <script src="<?= base_url("assets/vendor/datatables.net-bs4/js/dataTables.bootstrap4.min.js"); ?>"></script>
-    <script>
-        $(document).ready(function(){
-            $("#migration-table").DataTable({
-                "pageLength": 5,
-                "order": [[ 0, "desc" ]]
-            });
-        });
-    </script>
 </body>
 </html>

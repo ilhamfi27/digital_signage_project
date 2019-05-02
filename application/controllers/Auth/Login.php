@@ -4,18 +4,18 @@
  * 
  */
 class Login extends MY_Controller{
-    public function __construct(){
+    public function __construct() {
         parent::__construct();
         $this->load->model('user_model', 'user');
         parent::session_needed_except('test_aja|index|create_session');
     }
 
-    public function index(){
+    public function index() {
         $this->has_session();
         $this->load->view('auth/login/index');
     }
     
-    public function create_session(){
+    public function create_session() {
         $user_auth = $this->input->post('user_auth');
         $password = $this->input->post('password');
 

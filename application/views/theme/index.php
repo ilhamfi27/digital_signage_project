@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <?= stick_template('resources/meta'); ?>
+  <?= $page_resource['meta']; ?>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
 <div class="wrapper">
 
-  <?= stick_template('resources/admin_header') ?>
+  <?= $page_resource['admin_header'] ?>
 
   <!-- =============================================== -->
 
   <!-- Left side column. contains the sidebar -->
-  <?= stick_template('resources/admin_sidebar') ?>
+  <?= $page_resource['admin_sidebar'] ?>
 
   <!-- =============================================== -->
 
@@ -44,29 +44,31 @@
         </div>
         <div class="box-body">
           <div class="row">
+            <?php foreach($themes as $theme): ?>
             <div class="col-md-6">
               <div class="panel panel-default">
                 <div class="panel-heading">
-                  <h3 class="panel-title">Space</h3>
+                  <h3 class="panel-title"><?= $theme->title ?></h3>
                 </div>
                 <div class="panel-body">
                   <div class="row">
                     <div class="col-md-4">
-                      <img src="<?= base_url('storage/images/spaces.jpg') ?>" width="150" height="150" class="img-responsive"><br>
+                      <img src="<?= base_url('storage/images/theme_photo/' . $theme->photo_icon) ?>" width="150" height="150" class="img-responsive" alt="<?= $theme->title . " Photo Icon" ?>"><br>
                     </div>
                     <div class="col-md-8">
-                     <p align="justify">it is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+                     <p align="justify"><?= $theme->description ?></p>
                     </div>
                   </div>
                   <div class="row" style="margin-top: 10px;">
                     <div class="col-md-4 col-md-offset-4"> 
-                      <a href='<?= site_url("theme/detail"); ?>'><button class="btn btn-primary">Read More</button></a>
+                      <a href='<?= site_url("theme/details/" . $theme->id ); ?>'><button class="btn btn-primary">Read More</button></a>
                       <a href="#"><button class="btn btn-primary">Install</button></a>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+            <?php endforeach; ?>
           </div>
         </div>
         <!-- /.box-body -->
@@ -78,30 +80,13 @@
   </div>
   <!-- /.content-wrapper -->
 
-  <?= stick_template('resources/admin_footer') ?>
+  <?= $page_resource['admin_footer'] ?>
 
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
-
-<!-- jQuery 3 -->
-<script src="<?= base_url() ?>assets/vendor/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="<?= base_url() ?>assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- SlimScroll -->
-<script src="<?= base_url() ?>assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="<?= base_url() ?>assets/vendor/fastclick/lib/fastclick.js"></script>
-<!-- AdminLTE App -->
-<script src="<?= base_url() ?>assets/vendor/template_admin-lte/dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="<?= base_url() ?>assets/vendor/template_admin-lte/dist/js/demo.js"></script>
-<script>
-  $(document).ready(function () {
-    $('.sidebar-menu').tree()
-  })
-</script>
+  <?= $page_resource['admin_scripts'] ?>
 </body>
 </html>

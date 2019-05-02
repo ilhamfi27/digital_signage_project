@@ -1,0 +1,14 @@
+
+    public function __construct() {
+		parent::__construct();
+        $this->load->dbforge();
+    }
+
+    public function up() {
+        # code...
+    }
+
+    public function down() {
+        # code...
+    }
+}

@@ -5,13 +5,13 @@ class Category extends MY_Controller {
         $this->load->model('category_model', 'category_m');
     }
 
-    public function index(){
+    public function index() {
         $data['page_resource'] = parent::page_resources();
         $data['categories'] = $this->category_m->all()->result();
         $this->load->view('category/index', $data);
     }
 
-    public function insert(){
+    public function insert() {
         $data['page_resource'] = parent::page_resources();
         $data['categories'] = $this->category_m->all()->result();
         $category_name = $this->input->post('category_name');
@@ -49,7 +49,7 @@ class Category extends MY_Controller {
         
     }
 
-    public function update(){
+    public function update() {
         $data['page_resource'] = parent::page_resources();
         $data['categories'] = $this->category_m->all()->result();
         $id             = $this->input->post('id');
@@ -84,7 +84,7 @@ class Category extends MY_Controller {
         }
     }
 
-    public function delete($id){
+    public function delete($id) {
         // $id = $this->input->post("id");
         $db_result = $this->category_m->delete(['id' => $id]);
         if ($db_result) {

@@ -43,58 +43,57 @@
 
         </div>
         <div class="box-body">
-        <div class="table-responsive">
-          <table id="list-data" class="table table-bordered table-hover">
-            <thead>
-            <tr>
-              <td>No</td>
-              <td>Title</td>
-              <td>Description</td>
-              <td>Rating</td>
-              <td>Creator</td>
-              <td>Category Name</td>
-              <td>Email</td>
-            </tr>
-            </thead>
-            <tbody>
-            <?php 
-            $no = 1;
-            foreach($detailed_data as $data):
-            ?>
-            <tr>
-              <td><?= $no; ?></td>
-              <td><?= $data->title ?></td>
-              <td><?= $data->description ?></td>
-              <td><?= $data->rating ?></td>
-              <td><?= $data->name ?></td>
-              <td><?= $data->category_name ?></td>
-              <td><?= $data->email ?></td>
-              <td>
-                <a href="<?php echo site_url('add_ons/details/' . $data->id); ?>">
-                  <button class="btn btn-success">
-                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                  </button>
-                </a>
-                <a href="<?php echo site_url('add_ons/edit_add_on/' . $data->id); ?>">
-                  <button class="btn btn-primary">
-                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                  </button>
-                </a>
-                <a href="<?php echo site_url('add_ons/delete_add_on/' . $data->id); ?>">
-                  <button class="btn btn-danger">
-                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                  </button>
-                </a>
-              </td>
-            </tr>
-            <?php 
-            $no++;
-            endforeach;
-            ?>
-            </tfoot>
-          </table>
-        </div>
-
+          <div class="table-responsive">
+            <table id="list-data-theme" class="table table-bordered table-hover" style="width:100%">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Title</th>
+                  <th>Description</th>
+                  <th>Rating</th>
+                  <th>Creator</th>
+                  <th>Category Name</th>
+                  <th>Creator Email</th>
+                </tr>
+              </thead>
+              <tbody>
+              <?php 
+              $no = 1;
+              foreach($detailed_data as $data):
+              ?>
+                <tr>
+                  <td><?= $no; ?></td>
+                  <td><?= $data->title ?></td>
+                  <td><?= $data->description ?></td>
+                  <td><?= $data->rating ?></td>
+                  <td><?= $data->name ?></td>
+                  <td><?= $data->category_name ?></td>
+                  <td><?= $data->email ?></td>
+                  <td>
+                    <a href="<?php echo site_url('theme/details/' . $data->id); ?>">
+                      <button class="btn btn-success">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                      </button>
+                    </a>
+                    <a href="<?php echo site_url('theme/edit/' . $data->id); ?>">
+                      <button class="btn btn-primary">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                      </button>
+                    </a>
+                    <a href="<?php echo site_url('theme/delete/' . $data->id); ?>">
+                      <button class="btn btn-danger">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                      </button>
+                    </a>
+                  </td>
+                </tr>
+              <?php 
+              $no++;
+              endforeach;
+              ?>
+              </tbody>
+            </table>
+          </div>
         </div>
         <!-- /.box-body -->
         <div class="box-footer">

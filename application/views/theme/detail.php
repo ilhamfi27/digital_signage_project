@@ -110,41 +110,28 @@
                                 <div class=" col-md-12">
                                     <div class="actionBox">
                                         <ul class="commentList">
+                                            <?php foreach($comments as $comment): ?>
                                             <li>
                                                 <div class="commenterImage">
-                                                <img src="http://placekitten.com/50/50" />
+                                                    <img src="<?= base_url() ?>storage/images/user_avatar/<?= $comment->user_avatar !== NULL ? $comment->user_avatar : "user-default-avatar.jpg" ?>" />
                                                 </div>
+                                                <div style="display: block;"><?= $comment->full_name !== NULL ? $comment->full_name : $comment->username ?></div>
                                                 <div class="commentText">
-                                                    <p class="">this is my 3rd edit. the game developers deserved a 5star rating in my 1 and 2 reveiws. But now sadly *sighs. Idk where or when the game went downhill. The offline and online mode lag, the inability to dribble in superstar difficulty level and also the opponets (superstar) are programmed very baddly...</p> <span class="date sub-text">on March 5th, 2014</span>
-
+                                                    <p class=""><?= $comment->content ?></p> <span class="date sub-text"><?= $comment->date_time ?></span>
                                                 </div>
                                             </li>
-                                            <li>
-                                                <div class="commenterImage">
-                                                <img src="http://placekitten.com/45/45" />
-                                                </div>
-                                                <div class="commentText">
-                                                    <p class="">I liked the former version more though I'm quite okay with the current one too. As to quality of the game graphics, gameplay, commentators,goal celebrations, these above lined up features are just unbelievably advanced. The are so many big football game producers but i have to say KONAMI is beating ...</p> <span class="date sub-text">on March 5th, 2014</span>
-
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="commenterImage">
-                                                <img src="http://placekitten.com/40/40" />
-                                                </div>
-                                                <div class="commentText">
-                                                    <p class="">1. The game offers no OFFLINE play. I understand that since this was to be downloaded for free but.. 2. It's more of a game of luck in collection of players. 3. t's tied up on collecting players. And guess what? You have to buy them if you need more of course. 4. No direction really, No Season, No C...</p> <span class="date sub-text">on March 5th, 2014</span>
-
-                                                </div>
-                                            </li>
+                                            <?php endforeach; ?>
                                         </ul>
-                                        <form class="form-inline" role="form">
+                                        <form class="form-inline" role="form" action="<?= site_url('comment/insert') ?>" method="post">
                                             <div class="form-group">
-                                                <input class="form-control" type="text" placeholder="Your comments" />
+                                                <input class="form-control" type="text" name="comment" placeholder="Your comments" required/>
                                             </div>
                                             <div class="form-group">
                                                 <button class="btn btn-default">Add</button>
                                             </div>
+                                            <input type="hidden" name="object_id" value="<?= $theme->id ?>">
+                                            <input type="hidden" name="commented_object" value="theme">
+                                            <input type="hidden" name="user_id" value=<?= $this->session->userdata('id') ?>>
                                         </form>
                                     </div>
                                 </div>
