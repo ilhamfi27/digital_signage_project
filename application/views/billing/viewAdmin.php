@@ -52,7 +52,7 @@
                   <th>User_id</th>
                   <th>Duration_first</th>
                   <th>Duration_last</th>
-                  <th>phone_number</th>
+                  <th>Email</th>
                   <th>name</th>
                  <!--  <th>Keterangan</th> -->
                 </tr>
@@ -69,7 +69,7 @@
                   <td><?php echo $row->user_id; ?></td>
                   <td><?php echo $row->duration_first; ?></td>
                   <td><?php echo $row->duration_last; ?></td>
-                  <td><?php echo $row->phone_number; ?></td>
+                  <td><?php echo $row->email; ?></td>
                   <td><?php echo $row->name; ?></td>
                   <!-- <td>
                     <a href="<?php echo site_url('add_ons_new/details/' . $row->id); ?>">

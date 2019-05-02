@@ -23,18 +23,21 @@ class Payment_verif_new extends MY_Controller
 	}
 	function aksiCreateVerif()
 	{
-		$code = $this->input->post('code');
+		$kode = $this->input->post('kode');
 
-		$dataArray = array('code' => $code);
-		$this->form_validation->set_rules('code','Kode','trim|required');
+		$this->form_validation->set_rules('kode','Kode','trim|required');
 
 		if ($this->form_validation->run() === FALSE) {
-		$this->load->view('billing/v_verif_new');
-
+			$this->createVerif();
         } else {
-	        $this->m_payment_new->input_data($dataArray,'payment_code');
-			redirect('payment_verif_new/index');
-
+	        $cek_kode = $this->db->get_where('transaction', ['kode' => $kode]);
+	        if ($cek_kode->num_rows() > 0) {
+	        	$this->m_payment_new->update_status($cek_kode->row(1)->id_billing);
+	        	redirect('payment_verif_new/index');
+	        } else {
+	        	$this->session->set_flashdata('info', 'Kode verifikasi salah.');
+	        	redirect('payment_verif_new/createVerif');
+	        }
         }
 
 		

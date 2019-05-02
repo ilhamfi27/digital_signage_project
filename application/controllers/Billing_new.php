@@ -35,8 +35,9 @@ class Billing_new extends MY_Controller
 							
 						'id_package'=> $package_method,
 						'user_id' => $this->session->userdata('id'),
+						'status' => 2
 					);
-		
+
 		$this->form_validation->set_rules('name','Name','trim|required');
 		$this->form_validation->set_rules('email','Exmail','trim|required');
 		$this->form_validation->set_rules('duration_first','Duration_first','trim|required');
@@ -69,7 +70,7 @@ class Billing_new extends MY_Controller
 		    $this->email->from($config['smtp_user']);
 		    $this->email->to($email);
 		    $this->email->subject("Kode Pembayaran");
-		    $this->email->message("Ini dia kode anda $encrypted_id");
+		    $this->email->message("Kode anda adalah : $encrypted_id");
 
 		    if ($this->email->send()) {
 		    	$this->dataModel_new->input_data($dataArray);
@@ -78,14 +79,14 @@ class Billing_new extends MY_Controller
 							'date' => date('d-m-Y'),
 							'kode' => $encrypted_id);
 		        $this->dataModel_new->input_data_transaksi($dataTransaksi);
-				redirect('billing_new/index');
+				redirect('payment_verif_new/createVerif');
 		    } else {
 		    	echo "terjadi kesalahan";
 		    }
         }
 
     }
-
+ 
 	function update($id){
 		$where = array('id_billing' => $id);
 		$dataArray['page_resource'] = parent::page_resources();
@@ -118,7 +119,7 @@ class Billing_new extends MY_Controller
 		if ($this->form_validation->run() === FALSE) {
 			$this->update($this->session->userdata('id'));
         } else {
-        	$encrypted_id = mt_rand(100000, 999999);
+			$encrypted_id = mt_rand(100000, 999999);
         	$this->load->library('email');
 
         	$config['charset'] = 'utf-8';
@@ -127,9 +128,9 @@ class Billing_new extends MY_Controller
 		    $config['mailtype']= "html";
 		    $config['smtp_host']= "ssl://smtp.gmail.com";//pengaturan smtp
 		    $config['smtp_port']= "465";
-		    $config['smtp_timeout']= "400";
+		    $config['smtp_timeout']= "7";
 		    $config['smtp_user']= "pangestuade123@gmail.com"; // isi dengan email kamu
-		    $config['smtp_pass']= "adepangestu123"; // isi dengan password kamu
+		    $config['smtp_pass']= "adepangestu11"; // isi dengan password kamu
 		    $config['crlf']="\r\n"; 
 		    $config['newline']="\r\n"; 
 		    $config['wordwrap'] = TRUE;
@@ -139,14 +140,16 @@ class Billing_new extends MY_Controller
 		    $this->email->from($config['smtp_user']);
 		    $this->email->to($email);
 		    $this->email->subject("Kode Pembayaran");
-		    $this->email->message("Ini dia kode anda $encrypted_id");
+		    $this->email->message("Kode anda adalah : $encrypted_id");
 
 		    if ($this->email->send()) {
-		    	$dataArray = $this->input->post();
-	        	$dataArray['date'] = date('d-m-Y');
-	        	$dataArray['kode'] = $encrypted_id;
-		        $this->dataModel_new->update_billing($dataArray, $this->session->userdata('id'));
-				redirect('billing_new/index');
+		    	$this->dataModel_new->input_data($dataArray);
+		        $dataTransaksi= array('method' => $method,
+							'id_billing' => $this->db->insert_id(),
+							'date' => date('d-m-Y'),
+							'kode' => $encrypted_id);
+		        $this->dataModel_new->input_data_transaksi($dataTransaksi);
+				redirect('payment_verif_new/createVerif');
 		    } else {
 		    	echo "terjadi kesalahan";
 		    }

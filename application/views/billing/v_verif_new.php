@@ -36,12 +36,17 @@
           </center>
         </div>
         <div class="box-body">
+          <?php if (!empty($this->session->flashdata('info'))): ?>
+            <div class="alert alert-info">
+              <?php echo $this->session->flashdata('info') ?>
+            </div>
+          <?php endif ?>
           <?= form_open('payment_verif_new/aksiCreateVerif',['class' => 'form-horizontal']) ?>
 
             <div class="form-group">
               <label class="col-sm-2 control-label">Code Verification</label>
               <div class="col-sm-10">
-                <input type="text" name="code" class="form-control" id="code">
+                <input type="text" name="kode" class="form-control" id="code">
                 <?= form_error('code')?>
               </div>
             </div>
