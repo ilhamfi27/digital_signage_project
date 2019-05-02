@@ -66,6 +66,34 @@
             </div>
 
             <div class="form-group">
+              <label class="col-sm-2 control-label">Add On Kiri</label>
+              <div class="col-sm-10">
+                <select class="form-control" name="add_on_kiri">
+                  <option value="">Kosong</option>
+                  <?php foreach ($plugins->result() as $p):   ?>
+                    <option value="<?php echo $p->id_plugin?>"><?php echo $p->uploaded ?></option>
+                  <?php endforeach; ?>
+                  <?=form_error('plugins[uploaded]')  ?>
+                </select>
+                <?= form_error('uploaded')?>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Add On Kanan</label>
+              <div class="col-sm-10">
+                <select class="form-control" name="add_on_kanan">
+                  <option value="">Kosong</option>
+                  <?php foreach ($plugins->result() as $p):   ?>
+                    <option value="<?php echo $p->id_plugin?>"><?php echo $p->uploaded ?></option>
+                  <?php endforeach; ?>
+                  <?=form_error('plugins[uploaded]')  ?>
+                </select>
+                <?= form_error('uploaded')?>
+              </div>
+            </div>
+
+            <div class="form-group">
               <div class="col-sm-offset-2 col-sm-10">
                 <input type="hidden" name="id_layout" value="<?php echo $layout->id_layout; ?>">
                 <button type="submit" class="btn btn-default">Submit</button>
