@@ -32,7 +32,7 @@
             <div class="box">
                 <div class="box-body">
                     <?= form_open_multipart('theme/update',['class' => 'form-horizontal']) ?>
-                        <input type="hidden" name="id" value=<?= $theme->id ?>>
+                        <input type="hidden" name="id" value=<?= $theme->id_plugin ?>>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="title">Title</label>
                             <div class="col-sm-10">

@@ -61,7 +61,7 @@
                   </div>
                   <div class="row" style="margin-top: 10px;">
                     <div class="col-md-4 col-md-offset-4"> 
-                      <a href='<?= site_url("theme/details/" . $theme->id ); ?>'><button class="btn btn-primary">Read More</button></a>
+                      <a href='<?= site_url("theme/details/" . $theme->id_plugin ); ?>'><button class="btn btn-primary">Read More</button></a>
                       <a href="#"><button class="btn btn-primary">Install</button></a>
                     </div>
                   </div>

@@ -58,7 +58,7 @@
                 <div class="panel-body">
                   <div class="row">
                     <div class="col-md-5">
-                      <img  src="<?= base_url('storage/images/add_ons/') . $row->uploaded ?>" width='200' height='200'><br>
+                      <img  src="<?= base_url('storage/images/add_ons/') . $row->photo_icon ?>" width='200' height='200'><br>
                     </div>
                     <div class="col-md-7">
                      <p align="justify"><?php echo $row->description; ?></p>

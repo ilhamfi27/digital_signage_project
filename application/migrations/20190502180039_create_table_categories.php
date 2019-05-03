@@ -1,5 +1,5 @@
 <?php
-class Migration_create_table_layout extends CI_Migration {
+class Migration_create_table_categories extends CI_Migration {
     public function __construct() {
 		parent::__construct();
         $this->load->dbforge();
@@ -7,10 +7,10 @@ class Migration_create_table_layout extends CI_Migration {
 
     public function up() {
         $sql = "
-        CREATE TABLE `layout` (
-            `id_layout` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-            `url` varchar(255) NOT NULL,
-            `name` varchar(255) NOT NULL
+        CREATE TABLE `categories` (
+            `id_category` int(11) NOT NULL AUTO_INCREMENT,
+            `category_name` varchar(255) NOT NULL,
+            PRIMARY KEY (`id_category`)
         )
         ";
         $this->db->query($sql);
@@ -18,7 +18,7 @@ class Migration_create_table_layout extends CI_Migration {
 
     public function down() {
         $sql = "
-        DROP TABLE `layout`
+        DROP TABLE `categories`
         ";
         $this->db->query($sql);
     }

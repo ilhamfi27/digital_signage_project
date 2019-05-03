@@ -1,5 +1,5 @@
 <?php
-class Migration_create_table_layout extends CI_Migration {
+class Migration_create_function_tgl extends CI_Migration {
     public function __construct() {
 		parent::__construct();
         $this->load->dbforge();
@@ -7,18 +7,17 @@ class Migration_create_table_layout extends CI_Migration {
 
     public function up() {
         $sql = "
-        CREATE TABLE `layout` (
-            `id_layout` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-            `url` varchar(255) NOT NULL,
-            `name` varchar(255) NOT NULL
-        )
+        CREATE FUNCTION `tgl` (`tgl` VARCHAR(191)) RETURNS VARCHAR(191) DETERMINISTIC
+        BEGIN
+            RETURN(date_format(tgl, '%d %M %Y'));
+        END
         ";
         $this->db->query($sql);
     }
 
     public function down() {
         $sql = "
-        DROP TABLE `layout`
+        DROP FUNCTION IF EXISTS tgl;
         ";
         $this->db->query($sql);
     }

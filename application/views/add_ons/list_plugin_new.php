@@ -65,9 +65,9 @@
                 <tr>
                   <td><?php echo $no; ?></td>
                   <td><?php echo $row->title; ?></td>
-                  <td><img src="<?=base_url().'./storage/images/add_ons/'.$row->uploaded;?>" width = '100' height ='100'></td>
+                  <td><img src="<?=base_url().'./storage/images/add_ons/'.$row->photo_icon;?>" width = '100' height ='100'></td>
                   <td><?php echo $row->description; ?></td>
-                  <td><?php echo $row->ratings; ?></td>
+                  <td><?php echo $row->rating; ?></td>
                   <td><?php echo $row->date; ?></td>
                   <td><?php echo $row->price; ?></td>
                   <td><?php echo $row->name; ?></td>
@@ -86,16 +86,16 @@
                 </tr>
                 <?php 
                 $no++;
-                endforeach;
-                ?>
+              endforeach;
+              ?>
                 </tfoot>
            </table>
+              <a href="<?php echo site_url('add_ons_new/new_addon/' . $row->id_creator); ?>">
+                    <button class="btn btn-success">
+                      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    </button>
+                  </a>
         </div>
-         <a href="<?php echo site_url('add_ons_new/new_addon/' . $row->id_creator); ?>">
-                      <button class="btn btn-success">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                      </button>
-                    </a>
         <div class="box-footer">
           Footer
         </div>

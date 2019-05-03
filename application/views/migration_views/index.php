@@ -131,7 +131,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <a href="<?= base_url("migrate/execute"); ?>"><button type="button" class="btn btn-primary">Migrate All</button></a>
-                                <a href="<?= base_url("migrate/execute/" . $very_early_version); ?>"><button type="button" class="btn btn-danger">Rollback All</button></a>
+                                <a href="<?= base_url("migrate/execute/0"); ?>"><button type="button" class="btn btn-danger">Rollback All</button></a>
                                 <a href="<?= base_url("migrate/"); ?>"><button type="button" class="btn btn-success"><span class="ion-android-refresh"></span></button></a>
                             </div>
                         </div>

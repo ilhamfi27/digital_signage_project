@@ -3,31 +3,33 @@ class Comment extends MY_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model("comment_model", "comment_m");
+        $this->load->model("plugin_model", "plugin_m");
     }
 
     public function insert(){
-        $comment            = $this->input->post('comment');
-        $object_id          = $this->input->post('object_id');
-        $commented_object   = $this->input->post('commented_object');
+        $content_comment    = $this->input->post('content_comment');
+        $id_plugin          = $this->input->post('id_plugin');
         $user_id            = $this->input->post('user_id');
-        /**
-         *   `content`,
-         *   `commented_object`,
-         *   `object_id`,
-         *   `user_id`,
-         *   `date_time`
-         */
+
+        $plugin             = $this->plugin_m->detailed_plugin($id_plugin)->row();
+
         $comment_data = [
-            'content' => $comment,
-            'commented_object' => $commented_object,
-            'object_id' => $object_id,
+            'content_comment' => $content_comment,
+            'id_plugin' => $id_plugin,
             'user_id' => $user_id,
             'date_time' => $this->local_timestamp()
         ];
+
+        $redirect_url = "";
+        if ($plugin->type == "add_on") {
+            $redirect_url = "add_ons_new/details/";
+        } else if ($plugin->type == "theme"){
+            $redirect_url = "theme/details/";
+        }
         if ($this->comment_m->insert($comment_data) > 0) {
-            redirect("theme/details/" . $object_id);
+            redirect($redirect_url . $id_plugin);
         } else {
-            redirect("theme/details/" . $object_id);
+            redirect($redirect_url . $id_plugin);
         }
         
     }

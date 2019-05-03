@@ -13,17 +13,18 @@ class Theme extends MY_Controller{
         $this->load->model('plugin_model','plugin_m');
         $this->load->model('media_model','media_m');
         $this->load->model('comment_model','comment_m');
+        $this->load->model('theme_model','theme_m');
     }
     
     public function index()	{
         $data['page_resource'] = parent::page_resources();
-        $data['themes'] = $this->plugin_m->all()->result();
+        $data['themes'] = $this->theme_m->specific_theme_data()->result();
         $this->load->view('theme/index', $data);
     }
 
     public function new() {
         $data['page_resource'] = parent::page_resources();
-        $data['creators'] = $this->creator_m->all()->result();
+        $data['creators'] = $this->creator_m->specific_data(['made' => "t"])->result();
         $data['categories'] = $this->category_m->all()->result();
         $this->load->view('theme/new',$data);
     }
@@ -70,7 +71,7 @@ class Theme extends MY_Controller{
             if (!$this->upload->do_upload('icon')) {
                 $error["error_messages"] = $this->upload->display_errors();
             } else {
-                $new_theme_data = [
+                $new_plugin_data = [
                     'uploaded_date' => parent::local_timestamp(),
                     'title' => $title,
                     'description' => $description,
@@ -78,10 +79,13 @@ class Theme extends MY_Controller{
                     'id_creator' => $creator,
                     'id_category' => $category
                 ];
-                if($this->plugin_m->insert($new_theme_data) > 0){
+                if($this->plugin_m->insert($new_plugin_data) > 0){
                     $id = $this->plugin_m->new_last_id();
-    
-                    
+                    $new_theme_data = [
+                        'id_plugin' => $id,
+                        'file_size' => 0
+                    ];
+                    $this->theme_m->insert($new_theme_data);
                     $title = implode("-",explode(" ", strtolower($title)));
                     $upload_path = "storage/images/screenshot/" . $title . "/";
                     (!is_dir($upload_path)) ? mkdir($upload_path, 0777, TRUE) : NULL;
@@ -100,13 +104,13 @@ class Theme extends MY_Controller{
                         } else {
                             $upload_data[$key]['file_name'] = $this->upload->data()['orig_name'];
                             $upload_data[$key]['url'] = $upload_path;
-                            $upload_data[$key]['type'] = "image";
+                            $upload_data[$key]['type'] = "screenshot";
                             $upload_data[$key]['media_for'] = $id;
                         }
                     }
                     if (!empty($upload_data)) {
                         $result = $this->media_m->insert($upload_data);
-                        $result ? redirect("theme/detail/".$id) : $this->load->view('theme/new',$data);;
+                        $result ? redirect("theme/details/".$id) : $this->load->view('theme/new',$data);;
                     } else {
                         $this->load->view('theme/new',$data);
                     }
@@ -190,14 +194,14 @@ class Theme extends MY_Controller{
         if ($this->form_validation->run() === FALSE) {
         	$this->load->view('theme/edit',$data);
         } else {
-            $new_theme_data = [
+            $new_plugin_data = [
                 'updated_date' => parent::local_timestamp(),
                 'title' => $title,
                 'description' => $description,
                 'id_creator' => $creator,
                 'id_category' => $category
             ];
-            $this->plugin_m->update($new_theme_data, $id) > 0 ? redirect("theme/details/".$id) : $this->load->view('theme/edit',$data);;
+            $this->plugin_m->update($new_plugin_data, $id) > 0 ? redirect("theme/details/".$id) : $this->load->view('theme/edit',$data);;
         }
     }
 

@@ -7,6 +7,9 @@ class Add_ons_new extends MY_Controller{
 		$this->load->helper('view_partial');
 		$this->load->model('Add_on_model_new');
 		$this->load->model('Add_on_creator_model_new');
+		$this->load->model('creator_model','creator_m');
+		$this->load->model('plugin_model','plugin_m');
+        $this->load->model("comment_model", "comment_m");
 		$config['upload_path'] = 'storage/images/add_ons/';
 		$config['allowed_types'] = 'gif|jpg|png|jpeg';
 		$this->load->library('upload',$config);
@@ -22,7 +25,7 @@ class Add_ons_new extends MY_Controller{
         $data['page_resource'] = parent::page_resources();
         $data['plugins']= $this->Add_on_model_new->details($id)->row(1);
         $data['id_plugin'] = $id;
-        $data['comment'] = $this->Add_on_model_new->semua_comment($id);
+        $data['comment'] = $this->comment_m->object_comments($id);
 		$this->load->view('add_ons/details_new', $data);
 	}
 	public function details_creator($id){
@@ -71,25 +74,14 @@ class Add_ons_new extends MY_Controller{
 				'rules' => 'required'
 			],
 			[
-				'field' => 'plugins[ratings]',
-				'label'	=> 'Ratings',
-				'rules' => 'required'
-			],
-			[
-				'field' => 'plugins[date]',
-				'label'	=> 'Date',
-				'rules' => 'required'
-			],
-			[
 				'field' => 'add_ons[price]',
 				'label'	=> 'price',
 				'rules' => 'required'
 			]
-			
 		]);
 
 		if ($this->form_validation->run() === FALSE) {
-			$data['creator'] = $this->Add_on_creator_model_new->all()->result();
+			$data['creator'] = $this->creator_m->specific_data(['made' => "a"])->result();
 			$this->load->view('add_ons/new_addon_new',$data);
 		} else {
 			if (!$this->upload->do_upload('uploaded')){
@@ -97,9 +89,11 @@ class Add_ons_new extends MY_Controller{
 			}else{
 				$data_plugins = $this->input->post('plugins');
 				$data_addon = $this->input->post('add_ons');
-				$data_plugins['id_creator'] = $this->input->post('id_creator');
-				$data_plugins['uploaded'] = $this->upload->data('file_name');
-				$this->Add_on_model_new->insert_plugin($data_plugins);
+				$data_plugins['photo_icon'] = $this->upload->data('file_name');
+				$data_plugins['rating'] = 0.0;
+				$data_plugins['uploaded_date'] = parent::local_timestamp();
+				print_r($data_plugins);
+				$result = $this->plugin_m->insert($data_plugins);
 				$data_addon['id_plugin'] = $this->db->insert_id();
 				$this->Add_on_model_new->insert_add_on($data_addon);
 				redirect('add_ons_new/list_plugin');
@@ -115,30 +109,61 @@ class Add_ons_new extends MY_Controller{
 	public function edit_plugin($id){
         $data['page_resource'] = parent::page_resources();
 		$where = array('id'=>$id);
-		$data['creator'] = $this->Add_on_creator_model_new->all();
+		$data['creator'] = $this->creator_m->specific_data(['made' => "a"])->result();
 		$data['plugins'] = $this->Add_on_model_new->all($id)->row(1);
 		// $data['addon']=$this->Add_on_model_new->details($where)->row();
 		$this->load->view('add_ons/edit_addon_new',$data);
 	}
 	public function update_add_on(){
+        $data['page_resource'] = parent::page_resources();
 		$id_plugin = $this->input->post('id');
-		$uploaded = $this->input->post('uploaded');
 		$title = $this->input->post('title');
 		$description = $this->input->post('description');
-		$ratings = $this->input->post('ratings');
-		$date = $this->input->post('date');
 		$price = $this->input->post('price');
 		$creator = $this->input->post('id_creator');
-	
-		$data = array(
-			'uploaded'=>$uploaded,
-			'title'=>$title,
-			'description'=>$description,
-			'ratings'=>$ratings,
-			'date'=>$date,
-			'price'=>$price,
-			'creator'=>$creator
-		);
+		
+		$this->form_validation->set_rules([
+			[
+				'field' => 'description',
+				'label'	=> 'Description',
+				'rules' => 'required|min_length[10]'
+			],
+			[
+				'field' => 'title',
+				'label'	=> 'Title',
+				'rules' => 'required'
+			],
+			[
+				'field' => 'price',
+				'label'	=> 'price',
+				'rules' => 'required'
+			]
+		]);
+
+		if ($this->form_validation->run() === FALSE) {
+			$data['creator'] = $this->creator_m->specific_data(['made' => "a"])->result();
+			$this->load->view('add_ons/edit_addon_new',$data);
+		} else {
+			$plugin = $result = $this->plugin_m->details($id_plugin)->row();
+			if (!$this->upload->do_upload('uploaded') && $plugin->photo_icon == ""){
+				echo $this->upload->display_errors();
+			}else{
+				$data_plugin = array(
+					'photo_icon'=> $this->upload->data('file_name') !== "" ? $this->upload->data('file_name') : $plugin->photo_icon,
+					'title'=>$title,
+					'description'=>$description,
+					'uploaded_date'=>$plugin->uploaded_date,
+					'updated_date'=>parent::local_timestamp(),
+					'id_creator'=>$creator
+				);
+				$data_add_on = array(
+					'price'=>$price
+				);
+				$result = $this->plugin_m->update($data_plugin, $id_plugin);
+				$this->Add_on_model_new->update($data_add_on, $id_plugin);
+				redirect('add_ons_new/list_plugin');
+			}
+		}
 		$this->Add_on_model_new->update($data,$id_plugin);
 		redirect('add_ons_new/list_plugin');
 

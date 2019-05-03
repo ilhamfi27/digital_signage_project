@@ -38,11 +38,11 @@
                     </div>
                     <div class="row">
                         <div class="col-md-3">
-                            <img src="<?= base_url("storage/images/creator_photo/".$creator->photo) ?>" class="img-responsive" alt="Creators Photo">
+                            <img src="<?= base_url("storage/images/creator_photo/".$creator->image) ?>" class="img-responsive" alt="Creators Photo">
                         </div>
                         <div class="col-md-9">
                             <p><?= $creator->address ?></p>
-                            <p><?= $creator->birth_place . ", " . $creator->birth_date ?></p>
+                            <p><?= $creator->place_of_birth . ", " . $creator->date_of_birth ?></p>
                             <p><?= $creator->phone_number ?></p>
                             <p><?= $creator->email ?></p>
                         </div>

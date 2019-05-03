@@ -63,22 +63,6 @@
            </div>
 
             <div class="form-group">
-              <label class="col-sm-2 control-label">Ratings</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="ratings" name="ratings" value="<?= $plugins->ratings?>">
-                <?= form_error('ratings')?>
-              </div>
-           </div>
-            
-            <div class="form-group">
-              <label class="col-sm-2 control-label">Date</label>
-              <div class="col-sm-10">
-                <input type="date" class="form-control" id="date" name="date" value="<?= $plugins->date?>">
-                <?= form_error('date')?>
-              </div>
-            </div>
-
-            <div class="form-group">
               <label class="col-sm-2 control-label">Price</label>
               <div class="col-sm-10">
                 <input type="text" class="form-control" id="price" name="price" value="<?= $plugins->price?>">
@@ -90,7 +74,7 @@
               <label class="col-sm-2 control-label">Creator</label>
               <div class="col-sm-10">
                 <select name="id_creator" class="form-control">
-                  <?php foreach ($creator->result() as $c): ?>
+                  <?php foreach ($creator as $c): ?>
                     <option value="<?php echo $c->id_creator ?>" <?php echo $plugins->id_creator == $c->id_creator ? 'selected' : '' ?>><?php echo $c->name ?></option>
                   <?php endforeach ?>
                 </select>

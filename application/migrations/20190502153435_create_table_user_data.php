@@ -10,7 +10,7 @@ class Migration_create_table_user_data extends CI_Migration {
             [
                 'user_id' => [
                     'type' => 'INT',
-                    'constraint' => 5,
+                    'constraint' => 11,
                     'auto_increment' => TRUE,
                     'null' => FALSE
                 ],

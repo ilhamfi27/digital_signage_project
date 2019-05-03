@@ -24,9 +24,13 @@ class Creator_model extends CI_Model{
     public function all(){
         return $this->db->get($this->table);
     }
+
+    public function specific_data($where){
+        return $this->db->get_where($this->table,$where);	
+    }
     
     public function detail($id){
-        return $this->db->get_where($this->table,['id' => $id]);	
+        return $this->db->get_where($this->table,['id_creator' => $id]);	
     }
     
     public function update($data,$where){

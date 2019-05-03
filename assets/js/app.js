@@ -61,6 +61,7 @@ $('#new-creator-form').submit(function (e) {
                 sweetAlertSuccess("Record Inserted Successfully");
                 // reset all values
                 $("input").val("");
+                $("textarea").val("");
             } else {
                 // error
                 sweetAlertError(data.errors);

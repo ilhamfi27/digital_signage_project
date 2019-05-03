@@ -115,22 +115,21 @@
                                                 <div class="commenterImage">
                                                     <img src="<?= base_url() ?>storage/images/user_avatar/<?= $comment->user_avatar !== NULL ? $comment->user_avatar : "user-default-avatar.jpg" ?>" />
                                                 </div>
-                                                <div style="display: block;"><?= $comment->full_name !== NULL ? $comment->full_name : $comment->username ?></div>
+                                                <div style="display: block;"><?= $comment->full_name ?></div>
                                                 <div class="commentText">
-                                                    <p class=""><?= $comment->content ?></p> <span class="date sub-text"><?= $comment->date_time ?></span>
+                                                    <p class=""><?= $comment->content_comment ?></p> <span class="date sub-text"><?= $comment->date_time ?></span>
                                                 </div>
                                             </li>
                                             <?php endforeach; ?>
                                         </ul>
                                         <form class="form-inline" role="form" action="<?= site_url('comment/insert') ?>" method="post">
                                             <div class="form-group">
-                                                <input class="form-control" type="text" name="comment" placeholder="Your comments" required/>
+                                                <input class="form-control" type="text" name="content_comment" placeholder="Your comments" required/>
                                             </div>
                                             <div class="form-group">
                                                 <button class="btn btn-default">Add</button>
                                             </div>
-                                            <input type="hidden" name="object_id" value="<?= $theme->id ?>">
-                                            <input type="hidden" name="commented_object" value="theme">
+                                            <input type="hidden" name="id_plugin" value="<?= $theme->id_plugin ?>">
                                             <input type="hidden" name="user_id" value=<?= $this->session->userdata('id') ?>>
                                         </form>
                                     </div>

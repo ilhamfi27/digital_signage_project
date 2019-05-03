@@ -1,5 +1,5 @@
 <?php
-class Migration_create_table_layout extends CI_Migration {
+class Migration_alter_table_creator_change_column_blood_group extends CI_Migration {
     public function __construct() {
 		parent::__construct();
         $this->load->dbforge();
@@ -7,18 +7,16 @@ class Migration_create_table_layout extends CI_Migration {
 
     public function up() {
         $sql = "
-        CREATE TABLE `layout` (
-            `id_layout` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-            `url` varchar(255) NOT NULL,
-            `name` varchar(255) NOT NULL
-        )
+        ALTER TABLE `creators`
+            CHANGE `blood_group` `blood_type` VARCHAR(255) NOT NULL
         ";
         $this->db->query($sql);
     }
 
     public function down() {
         $sql = "
-        DROP TABLE `layout`
+        ALTER TABLE `creators`
+            CHANGE `blood_type` `blood_group` VARCHAR(255) NOT NULL
         ";
         $this->db->query($sql);
     }

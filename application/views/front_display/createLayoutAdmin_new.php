@@ -49,7 +49,7 @@
            <div class="form-group">
               <label class="col-sm-2 control-label">image</label>
               <div class="col-sm-10">
-                <input type="file" class="form-control" id="image" name="image">
+                <input type="file" id="image" name="image">
                 <?= form_error('image')?>
               </div>
            </div>

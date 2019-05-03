@@ -47,13 +47,34 @@
                         <table id="list-data" class="table table-bordered table-hover">
                             <thead>
                             <tr>
+                                <!-- 
+                                    `id_creator`,
+                                    `name`,
+                                    `address`,
+                                    `place_of_birth`,
+                                    `date_of_birth`,
+                                    `gender`,
+                                    `religion`,
+                                    `citizenship`,
+                                    `blood_type`,
+                                    `email`,
+                                    `phone_number`,
+                                    `image`,
+                                    `made`
+                                 -->
                                 <th>No</th>
                                 <th>Name</th>
                                 <th>Address</th>
-                                <th>Birth Place</th>
-                                <th>Birth Date</th>
-                                <th>Phone Number</th>
+                                <th>Place Of Birth</th>
+                                <th>Date Of Birth</th>
+                                <th>Gender</th>
+                                <th>Religion</th>
+                                <th>Citizenship</th>
+                                <th>Blood Type</th>
                                 <th>Email</th>
+                                <th>Phone_number</th>
+                                <th>Image</th>
+                                <th>Made</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -61,22 +82,28 @@
                             $no = 1;
                             foreach($creators as $creator):
                             ?>
-                            <tr id="<?= "creator-list-" . $creator->id ?>">
+                            <tr id="<?= "creator-list-" . $creator->id_creator ?>">
                                 <td class="no"><?php echo $no; ?></td>
                                 <td><?php echo $creator->name; ?></td>
                                 <td><?php echo $creator->address; ?></td>
-                                <td><?php echo $creator->birth_place; ?></td>
-                                <td><?php echo $creator->birth_date; ?></td>
-                                <td><?php echo $creator->phone_number; ?></td>
+                                <td><?php echo $creator->place_of_birth; ?></td>
+                                <td><?php echo $creator->date_of_birth; ?></td>
+                                <td><?php echo $creator->gender; ?></td>
+                                <td><?php echo $creator->religion; ?></td>
+                                <td><?php echo $creator->citizenship; ?></td>
+                                <td><?php echo $creator->blood_type; ?></td>
                                 <td><?php echo $creator->email; ?></td>
+                                <td><?php echo $creator->phone_number; ?></td>
+                                <td><?php echo $creator->image; ?></td>
+                                <td><?php echo $creator->made; ?></td>
                                 <td>
-                                    <a href="<?php echo site_url('creator/detail/' . $creator->id); ?>" class="btn btn-success">
+                                    <a href="<?php echo site_url('creator/detail/' . $creator->id_creator); ?>" class="btn btn-success">
                                         <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                                     </a>
-                                    <a href="<?php echo site_url('creator/edit/' . $creator->id); ?>" class="btn btn-primary">
+                                    <a href="<?php echo site_url('creator/edit/' . $creator->id_creator); ?>" class="btn btn-primary">
                                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                     </a>
-                                    <a href="<?php echo site_url('creator/delete/' . $creator->id); ?>" data-action="<?php echo site_url('creator/delete/' . $creator->id); ?>" data-id="<?= $creator->id ?>" class="btn btn-danger delete-creator-button">
+                                    <a href="<?php echo site_url('creator/delete/' . $creator->id_creator); ?>" data-action="<?php echo site_url('creator/delete/' . $creator->id_creator); ?>" data-id="<?= $creator->id_creator ?>" class="btn btn-danger delete-creator-button">
                                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                                     </a>
                                 </td>

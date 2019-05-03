@@ -70,17 +70,17 @@
                   <td><?= $data->category_name ?></td>
                   <td><?= $data->email ?></td>
                   <td>
-                    <a href="<?php echo site_url('theme/details/' . $data->id); ?>">
+                    <a href="<?php echo site_url('theme/details/' . $data->id_plugin); ?>">
                       <button class="btn btn-success">
                         <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                       </button>
                     </a>
-                    <a href="<?php echo site_url('theme/edit/' . $data->id); ?>">
+                    <a href="<?php echo site_url('theme/edit/' . $data->id_plugin); ?>">
                       <button class="btn btn-primary">
                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                       </button>
                     </a>
-                    <a href="<?php echo site_url('theme/delete/' . $data->id); ?>">
+                    <a href="<?php echo site_url('theme/delete/' . $data->id_plugin); ?>">
                       <button class="btn btn-danger">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                       </button>

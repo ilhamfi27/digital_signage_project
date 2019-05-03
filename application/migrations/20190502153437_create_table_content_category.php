@@ -5,26 +5,20 @@ class Migration_create_table_content_category extends CI_Migration {
         $this->load->dbforge();
     }
 
-    public function up(){
-        $this->dbforge->add_field(
-            [
-                'id_content_category' => [
-                    'type' => 'INT',
-                    'constraint' => 11,
-                    'auto_increment' => TRUE,
-                    'null' => FALSE
-                ],
-                'category' => [
-                    'type' => 'varchar',
-                    'constraint' => 255,
-                ]
-            ]
-        );
-        $this->dbforge->add_key('id_content_category', FALSE);
-        $this->dbforge->create_table('content_category', TRUE);
+    public function up() {
+        $sql = "
+        CREATE TABLE `content_category` (
+            `id_content_category` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+            `category` varchar(255) NOT NULL
+        )
+        ";
+        $this->db->query($sql);
     }
 
-    public function down(){
-        $this->dbforge->drop_table('content_category');
+    public function down() {
+        $sql = "
+        DROP TABLE `content_category`
+        ";
+        $this->db->query($sql);
     }
 }
