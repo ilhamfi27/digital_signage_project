@@ -11,7 +11,7 @@ class Creator extends MY_Controller {
         
     }
 
-    public function new() {
+    public function new_() {
         $data['page_resource'] = parent::page_resources();
         $this->load->view('creator/new', $data);
     }
@@ -271,7 +271,7 @@ class Creator extends MY_Controller {
         $this->load->view('creator/detail', $data);
     }
 
-    public function list() {
+    public function list_() {
         $data['page_resource'] = parent::page_resources();
         $data['creators'] = $this->creator_m->all()->result();
         $this->load->view('creator/list', $data);

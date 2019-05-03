@@ -22,7 +22,7 @@ class Theme extends MY_Controller{
         $this->load->view('theme/index', $data);
     }
 
-    public function new() {
+    public function new_() {
         $data['page_resource'] = parent::page_resources();
         $data['creators'] = $this->creator_m->specific_data(['made' => "t"])->result();
         $data['categories'] = $this->category_m->all()->result();
@@ -208,14 +208,14 @@ class Theme extends MY_Controller{
     public function delete($id) {
         $result = $this->plugin_m->delete(['id' => $id]);
         if ($result) {
-            redirect("theme/list");
+            redirect("theme/list_");
         } else {
-            redirect("theme/list");
+            redirect("theme/list_");
         }
         
     }
 
-    public function list() {
+    public function list_() {
         $data['page_resource'] = parent::page_resources();
         $data['detailed_data'] = $this->plugin_m->detailed_plugin()->result();
         $this->load->view('theme/list', $data);
