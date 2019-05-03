@@ -122,10 +122,11 @@ class Front_display_new extends MY_Controller{
   //       $data['content'] = $this->modelcontent_new->paging_halaman($config['per_page'],$from);
   //       $this->load->view('front_display/munculcontent',$data);
 
-
-		$data['page_resource'] = parent::page_resources();
-		$data['content'] = $this->modelcontent_new->ambil_content()->result();
-		$this->load->view('front_display/munculcontent_new', $data);
+		$id = $this->session->userdata('id');
+		
+			$data['page_resource'] = parent::page_resources();
+			$data['content'] = $this->modelcontent_new->ambil_content($id)->result();
+			$this->load->view('front_display/munculcontent_new', $data);
 	}
 
 	public function input_content_category(){
