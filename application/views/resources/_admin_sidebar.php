@@ -34,8 +34,8 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?= site_url('creator/new') ?>"><i class="fa fa-circle-o"></i> New Creator</a></li>
-                    <li><a href="<?= site_url('creator/list') ?>"><i class="fa fa-circle-o"></i> List Creator</a></li>
+                    <li><a href="<?= site_url('creator/new_') ?>"><i class="fa fa-circle-o"></i> New Creator</a></li>
+                    <li><a href="<?= site_url('creator/list_') ?>"><i class="fa fa-circle-o"></i> List Creator</a></li>
                 </ul>
             </li>
             <li><a href="<?= site_url('category/') ?>"><i class="fa fa-link"></i> <span>Plugin Categories</span></a></li>
@@ -67,8 +67,8 @@
                 <ul class="treeview-menu">
                     <li><a href="<?= base_url('theme/') ?>"><i class="fa fa-circle-o"></i> Themes</a></li>
                     <?php if($this->session->level === "admin"){ ?>
-                    <li><a href="<?= base_url('theme/new') ?>"><i class="fa fa-circle-o"></i> New Theme</a></li>
-                    <li><a href="<?= base_url('theme/list') ?>"><i class="fa fa-circle-o"></i> List Theme</a></li>
+                    <li><a href="<?= base_url('theme/new_') ?>"><i class="fa fa-circle-o"></i> New Theme</a></li>
+                    <li><a href="<?= base_url('theme/list_') ?>"><i class="fa fa-circle-o"></i> List Theme</a></li>
                     <?php } ?>
                 </ul>
             </li>
