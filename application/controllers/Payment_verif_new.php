@@ -12,7 +12,7 @@ class Payment_verif_new extends MY_Controller
 	function index()
 	{
 		$dataArray['page_resource'] = parent::page_resources();
-		$dataArray['payment_code'] = $this->m_payment_new->tampil()->result();
+		// $dataArray['payment_code'] = $this->m_payment_new->tampil()->result();
 		$dataArray['billing'] = $this->m_payment_new->tampilBilling($this->session->userdata('id'))->row(1);
 		$this->load->view('billing/v_tampil_new', $dataArray);
 	}
