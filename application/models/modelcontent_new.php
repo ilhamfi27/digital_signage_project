@@ -2,10 +2,10 @@
 
 	class modelcontent_new extends CI_Model{
 		
-		function ambil_content($id= null){
+		function ambil_content($id = null){
 			if ($id != null) {
-				$my = $this->session->userdata('id');
-				return $this->db->query('CALL content($my)');
+				$prod = 'Call content('.$id.')';
+					return $this->db->query($prod);
 			}
 			// $this->db->join('content_category', 'content_category.id_content_category = content.id_content_category');
 			return $this->db->query('CALL content_join()');
