@@ -46,20 +46,13 @@
               </div>
             </div>
 
-           <div class="form-group">
+          <!--  <div class="form-group">
               <label class="col-sm-2 control-label">Duration First</label>
               <div class="col-sm-10">
             
-              <input type="date" name="duration_first" class="form-control" value="<?= $billing->duration_first ?>">
+              <input type="date" name="duration_first" class="form-control" value="<?= $billing->duration_last ?>">
               </div>
-           </div>
-            <div class="form-group">
-              <label class="col-sm-2 control-label">Duration Last</label>
-              <div class="col-sm-10">
-            
-              <input type="date" name="duration_last" class="form-control" value="<?= $billing->duration_last ?>">
-              </div>
-           </div>
+           </div> -->
 
            <div class="form-group">
               <label class="col-sm-2 control-label">Email</label>
@@ -69,22 +62,34 @@
               </div>
            </div>
 
-            <div class="form-group">
+           <div class="form-group">
               <label class="col-sm-2 control-label"> Method Payment</label>
               <div class="col-sm-10">
-                <select name="method" class="form-control" id="method" value="<?= $billing->method ?>">
+                <select name="method" class="form-control" id="method">
                   <option value="Indomart">Indomart</option>
                   <option value="Alfamart">Alfamart</option>
               </select>
               <?= form_error('method')?>
               </div>
            </div>
+
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Paket</label>
+              <div class="col-sm-10">
+                <select name="package" class="form-control" id="method">
+                  <option value="thn">Tahunan</option>
+                  <option value="bln">Bulanan</option>
+                  <option value="hri">Harian</option>
+              </select>
+              </div>
+           </div>
+
            <div class="form-group">
               <label class="col-sm-2 control-label"> Pilih Paket & Price</label>
               <div class="col-sm-10">
-                <select name="package_method" class="form-control" value="<?= $billing->package_method ?>">
+                <select name="package_method" class="form-control">
                   <?php foreach($package as $m): ?>
-                  <option value="<?= $m->id_package?>"><?= $m->name . " - " . "Rp." .$m->price ?></option>
+                  <option value="<?= $m->id_plugin?>"><?= $m->title . " - " . "Rp." .$m->price ?></option>
                   <?php endforeach; ?>
                 </select>
               </div>
@@ -92,7 +97,11 @@
 
             <div class="form-group">
               <div class="col-sm-offset-2 col-sm-10">
-              	<input type="hidden" name="user_id" value="<?php echo $this->session->userdata('id') ?>">
+                <input type="hidden" name="user_id" value="<?php echo $this->session->userdata('id') ?>">
+                <input type="hidden" name="id_billing" value="<?php echo $billing->id_billing ?>">
+                <input type="hidden" name="duration_last" value="<?php echo $billing->duration_last ?>">
+                <input type="hidden" name="duration_first" value="<?php echo $billing->duration_first ?>">
+              	<input type="hidden" name="status_install" value="<?php echo $billing->status_install ?>">
                 <button type="submit" name='submit' value="Kirim" class="btn btn-default">Submit</button>
               </div>
             </div>

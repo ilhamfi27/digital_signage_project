@@ -100,29 +100,31 @@ class Billing_new extends MY_Controller
 	function update_billing(){
 		$name = $this->input->post('name');
 		$email = $this->input->post('email');
-		$duration_first = $this->input->post('duration_first');
-		$duration_last = $this->input->post('duration_last');
+		$duration_first = $this->input->post('duration_last');
+		$duration_last = $this->input->post('package') == 'thn' ? date_format(date_add(date_create($duration_first),date_interval_create_from_date_string("1 years")), "Y-m-d") : ($this->input->post('package') == 'bln' ? date_format(date_add(date_create($duration_first),date_interval_create_from_date_string("1 months")), "Y-m-d") : date_format(date_add(date_create($duration_first),date_interval_create_from_date_string("1 days")), "Y-m-d"));
 		$method = $this->input->post('method');
 		$package_method = $this->input->post('package_method');
 
 		$dataArray = array('name' => $name,
-							'email' => $email,
-							'duration_first' => $duration_first,
-							'duration_last' => $duration_last,
-							
+						'email' => $email,
+						'duration_last' => $duration_last,
+						'duration_first' => $this->input->post('duration_first'),
 						'id_package'=> $package_method,
 						'user_id' => $this->session->userdata('id'),
+						'status' => 2,
+						'status_install' => $this->input->post('status_install')
 					);
-		
+
 		$this->form_validation->set_rules('name','Name','trim|required');
-		$this->form_validation->set_rules('email','Email','trim|required');
-		$this->form_validation->set_rules('duration_first','Duration_first','trim|required');
-		$this->form_validation->set_rules('duration_last','Duration_last','trim|required');
-		$this->form_validation->set_rules('method','Method','trim|required');
+		$this->form_validation->set_rules('email','Exmail','trim|required');
+		// $this->form_validation->set_rules('duration_first','Duration_first','trim|required');
+		// $this->form_validation->set_rules('duration_last','Duration_last','trim|required');
+		$this->form_validation->set_rules('package_method','Method','trim|required');
 		if ($this->form_validation->run() === FALSE) {
-			$this->update($this->session->userdata('id'));
+			$this->update($this->input->post('id_billing'));
+
         } else {
-			$encrypted_id = mt_rand(100000, 999999);
+        	$encrypted_id = mt_rand(100000, 999999);
         	$this->load->library('email');
 
         	$config['charset'] = 'utf-8';
@@ -146,11 +148,14 @@ class Billing_new extends MY_Controller
 		    $this->email->message("Kode anda adalah : $encrypted_id");
 
 		    if ($this->email->send()) {
-		    	$this->dataModel_new->input_data($dataArray);
+		    	$total_harga = $this->db->get_where('add_ons', ['id_plugin' => $this->input->post('package_method')])->row()->price;
+		    	$this->db->set($dataArray)->where('id_billing', $this->input->post('id_billing'))->update('billing');
 		        $dataTransaksi= array('method' => $method,
-							'id_billing' => $this->db->insert_id(),
+							'id_billing' => $this->input->post('id_billing'),
 							'date' => date('d-m-Y'),
-							'kode' => $encrypted_id);
+							'kode' => $encrypted_id,
+							'jumlah' => $this->input->post('package') == 'thn' ? $total_harga * 300 : ($this->input->post('package') == 'bln' ? $total_harga * 25 : $total_harga)
+						);
 		        $this->dataModel_new->input_data_transaksi($dataTransaksi);
 				redirect('payment_verif_new/createVerif');
 		    } else {
