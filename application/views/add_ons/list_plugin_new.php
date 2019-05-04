@@ -34,10 +34,10 @@
   
        <div class="col-lg-3 col-lg-offset-9">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for...">
+           <!--  <input type="text" class="form-control" placeholder="Search for...">
             <span class="input-group-btn">
               <button class="btn btn-default" type="button">Go</button>
-            </span>
+            </span> -->
           </div><!-- /input-group -->
         </div><!-- /.col-lg-6 -->
 
