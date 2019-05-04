@@ -21,7 +21,6 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
     </section>
-
     <!-- Main content -->
     <section class="content">
 
@@ -44,7 +43,7 @@
                   <div class="row">
                     <div class="col-md-5">
                       <div class="col-xs-3">
-                                            </i><img src="../storage/images/icon.jpeg" width="200px">
+                                            </i><img src="../storage/images/logo.jpeg" width="200px">
                                         </div>
                                         <div class="col-xs-9 text-right">
                                             <!-- <div class="huge">13</div>
@@ -66,7 +65,7 @@
                      <p align="justify"></p>
                     </div>
                   </div>
-                  <div class="row" style="margin-top: 125px;">
+                  <div class="row" style="margin-top: 100px;">
                     <div class="col-md-8 col-md-offset-4"> 
                     	<?php if ($billing): ?>
                     		<a href="<?= site_url('payment_verif_new/cetak/'.$this->session->userdata('id')) ?>"><button class="btn btn-primary">Cetak</button></a>
@@ -122,7 +121,6 @@
             <script type="text/javascript" src="//w.24timezones.com/l.js" async></script>
 
             <!-- weather widget start --><a target="_blank" href="https://www.booked.net/weather/bandung-9580"><img src="https://w.bookcdn.com/weather/picture/1_9580_1_1_137AE9_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=w209&anc_id=11903"  alt="booked.net"/></a><!-- weather widget end -->
-         
           </div>  
         </div>
 

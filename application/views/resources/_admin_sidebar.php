@@ -109,7 +109,7 @@
                     <?php } else { ?>
                     <li><a href="<?= site_url('billing_new/create') ?>"><i class="fa fa-circle-o"></i> Payment</a></li>
                     <li><a href="<?= site_url('payment_verif_new/index') ?>"><i class="fa fa-circle-o"></i> View</a></li>
-                    <li><a href="<?= site_url('#')?>"><i class="fa fa-circle-o"></i> Add-ons</a></li>
+                    <li><a href="<?= site_url('uninstall_add_ons/index')?>"><i class="fa fa-circle-o"></i> Add-ons</a></li>
                     <?php } ?>
                 </ul>
             </li>
