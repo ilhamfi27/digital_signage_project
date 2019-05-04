@@ -89,21 +89,21 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="col-xs-3">
-                                        <i class="fa fa-tasks fa-5x"></i>
-                                        </div>
-                                        <div class="col-xs-9 text-right">
-                                          <?php $status = isset($billing->status) ? $billing->status : null ?>
-                                          <?php if ($status == 2): ?>
-                                              <h2>Belum Dibayar</h2>
-                                              <a class="btn btn-sm btn-primary mb-3" href="<?php echo site_url('payment_verif_new/createVerif') ?>">Bayar</a>
-                                            <?php else : ?>
-                                              <div class="huge"><h2><?php echo $billing ? date_diff(date_create(date('Y-m-d')),date_create($billing->duration_last))->days : '0'?></h2></div>
-                                            <div><h4>Days</h4></div>
-                                          <?php endif ?>
-                                        </div>
-                                        <div><hr width="800px"></div>
-                                        <div><hr width="800px"></div>
-                                        	Jika ingin menambahkan masa aktif, silahkan klik "Update" di bawah ini. Apabila ingin unistall add-ons tertentu, silahkan klik "Unistall".
+                        <i class="fa fa-tasks fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                          <?php $status = isset($billing->status) ? $billing->status : null ?>
+                          <?php if ($status == 2): ?>
+                              <h2>Belum Dibayar</h2>
+                              <a class="btn btn-sm btn-primary mb-3" href="<?php echo site_url('payment_verif_new/createVerif') ?>">Bayar</a>
+                            <?php else : ?>
+                              <div class="huge"><h2><?php echo $billing ? date_diff(date_create(date('Y-m-d')),date_create($billing->duration_last))->days : '0'?></h2></div>
+                            <div><h4>Days</h4></div>
+                          <?php endif ?>
+                        </div>
+                        <div><hr width="800px"></div>
+                        <div><hr width="800px"></div>
+                        	Jika ingin menambahkan masa aktif, silahkan klik "Update" di bawah ini. Apabila ingin unistall add-ons tertentu, silahkan klik "Unistall".
                     </div>
                     <div class="col-md-7">
                      <p align="justify"></p>
@@ -119,9 +119,9 @@
               </div>
             </div>
             <div class="cleanslate w24tz-current-time w24tz-middle" style="display: inline-block !important; visibility: hidden !important; min-width:300px !important; min-height:145px !important;"><p><a href="//24timezones.com/world_directory/time_in_bandung.php" style="text-decoration: none" class="clock24" id="tz24-1556794185-c1437-eyJob3VydHlwZSI6MTIsInNob3dkYXRlIjoiMSIsInNob3dzZWNvbmRzIjoiMCIsImNvbnRhaW5lcl9pZCI6ImNsb2NrX2Jsb2NrX2NiNWNjYWNiNDllOTc4OCIsInR5cGUiOiJkYiIsImxhbmciOiJlbiJ9" title="World Time :: Bandung" target="_blank" rel="nofollow">Time in Bandung</a></p><div id="clock_block_cb5ccacb49e9788"></div></div>
-<script type="text/javascript" src="//w.24timezones.com/l.js" async></script>
+            <script type="text/javascript" src="//w.24timezones.com/l.js" async></script>
 
-<!-- weather widget start --><a target="_blank" href="https://www.booked.net/weather/bandung-9580"><img src="https://w.bookcdn.com/weather/picture/1_9580_1_1_137AE9_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=w209&anc_id=11903"  alt="booked.net"/></a><!-- weather widget end -->
+            <!-- weather widget start --><a target="_blank" href="https://www.booked.net/weather/bandung-9580"><img src="https://w.bookcdn.com/weather/picture/1_9580_1_1_137AE9_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=w209&anc_id=11903"  alt="booked.net"/></a><!-- weather widget end -->
          
           </div>  
         </div>

@@ -169,7 +169,9 @@ class Add_ons_new extends MY_Controller{
 
 	}
 	public function install_addon()	{
-
+		$user_id = $this->session->userdata("id");
+		$status = $this->Add_on_model_new->available($user_id)->row()->status;
+		$status == 1 ? $data['add_ons'] = $this->Add_on_model_new->all()->result() : $data['add_ons'] = NULL;
         $data['page_resource'] = parent::page_resources();
 		$this->load->view('add_ons/install_addon_new',$data);
 	}
