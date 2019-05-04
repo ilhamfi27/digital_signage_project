@@ -17,7 +17,8 @@ class dataModel_new extends CI_Model
 	}
 	function tampilPayment()
 	{
-		return $this->db->get('package');
+		$this->db->join('plugins', 'plugins.id_plugin = add_ons.id_plugin');
+		return $this->db->get('add_ons');
 	}
 	function tampil_admin()
 	{

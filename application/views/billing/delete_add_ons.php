@@ -44,7 +44,6 @@
 
         </div>
         <div class="box-body">
-         
           <div class="row">
            <?php 
               $no = 1;
@@ -58,7 +57,7 @@
                 <div class="panel-body">
                   <div class="row">
                     <div class="col-md-5">
-                      <img  src="<?= base_url('storage/images/add_ons/') . $row->uploaded ?>" width='200' height='200'><br>
+                      <img  src="<?= base_url('storage/images/add_ons/') . $row->photo_icon ?>" width='200' height='200'><br>
                     </div>
                     <div class="col-md-7">
                      <p align="justify"><?php echo $row->description; ?></p>
@@ -67,7 +66,11 @@
                   <div class="row" style="margin-top: 10px;">
                     <div class="col-md-8 col-md-offset-4"> 
                       <a href='<?= site_url("add_ons_new/details/").$row->id ?>'><button class="btn btn-primary">Read More</button></a>
-                      <button class="btn btn-success">Uninstall</button>
+                      <?php if ($billing->status_install == 1): ?>
+                        <a href="<?php echo site_url('uninstall_add_ons/uninstall/'.$billing->id_billing) ?>" class="btn btn-danger">Uninstall</a>
+                      <?php else : ?>
+                        <a href="<?php echo site_url('uninstall_add_ons/install/'.$billing->id_billing) ?>" class="btn btn-success">Install</a>
+                      <?php endif ?>
                     </div>
                   </div>
                 </div>

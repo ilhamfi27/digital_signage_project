@@ -53,13 +53,13 @@
               <input type="date" name="duration_first" class="form-control">
               </div>
            </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label class="col-sm-2 control-label">Duration Last</label>
               <div class="col-sm-10">
             
               <input type="date" name="duration_last" class="form-control">
               </div>
-           </div>
+           </div> -->
 
            <div class="form-group">
               <label class="col-sm-2 control-label">Email</label>
@@ -79,12 +79,24 @@
               <?= form_error('method')?>
               </div>
            </div>
+
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Paket</label>
+              <div class="col-sm-10">
+                <select name="package" class="form-control" id="method">
+                  <option value="thn">Tahunan</option>
+                  <option value="bln">Bulanan</option>
+                  <option value="hri">Harian</option>
+              </select>
+              </div>
+           </div>
+
            <div class="form-group">
               <label class="col-sm-2 control-label"> Pilih Paket & Price</label>
               <div class="col-sm-10">
                 <select name="package_method" class="form-control">
                   <?php foreach($package as $m): ?>
-                  <option value="<?= $m->id_package?>"><?= $m->name . " - " . "Rp." .$m->price ?></option>
+                  <option value="<?= $m->id_plugin?>"><?= $m->title . " - " . "Rp." .$m->price ?></option>
                   <?php endforeach; ?>
                 </select>
               </div>

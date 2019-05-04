@@ -24,7 +24,7 @@ class Billing_new extends MY_Controller
 		$name = $this->input->post('name');
 		$email = $this->input->post('email');
 		$duration_first = $this->input->post('duration_first');
-		$duration_last = $this->input->post('duration_last');
+		$duration_last = $this->input->post('package') == 'thn' ? date_format(date_add(date_create($duration_first),date_interval_create_from_date_string("1 years")), "Y-m-d") : ($this->input->post('package') == 'bln' ? date_format(date_add(date_create($duration_first),date_interval_create_from_date_string("1 months")), "Y-m-d") : date_format(date_add(date_create($duration_first),date_interval_create_from_date_string("1 days")), "Y-m-d"));
 		$method = $this->input->post('method');
 		$package_method = $this->input->post('package_method');
 
@@ -32,16 +32,16 @@ class Billing_new extends MY_Controller
 							'email' => $email,
 							'duration_first' => $duration_first,
 							'duration_last' => $duration_last,
-							
 						'id_package'=> $package_method,
 						'user_id' => $this->session->userdata('id'),
-						'status' => 2
+						'status' => 2,
+						'status_install' => 1
 					);
 
 		$this->form_validation->set_rules('name','Name','trim|required');
 		$this->form_validation->set_rules('email','Exmail','trim|required');
 		$this->form_validation->set_rules('duration_first','Duration_first','trim|required');
-		$this->form_validation->set_rules('duration_last','Duration_last','trim|required');
+		// $this->form_validation->set_rules('duration_last','Duration_last','trim|required');
 		$this->form_validation->set_rules('method','Method','trim|required');
 		if ($this->form_validation->run() === FALSE) {
 			$data['page_resource'] = parent::page_resources();
@@ -73,11 +73,14 @@ class Billing_new extends MY_Controller
 		    $this->email->message("Kode anda adalah : $encrypted_id");
 
 		    if ($this->email->send()) {
+		    	$total_harga = $this->db->get_where('add_ons', ['id_plugin' => $this->input->post('package_method')])->row()->price;
 		    	$this->dataModel_new->input_data($dataArray);
 		        $dataTransaksi= array('method' => $method,
 							'id_billing' => $this->db->insert_id(),
 							'date' => date('d-m-Y'),
-							'kode' => $encrypted_id);
+							'kode' => $encrypted_id,
+							'jumlah' => $this->input->post('package') == 'thn' ? $total_harga * 300 : ($this->input->post('package') == 'bln' ? $total_harga * 25 : $total_harga)
+						);
 		        $this->dataModel_new->input_data_transaksi($dataTransaksi);
 				redirect('payment_verif_new/createVerif');
 		    } else {

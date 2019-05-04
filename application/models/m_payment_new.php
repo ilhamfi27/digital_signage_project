@@ -24,7 +24,8 @@ class m_payment_new extends CI_Model
 	function tampilBilling($id)
 	{
 		$this->db->join('transaction','billing.id_billing=transaction.id_billing');
-		$this->db->join('package','billing.id_package=package.id_package');
+		$this->db->join('add_ons','billing.id_package=add_ons.id_plugin');
+		$this->db->join('plugins','add_ons.id_plugin=plugins.id_plugin');
 		$this->db->where('user_id',$id);
 		return $this->db->get('billing');
 

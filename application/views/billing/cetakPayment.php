@@ -18,12 +18,12 @@
                                          <h2>
                                          <div>No. Transaksi <?php echo $billing->id_billing; ?></div>
                                           <div>Nama <?php echo $billing->name; ?></div>
-                                           <div>Paket <?php echo $billing->id_package; ?></div>
+                                           <div>Add On <?php echo $billing->title; ?></div>
                                             <div>Tanggal <?php echo $billing->date; ?></div>
                                             </h2>
                                         <hr>
                                         <h1>
-                                           <div>Total pembayaran Rp.<?php echo $billing->price; ?></div>
+                                           <div>Total pembayaran Rp.<?php echo $billing->jumlah; ?></div>
                                          </h1>
 
                                          <a href="javascript:window.print()">Cetak</a>

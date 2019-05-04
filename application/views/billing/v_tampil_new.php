@@ -53,10 +53,10 @@
                                          <?php if ($billing): ?>
                                          	<div>No. Transaksi <?php echo $billing->id_billing; ?></div>
                                           <div>Nama <?php echo $billing->name; ?></div>
-                                           <div>Paket <?php echo $billing->id_package; ?></div>
+                                           <div>Add On <?php echo $billing->title; ?></div>
                                             <div>Tanggal <?php echo $billing->date; ?></div>
                                           <div><hr width="800px"></div>
-                                           <div>Total pembayaran Rp.<?php echo $billing->price; ?></div>
+                                           <div>Total pembayaran Rp.<?php echo $billing->jumlah; ?></div>
                                          <?php endif ?>
                                          
                                            <div><hr width="800px"></div>
@@ -94,9 +94,9 @@
                           <?php $status = isset($billing->status) ? $billing->status : null ?>
                           <?php if ($status == 2): ?>
                               <h2>Belum Dibayar</h2>
-                              <a class="btn btn-sm btn-primary mb-3" href="<?php echo site_url('payment_verif_new/createVerif') ?>">Bayar</a>
+                              <a class="btn btn-sm btn-danger mb-3" href="<?php echo site_url('payment_verif_new/createVerif') ?>">Bayar</a>
                             <?php else : ?>
-                              <div class="huge"><h2><?php echo $billing ? date_diff(date_create(date('Y-m-d')),date_create($billing->duration_last))->days : '0'?></h2></div>
+                              <div class="huge"><h2><?php echo $billing ? date_diff(date_create($billing->duration_first),date_create($billing->duration_last))->days : '0'?></h2></div>
                             <div><h4>Days</h4></div>
                           <?php endif ?>
                         </div>
