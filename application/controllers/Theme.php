@@ -7,6 +7,7 @@ class Theme extends MY_Controller{
     public function __construct() {
         parent::__construct();
         parent::session_needed_except();
+        parent::these_method_for("new_|edit|delete|list_","admin");
         $this->load->helper('view_partial');
         $this->load->model('creator_model','creator_m');
         $this->load->model('category_model','category_m');
@@ -217,7 +218,7 @@ class Theme extends MY_Controller{
 
     public function list_() {
         $data['page_resource'] = parent::page_resources();
-        $data['detailed_data'] = $this->plugin_m->detailed_plugin()->result();
+        $data['detailed_data'] = $this->theme_m->specific_theme_data()->result();
         $this->load->view('theme/list', $data);
     }
 

@@ -164,7 +164,7 @@ class Creator extends MY_Controller {
             [
                 'field' => 'name',
                 'label' => 'Name',
-                'rules' => 'required|trim|min_length[2]|max_length[40]|alpha'
+                'rules' => 'required|trim|min_length[2]|max_length[40]|regex_match[/^[a-zA-Z ]+$/]'
             ],
             [
                 'field' => 'address',
