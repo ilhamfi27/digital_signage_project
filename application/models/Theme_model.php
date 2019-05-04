@@ -47,7 +47,8 @@ class Theme_model extends CI_Model{
             ct.`id_creator`,
             `name`,
             c.`id_category`,
-            `category_name`
+            `category_name`,
+            ct.email
         FROM `themes` t
         JOIN `plugins` p ON p.`id_plugin` = t.`id_plugin`
         JOIN `categories` c ON c.`id_category` = p.`id_category`
