@@ -44,7 +44,7 @@
                 <div class="panel-body">
                   <div class="row">
                     <div class="col-md-12">
-                      <center><img src="<?= base_url('storage/images/icon.jpeg') ?>" width="400"><br>
+                      <center><img src="<?= base_url('storage/images/logo.jpeg') ?>" width="400"><br>
                     </div>
                   </div>
                   <div class="row">

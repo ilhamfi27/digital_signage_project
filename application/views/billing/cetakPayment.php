@@ -12,7 +12,7 @@
                                             <i class="fa fa-tasks fa-5x"></i>
                                         </div>
                                         <div class="col-xs-9 text-right">
-                                         <img src="<?php echo site_url() ?>/storage/images/icon.jpeg" width="1490px" height="150px">
+                                         <img src="<?php echo site_url() ?>/storage/images/logo.jpeg" width="1490px" height="150px">
                                          <hr>
                                         </div><p align="justify">
                                          <h2>

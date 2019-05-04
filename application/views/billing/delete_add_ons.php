@@ -67,7 +67,7 @@
                   <div class="row" style="margin-top: 10px;">
                     <div class="col-md-8 col-md-offset-4"> 
                       <a href='<?= site_url("add_ons_new/details/").$row->id ?>'><button class="btn btn-primary">Read More</button></a>
-                      <button class="btn btn-success">Buy</button>
+                      <button class="btn btn-success">Uninstall</button>
                     </div>
                   </div>
                 </div>
