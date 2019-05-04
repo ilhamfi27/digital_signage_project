@@ -68,17 +68,6 @@ class Add_on_model_new extends CI_Model{
 		return $this->db->get_where('comment', ['plugins.id_plugin' => $id]);
 	}
 
-	public function available($user_id)	{
-		return $this->db->query(
-			"SELECT *
-			FROM billing b
-			JOIN users u ON u.user_id = b.user_id
-			WHERE `status` = 1 
-			AND duration_last > CURRENT_DATE
-			AND b.user_id = " . $user_id
-		);
-	}
-
 }
 
 ?>

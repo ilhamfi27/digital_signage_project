@@ -54,6 +54,17 @@ class dataModel_new extends CI_Model
 		$kode = $data['kode'];
 		$this->db->query("UPDATE `billing` JOIN transaction ON transaction.id_billing = billing.id_billing SET `name` = '$name', `duration_first` = '$duration_last', `duration_last` = '$duration_last', `email` = '$email', `kode` = '$kode', `method` = '$method', `id_package` = '$id_package', `user_id` = '$id' WHERE `user_id` = '$id'");
 	}
+
+	public function has_bought($user_id)	{
+		return $this->db->query(
+			"SELECT *
+			FROM billing b
+			JOIN users u ON u.user_id = b.user_id
+			WHERE `status` = 1 
+			AND duration_last > CURRENT_DATE
+			AND b.user_id = " . $user_id
+		);
+	}
 	
 }
 

@@ -7,6 +7,7 @@ class Add_ons_new extends MY_Controller{
 		$this->load->helper('view_partial');
 		$this->load->model('Add_on_model_new');
 		$this->load->model('Add_on_creator_model_new');
+		$this->load->model('dataModel_new');
 		$this->load->model('creator_model','creator_m');
 		$this->load->model('plugin_model','plugin_m');
         $this->load->model("comment_model", "comment_m");
@@ -16,12 +17,18 @@ class Add_ons_new extends MY_Controller{
 	}
 
 	public function index()	{
+		$user_id = $this->session->userdata("id");
+		$billing = $this->dataModel_new->has_bought($user_id)->row();
+		$data['status'] = $billing !== NULL ? $billing->status : 0;
         $data['page_resource'] = parent::page_resources();
 		$data['addon'] = $this->Add_on_model_new->all()->result();
 		$this->load->view('add_ons/index_new',$data);
 	}
 	
 	public function details($id){
+		$user_id = $this->session->userdata("id");
+		$billing = $this->dataModel_new->has_bought($user_id)->row();
+		$data['status'] = $billing !== NULL ? $billing->status : 0;
         $data['page_resource'] = parent::page_resources();
         $data['plugins']= $this->Add_on_model_new->details($id)->row(1);
         $data['id_plugin'] = $id;
@@ -33,31 +40,6 @@ class Add_ons_new extends MY_Controller{
         $data['creator'] = $this->Add_on_creator_model_new->details($id)->row(1);
 		$this->load->view('add_ons/detail_creator_new', $data);
 	}
-	// public function new_addon(){
- //        $data['page_resource'] = parent::page_resources();
-	// // public function insert_add_on(){
-
- // //        $data['page_resource'] = parent::page_resources();
-	// // 	$price 		= $this->input->post('price');
-
-	// // 	$this->form_validation->set_rules([
-	// // 		[
-	// // 			'field' => 'price',
-	// // 			'label'	=> 'Price',
-	// // 			'rules' => 'required'
-	// // 		]
-	// // 	]);
-
-	// 	if ($this->form_validation->run() === FALSE) {
-	// 		$this->load->view('add_ons/new_addon_new',$data);
-	// 	} else{
-	// 			$data = [
-	// 				'price' => $price
-	// 			];
-	// 			$this->add_on_model_new->insert_add_on($data);
-	// 			redirect('add_ons_new/list_addon');
-	// 		}
-	// 	}
 
 	public function new_addon(){
 
@@ -166,12 +148,12 @@ class Add_ons_new extends MY_Controller{
 		}
 		$this->Add_on_model_new->update($data,$id_plugin);
 		redirect('add_ons_new/list_plugin');
-
 	}
 	public function install_addon()	{
 		$user_id = $this->session->userdata("id");
-		$status = $this->Add_on_model_new->available($user_id)->row()->status;
-		$status == 1 ? $data['add_ons'] = $this->Add_on_model_new->all()->result() : $data['add_ons'] = NULL;
+		$billing = $this->dataModel_new->has_bought($user_id)->row();
+		$status = $billing !== NULL ? $billing->status : 0;
+		$data['add_ons'] = $status == 1 ? $this->Add_on_model_new->all()->result() : [];
         $data['page_resource'] = parent::page_resources();
 		$this->load->view('add_ons/install_addon_new',$data);
 	}

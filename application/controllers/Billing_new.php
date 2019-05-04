@@ -160,13 +160,13 @@ class Billing_new extends MY_Controller
 		$this->dataModel->hapus($id,'payment');
 		redirect('billing/index');
 	}
-public function view_admin()
-{
-	$data['page_resource'] = parent::page_resources();
-		$data['billing'] = $this->dataModel_new->tampil_admin()->result();
-		$this->load->view('billing/viewAdmin', $data);}
+	public function view_admin()
+	{
+		$data['page_resource'] = parent::page_resources();
+			$data['billing'] = $this->dataModel_new->tampil_admin()->result();
+			$this->load->view('billing/viewAdmin', $data);}
 
-}
+	}
 
 
  ?>

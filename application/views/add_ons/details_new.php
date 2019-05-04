@@ -47,7 +47,11 @@
                   <br>
                   <br>
                   <!-- <span class="fa fa-download" style="font-size: 20px;"></span> 56 -->
-                  <button class="btn btn-success" type="button" style="position: absolute; bottom: 0px; right: 20px;">BUY</button>
+                  <?php if($status == 1): ?>
+                  <a href="#" class="btn btn-primary" type="button" style="position: absolute; bottom: 0px; right: 20px;">Install</a>
+                  <?php else: ?>
+                  <a href="<?= site_url("billing_new/create")?>" class="btn btn-success" type="button" style="position: absolute; bottom: 0px; right: 20px;">Buy</a>
+                  <?php endif; ?> 
                 </div>
               </div>
 
