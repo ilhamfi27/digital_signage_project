@@ -8,7 +8,7 @@ class Migration_create_procedure_content extends CI_Migration {
     public function up() {
         $sql1 = "
         CREATE PROCEDURE `content` (IN `uid` INT)  BEGIN
-        SELECT * FROM content JOIN content_category using(id_content_category) WHERE user_id = uid;
+         SELECT `id_content`, `id_content_category`, `description`, tgl(date) as `date`, `subject`, `file`, `user_id`, content_category.* FROM content JOIN content_category using(id_content_category) WHERE user_id = uid;
         END";
         $this->db->query($sql1);
 
