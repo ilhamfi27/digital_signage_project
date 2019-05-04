@@ -38,7 +38,6 @@
         <div class="box-body">
           <?= form_open('front_display_new/inputLayoutContent',['class' => 'form-horizontal']) ?>
 
-
            <div class="form-group">
               <label class="col-sm-2 control-label">Layout Kiri</label>
               <div class="col-sm-10">

@@ -41,10 +41,34 @@
                             <img src="<?= base_url("storage/images/creator_photo/".$creator->image) ?>" class="img-responsive" alt="Creators Photo">
                         </div>
                         <div class="col-md-9">
-                            <p><?= $creator->address ?></p>
-                            <p><?= $creator->place_of_birth . ", " . $creator->date_of_birth ?></p>
-                            <p><?= $creator->phone_number ?></p>
-                            <p><?= $creator->email ?></p>
+                            <dl class="row">  
+                                <dt class="col-md-3">Email</dt>
+                                <dd class="col-md-9"><?= $creator->email?></dd>
+
+                                <dt class="col-md-3">Phone Number</dt>
+                                <dd class="col-md-9"><?= $creator->phone_number?></dd>
+
+                                <dt class="col-md-3">Address</dt>
+                                <dd class="col-md-9"><?= $creator->address?></dd>
+
+                                <dt class="col-md-3">Place Of Birth</dt>
+                                <dd class="col-md-9"><?= $creator->place_of_birth?></dd>
+
+                                <dt class="col-md-3">Date Of Birth</dt>
+                                <dd class="col-md-9"><?= $creator->date_of_birth?></dd>
+
+                                <dt class="col-md-3">Gender</dt>
+                                <dd class="col-md-9"><?= $creator->gender?></dd>
+
+                                <dt class="col-md-3">Religion</dt>
+                                <dd class="col-md-9"><?= $creator->religion?></dd>
+
+                                <dt class="col-md-3">Citizenship</dt>
+                                <dd class="col-md-9"><?= $creator->citizenship?></dd>
+
+                                <dt class="col-md-3">Blood Group</dt>
+                                <dd class="col-md-9"><?= $creator->blood_type?></dd>
+                            </dl>
                         </div>
                     </div>
                 </div>

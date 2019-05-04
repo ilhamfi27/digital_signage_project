@@ -49,11 +49,14 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="<?= site_url('add_ons_new/index') ?>"><i class="fa fa-circle-o"></i> Add Ons</a></li>
-                    <li><a href="<?= site_url('add_ons_new/install_addon') ?>"><i class="fa fa-circle-o"></i> Installed Add On</a></li>
                         
                     <?php if($this->session->level === "admin"){ ?>
                         <li><a href="<?= site_url('add_ons_new/new_addon')?>"><i class="fa fa-circle-o"></i> New Add-on</a></li>
                         <li><a href="<?= site_url('add_ons_new/list_plugin') ?>"><i class="fa fa-circle-o"></i> List Add On</a></li>
+                    <?php } ?>
+
+                     <?php if($this->session->level === "user"){ ?>
+                        <li><a href="<?= site_url('add_ons_new/install_addon') ?>"><i class="fa fa-circle-o"></i> Available Add On</a></li>
                     <?php } ?>
                 </ul>
             </li>
@@ -106,7 +109,7 @@
                     <?php } else { ?>
                     <li><a href="<?= site_url('billing_new/create') ?>"><i class="fa fa-circle-o"></i> Payment</a></li>
                     <li><a href="<?= site_url('payment_verif_new/index') ?>"><i class="fa fa-circle-o"></i> View</a></li>
-                    <li><a href="<?= site_url('#')?>"><i class="fa fa-circle-o"></i> Add-ons</a></li>
+                    <li><a href="<?= site_url('uninstall_add_ons/index')?>"><i class="fa fa-circle-o"></i> Add-ons</a></li>
                     <?php } ?>
                 </ul>
             </li>

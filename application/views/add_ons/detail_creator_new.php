@@ -63,7 +63,7 @@
                       <dd class="col-md-9"><?= $creator->citizenship?></dd>
 
                       <dt class="col-md-3">Blood Group</dt>
-                      <dd class="col-md-9"><?= $creator->blood_group?></dd>
+                      <dd class="col-md-9"><?= $creator->blood_type?></dd>
                   </dl> 
                 </div>
               </div>

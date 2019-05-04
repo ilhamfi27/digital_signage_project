@@ -267,6 +267,21 @@ class Creator extends MY_Controller {
 
     public function detail($id) {
         $data['page_resource'] = parent::page_resources();
+        /**
+          *`id_creator`
+          *`name`
+          *`address`
+          *`image`
+          *`place_of_birth`
+          *`date_of_birth`
+          *`gender`
+          *`religion`
+          *`citizenship`
+          *`blood_type`
+          *`email`
+          *`phone_number`
+          *`made`
+          */
         $data['creator'] = $this->creator_m->detail($id)->row();
         $this->load->view('creator/detail', $data);
     }

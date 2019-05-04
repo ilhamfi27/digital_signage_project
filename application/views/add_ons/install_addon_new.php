@@ -45,23 +45,22 @@
                       <thead>
                         <tr>
                           <th>No</th>
-                          <th>Nama Add Ons</th>
-                          <th>Kategori</th>
-                          <th>Komentar</th>
-                          <th>Download</th>
+                          <th>Add On Title</th>
+                          <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <?php for($i = 0; $i < 23; $i++){ ?>
+                        <?php
+                        $i = 0; 
+                        foreach($add_ons as $add_on){ 
+                        ?>
                         <tr>
                           <td><?= ($i + 1) ?></td>
                           <td>
-                            <label>Memo</label><br>
-                            <img src="<?= base_url('storage/images/memo.jpg') ?>" width="150" height="150">
+                            <label><?= $add_on->title ?></label><br>
+                            <img src="<?= base_url('storage/images/add_ons/' . $add_on->photo_icon) ?>" width="150" height="150">
                           </td>
-                          <td>Note Sehari-hari</td>
-                          <td>bagus sekali</td>
-                          <td>11 0rang</td>
+                          <td><a class="btn btn-success">Install</a></td>
                         </tr>
                         <?php } ?>
                       </tbody>
