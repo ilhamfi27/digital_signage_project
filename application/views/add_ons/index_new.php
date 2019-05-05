@@ -71,7 +71,7 @@
                       <?php } ?>
                       <?php if($this->session->level !== "admin"){ ?>
                           <a href='<?= site_url("add_ons_new/details/".$row->id_plugin)?>'><button class="btn btn-primary">Read More</button></a>
-                          <?php if($status == 1): ?>
+                          <?php if($row->add_on_avaliability == 1): ?>
                           <a href="#"><button class="btn btn-success">Install</button></a>
                           <?php else: ?>
                           <a href="<?= site_url("billing_new/create")?>"><button class="btn btn-success">Buy</button></a>
