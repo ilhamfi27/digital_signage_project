@@ -14,9 +14,10 @@ class Billing_new extends MY_Controller
 		$this->load->view('billing/v_verif_new', $data);
 		redirect('payment_verif_new/createVerif',$data);
 	}
-	function create(){
+	function create($id_plugin = NULL){
 		$data['page_resource'] = parent::page_resources();
 		$data['package'] = $this->dataModel_new->tampilPayment()->result();
+		$data['id_plugin'] = $id_plugin;
 		$this->load->view('billing/inputkan_new', $data);
 	}
 	function aksiCreate(){
