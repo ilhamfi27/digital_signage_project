@@ -17,11 +17,16 @@ class Add_ons_new extends MY_Controller{
 	}
 
 	public function index()	{
+        $data['page_resource'] = parent::page_resources();
+
 		$user_id = $this->session->userdata("id");
 		$billing = $this->dataModel_new->has_bought($user_id)->row();
+		
 		$data['status'] = $billing !== NULL ? $billing->status : 0;
-        $data['page_resource'] = parent::page_resources();
-		$data['addon'] = $this->Add_on_model_new->all()->result();
+		
+		// $data['addon'] = $this->Add_on_model_new->all()->result();
+		$data['addon'] = $this->Add_on_model_new->available_for($user_id)->result();
+
 		$this->load->view('add_ons/index_new',$data);
 	}
 	
@@ -53,12 +58,12 @@ class Add_ons_new extends MY_Controller{
 			[
 				'field' => 'plugins[title]',
 				'label'	=> 'Title',
-				'rules' => 'required'
+				'rules' => 'required|alpha_numeric_spaces'
 			],
 			[
 				'field' => 'add_ons[price]',
 				'label'	=> 'price',
-				'rules' => 'required'
+				'rules' => 'required|numeric'
 			]
 		]);
 
@@ -151,9 +156,12 @@ class Add_ons_new extends MY_Controller{
 	}
 	public function install_addon()	{
 		$user_id = $this->session->userdata("id");
-		$billing = $this->dataModel_new->has_bought($user_id)->row();
-		$status = $billing !== NULL ? $billing->status : 0;
-		$data['add_ons'] = $status == 1 ? $this->Add_on_model_new->all()->result() : [];
+
+		// $billing = $this->dataModel_new->has_bought($user_id)->row();
+		
+		// $status = $billing !== NULL ? $billing->status : 0;
+		
+		$data['add_ons'] = $this->Add_on_model_new->available_for($user_id)->result();
         $data['page_resource'] = parent::page_resources();
 		$this->load->view('add_ons/install_addon_new',$data);
 	}
@@ -227,27 +235,6 @@ class Add_ons_new extends MY_Controller{
 			]
 
 		]);
-
-		// if ($this->form_validation->run() === FALSE) {
-		// 	$this->load->view('add_ons/newCreator_new',$data);
-		// } 
-		// else{
-		// 		$data = [
-		// 			'name' => $name,
-		// 			'address' => $address,
-		// 			'email' => $email,
-		// 			'phone_number' => $phone,
-		// 			'citizenship' => $citizenship,
-		// 			'gender' => $gender,
-		// 			'date_of_birth' => $date_of_birth,
-		// 			'place_of_birth' => $place_of_birth,
-		// 			'religion' => $religion,
-		// 			'blood_group' => $blood_group,
-		// 			'made' => "add on"
-		// 		];
-		// 		$this->Add_on_creator_model_new->insert_add_on($data);
-		// 		redirect('add_ons_new/list_creator');
-		// 	}
 
 
 		if ($this->form_validation->run() === FALSE) {

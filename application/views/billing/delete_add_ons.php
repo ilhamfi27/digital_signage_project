@@ -49,23 +49,23 @@
               $no = 1;
               foreach($addon as $row):
             ?>
-            <div class="col-md-6">
+            <div class="col-md-13">
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h3 class="panel-title"><?php echo $row->title; ?></h3>
                 </div>
                 <div class="panel-body">
                   <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-3">
                       <img  src="<?= base_url('storage/images/add_ons/') . $row->photo_icon ?>" width='200' height='200'><br>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-2">
                      <p align="justify"><?php echo $row->description; ?></p>
                     </div>
                   </div>
-                  <div class="row" style="margin-top: 10px;">
-                    <div class="col-md-8 col-md-offset-4"> 
-                      <a href='<?= site_url("add_ons_new/details/").$row->id ?>'><button class="btn btn-primary">Read More</button></a>
+                  <div class="row" style="margin-top: 1px;">
+                    <div class="col-md-1 col-md-offset-10"> 
+                      
                       <?php if ($billing->status_install == 1): ?>
                         <a href="<?php echo site_url('uninstall_add_ons/uninstall/'.$billing->id_billing) ?>" class="btn btn-danger">Uninstall</a>
                       <?php else : ?>

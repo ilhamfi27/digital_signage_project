@@ -52,7 +52,9 @@
                       <tbody>
                         <?php
                         $i = 0; 
-                        foreach($add_ons as $add_on){ 
+                        foreach($add_ons as $add_on){
+                        if ($add_on->add_on_avaliability == FALSE)
+                          continue; 
                         ?>
                         <tr>
                           <td><?= ($i + 1) ?></td>

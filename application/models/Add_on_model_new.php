@@ -68,6 +68,32 @@ class Add_on_model_new extends CI_Model{
 		return $this->db->get_where('comment', ['plugins.id_plugin' => $id]);
 	}
 
+	public function available_for($id_user){
+		 return $this->db->query("SELECT
+			ad.id_plugin,
+		    price,
+		    title,
+		    photo_icon,
+		    description,
+		    (
+		        SELECT
+		            (
+		                CASE
+		                    WHEN b.duration_last > CURRENT_DATE THEN TRUE
+		                    ELSE FALSE
+		                END
+		            ) add_on_avaliability
+		        FROM add_ons a
+		        LEFT JOIN billing b ON b.id_package = a.id_plugin
+		        LEFT JOIN users u ON u.user_id = b.user_id
+		        LEFT JOIN plugins p ON p.id_plugin = a.id_plugin
+		        WHERE a.id_plugin = ad.id_plugin AND u.user_id = ?
+		        LIMIT 1
+		    ) AS add_on_avaliability
+		FROM add_ons ad
+		LEFT JOIN plugins p ON p.id_plugin = ad.id_plugin", [$id_user]);
+	}
+
 }
 
 ?>
