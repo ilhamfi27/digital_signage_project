@@ -90,7 +90,7 @@
               </select>
               </div>
            </div>
-
+           <?php if($id_plugin===NULL): ?>
            <div class="form-group">
               <label class="col-sm-2 control-label"> Pilih Paket & Price</label>
               <div class="col-sm-10">
@@ -101,6 +101,9 @@
                 </select>
               </div>
            </div>
+           <?php else: ?>
+                <input type="hidden" name="package_method" value="<?= $id_plugin ?>">
+           <?php endif; ?>
 
             <div class="form-group">
               <div class="col-sm-offset-2 col-sm-10">

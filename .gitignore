@@ -35,6 +35,9 @@ storage/images/front_display/*
 storage/images/add_ons/*
 !storage/images/add_ons/index.html
 
+storage/images/content/*
+!storage/images/content/index.html
+
 # IDE Files
 #-------------------------
 /nbproject/
