@@ -163,11 +163,11 @@ class Billing_new extends MY_Controller
 		    }
         }
 	}
-	function deleteData($id){
-		// $where = array('id' => $id);
-		$this->dataModel->hapus($id,'payment');
-		redirect('billing/index');
-	}
+	// public function delete_data($id){
+	// 	$where = array('id_billing' => $id);
+	// 	$this->dataModel_new->hapus($where,'billing');
+	// 	redirect('billing_new/create');
+	// }
 	public function view_admin()
 	{
 		$data['page_resource'] = parent::page_resources();
