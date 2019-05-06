@@ -111,7 +111,7 @@
                   <div class="row" style="margin-top: 90px;">
                     <div class="col-md-8 col-md-offset-4"> 
                       <a href='<?= $billing? site_url('billing_new/update/'. $billing->id_billing) : site_url('billing_new/create') ?>'><button class="btn btn-primary"><?php echo $billing ? 'Update' : 'Beli' ?></button></a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
-                      <button class="btn btn-success">Unistall</button>
+                      <a href="<?= site_url('Uninstall_add_ons/index') ?>"><button class="btn btn-success">Unistall</button></a>
                     </div>
                   </div>
                 </div>
