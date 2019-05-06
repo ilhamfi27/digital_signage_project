@@ -13,7 +13,7 @@ $('.login-fail-alert-js').ready(function () {
 
 // ajax on change profile form
 $('#change-profile-form').submit(function (e) {
-    e.preventDefault();
+    // e.preventDefault();
     console.log("masuk");
     var urlTo = $("#change-profile-form").attr("action");
     var imgUrl = $("#user_avatar").data("img-url");
