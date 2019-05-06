@@ -39,6 +39,18 @@
                 </ul>
             </li>
             <li><a href="<?= site_url('category/') ?>"><i class="fa fa-link"></i> <span>Plugin Categories</span></a></li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-folder"></i> <span>Ads</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="<?= site_url('ad/new_') ?>"><i class="fa fa-circle-o"></i> New Ad</a></li>
+                    <li><a href="<?= site_url('ad/list_') ?>"><i class="fa fa-circle-o"></i> List Ad</a></li>
+                </ul>
+            </li>
             <?php } ?>
             <li class="treeview">
                 <a href="#">
