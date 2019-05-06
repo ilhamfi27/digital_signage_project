@@ -293,8 +293,8 @@ class Front_display_new extends MY_Controller{
 	public function detailInput($id){
 		$data['page_resource'] = parent::page_resources();
 		$data['layout'] = $this->modellayout_new->ambil_layout($id)->row(1);
-		$data['plugins'] = $this->Add_on_model_new->all();
-		$data['content'] = $this->modelcontent_new->ambil_content($this->session->id);
+		$data['plugins'] = $this->Add_on_model_new->available_for($this->session->id)->result();
+		$data['content'] = $this->modelcontent_new->ambil_content($this->session->id)->result();
 		$this->load->view('front_display/insertContent_new',$data);
 	}
 

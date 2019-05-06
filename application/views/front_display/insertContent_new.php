@@ -42,7 +42,7 @@
               <label class="col-sm-2 control-label">Layout Kiri</label>
               <div class="col-sm-10">
                 <select class="form-control" name="id_content_kiri">
-                  <?php foreach ($content->result() as $s):   ?>
+                  <?php foreach ($content as $s):   ?>
                     <option value="<?php echo $s->id_content?>"><?php echo $s->file ?></option>
                   <?php endforeach; ?>
                   <?=form_error('content[file]')  ?>
@@ -55,7 +55,7 @@
               <label class="col-sm-2 control-label">Layout Kanan</label>
               <div class="col-sm-10">
                 <select class="form-control" name="id_content_kanan">
-                  <?php foreach ($content->result() as $s):   ?>
+                  <?php foreach ($content as $s):   ?>
                     <option value="<?php echo $s->id_content?>"><?php echo $s->file ?></option>
                   <?php endforeach; ?>
                   <?=form_error('content[file]')  ?>
@@ -69,9 +69,15 @@
               <div class="col-sm-10">
                 <select class="form-control" name="add_on_kiri">
                   <option value="">Kosong</option>
-                  <?php foreach ($plugins->result() as $p):   ?>
-                    <option value="<?php echo $p->id_plugin?>"><?php echo $p->uploaded ?></option>
-                  <?php endforeach; ?>
+                  <?php 
+                    foreach ($plugins as $p):   
+                    if($p->add_on_avaliability == 1){
+                  ?>
+                    <option value="<?php echo $p->id_plugin?>"><?php echo $p->title ?></option>
+                  <?php 
+                    }
+                    endforeach; 
+                  ?>
                   <?=form_error('plugins[uploaded]')  ?>
                 </select>
                 <?= form_error('uploaded')?>
@@ -83,9 +89,15 @@
               <div class="col-sm-10">
                 <select class="form-control" name="add_on_kanan">
                   <option value="">Kosong</option>
-                  <?php foreach ($plugins->result() as $p):   ?>
-                    <option value="<?php echo $p->id_plugin?>"><?php echo $p->uploaded ?></option>
-                  <?php endforeach; ?>
+                  <?php 
+                    foreach ($plugins as $p):   
+                    if($p->add_on_avaliability == 1){
+                  ?>
+                    <option value="<?php echo $p->id_plugin?>"><?php echo $p->title ?></option>
+                  <?php 
+                    }
+                    endforeach; 
+                  ?>
                   <?=form_error('plugins[uploaded]')  ?>
                 </select>
                 <?= form_error('uploaded')?>
