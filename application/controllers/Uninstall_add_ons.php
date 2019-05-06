@@ -27,6 +27,10 @@ class Uninstall_add_ons extends MY_Controller
 		$this->dataModel->hapus($id,'plugins');
 		redirect('unistall_add_ons/index');
 	}
+	public function delete_data($id){
+		$this->m_unistall_add_ons->hapus_billing($id);
+		redirect('billing_new/create');
+	}
 
 	public function uninstall($id)
 	{
