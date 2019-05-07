@@ -28,16 +28,17 @@ class Billing_new extends MY_Controller
 		$duration_last = $this->input->post('package') == 'thn' ? date_format(date_add(date_create($duration_first),date_interval_create_from_date_string("1 years")), "Y-m-d") : ($this->input->post('package') == 'bln' ? date_format(date_add(date_create($duration_first),date_interval_create_from_date_string("1 months")), "Y-m-d") : date_format(date_add(date_create($duration_first),date_interval_create_from_date_string("1 days")), "Y-m-d"));
 		$method = $this->input->post('method');
 		$package_method = $this->input->post('package_method');
+		$id_plugin = $this->input->post('id_plugin');
 
 		$dataArray = array('name' => $name,
-							'email' => $email,
-							'duration_first' => $duration_first,
-							'duration_last' => $duration_last,
-						'id_package'=> $package_method,
-						'user_id' => $this->session->userdata('id'),
-						'status' => 2,
-						'status_install' => 1
-					);
+			'email' => $email,
+			'duration_first' => $duration_first,
+			'duration_last' => $duration_last,
+			'id_package'=> $package_method,
+			'user_id' => $this->session->userdata('id'),
+			'status' => 2,
+			'status_install' => 1
+		);
 
 		$this->form_validation->set_rules('name','Name','trim|required');
 		$this->form_validation->set_rules('email','Exmail','trim|required');
@@ -47,6 +48,7 @@ class Billing_new extends MY_Controller
 		if ($this->form_validation->run() === FALSE) {
 			$data['page_resource'] = parent::page_resources();
 			$data['package'] = $this->dataModel_new->tampilPayment()->result();
+			$data['id_plugin'] = $id_plugin;
 			$this->load->view('billing/inputkan_new', $data);
 
         } else {
@@ -118,8 +120,8 @@ class Billing_new extends MY_Controller
 
 		$this->form_validation->set_rules('name','Name','trim|required');
 		$this->form_validation->set_rules('email','Exmail','trim|required');
-		// $this->form_validation->set_rules('duration_first','Duration_first','trim|required');
-		// $this->form_validation->set_rules('duration_last','Duration_last','trim|required');
+		$this->form_validation->set_rules('duration_first','Duration_first','trim|required');
+		$this->form_validation->set_rules('duration_last','Duration_last','trim|required');
 		$this->form_validation->set_rules('package_method','Method','trim|required');
 		if ($this->form_validation->run() === FALSE) {
 			$this->update($this->input->post('id_billing'));
@@ -164,11 +166,11 @@ class Billing_new extends MY_Controller
 		    }
         }
 	}
-	function deleteData($id){
-		// $where = array('id' => $id);
-		$this->dataModel->hapus($id,'payment');
-		redirect('billing/index');
-	}
+	// public function delete_data($id){
+	// 	$where = array('id_billing' => $id);
+	// 	$this->dataModel_new->hapus($where,'billing');
+	// 	redirect('billing_new/create');
+	// }
 	public function view_admin()
 	{
 		$data['page_resource'] = parent::page_resources();

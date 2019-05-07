@@ -28,7 +28,7 @@
       <div class="box">
         <div class="box-header with-border">
           <center>
-            <p style="font-size: 25px">View Payment</p>
+            <p style="font-size: 25px">View Billing</p>
           </center>
         </div>
         
@@ -72,7 +72,7 @@
                     		<?php else : ?>
                     			<a class="btn btn-primary btn-disabled">Cetak</a>
                     	<?php endif ?>
-                      
+                      <a href="<?= site_url('Uninstall_add_ons/delete_data/'.$this->session->userdata('id')) ?>"><button class="btn btn-danger">Delete</button></a>
                     </div>
                   </div>
                 </div>
@@ -111,16 +111,13 @@
                   <div class="row" style="margin-top: 90px;">
                     <div class="col-md-8 col-md-offset-4"> 
                       <a href='<?= $billing? site_url('billing_new/update/'. $billing->id_billing) : site_url('billing_new/create') ?>'><button class="btn btn-primary"><?php echo $billing ? 'Update' : 'Beli' ?></button></a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
-                      <button class="btn btn-success">Unistall</button>
+                      <a href="<?= site_url('Uninstall_add_ons/index') ?>"><button class="btn btn-success">Unistall</button></a>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="cleanslate w24tz-current-time w24tz-middle" style="display: inline-block !important; visibility: hidden !important; min-width:300px !important; min-height:145px !important;"><p><a href="//24timezones.com/world_directory/time_in_bandung.php" style="text-decoration: none" class="clock24" id="tz24-1556794185-c1437-eyJob3VydHlwZSI6MTIsInNob3dkYXRlIjoiMSIsInNob3dzZWNvbmRzIjoiMCIsImNvbnRhaW5lcl9pZCI6ImNsb2NrX2Jsb2NrX2NiNWNjYWNiNDllOTc4OCIsInR5cGUiOiJkYiIsImxhbmciOiJlbiJ9" title="World Time :: Bandung" target="_blank" rel="nofollow">Time in Bandung</a></p><div id="clock_block_cb5ccacb49e9788"></div></div>
-            <script type="text/javascript" src="//w.24timezones.com/l.js" async></script>
-
-            <!-- weather widget start --><a target="_blank" href="https://www.booked.net/weather/bandung-9580"><img src="https://w.bookcdn.com/weather/picture/1_9580_1_1_137AE9_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=w209&anc_id=11903"  alt="booked.net"/></a><!-- weather widget end -->
+            
           </div>  
         </div>
 

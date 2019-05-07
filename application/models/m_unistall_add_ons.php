@@ -3,7 +3,9 @@
 
 class m_unistall_add_ons extends CI_Model
 {
+	// public $id = 'id_billing';
 	private $table = 'plugins';
+	private $table2 = 'billing';
 	function tampil()
 	{
 		$id_user = $this->session->id;
@@ -15,4 +17,10 @@ class m_unistall_add_ons extends CI_Model
         $this->db->delete($this->table);
         return $this->db->affected_rows();
     }
+    function hapus_billing($id){
+    	
+		return $this->db->query('DELETE FROM `billing` WHERE user_id = ?', [$id]);
+        
+		
+	}
 }
