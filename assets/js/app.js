@@ -42,6 +42,8 @@ $('#change-profile-form').submit(function (e) {
         error: function(e) {
             if (e.status == 500) {
                 sweetAlertError("Sorry, Internal Server Error (Error Code: " + e.status + ")");
+            } else {
+                sweetAlertError("Sorry, Internal Server Error (Unknown Error)");
             }
         }
     });
