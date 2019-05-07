@@ -48,7 +48,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Uploaded</label>
                             <div class="col-sm-10">
-                                <input type="file" name="uploaded">
+                                <input type="file" name="uploaded" accept="image/*">
                                 <?= form_error('uploaded')?>
                             </div>
                         </div>
@@ -62,7 +62,7 @@
                      </div>
 
                      <div class="form-group">
-                            <label class="col-sm-2 control-label">Price</label>
+                            <label class="col-sm-2 control-label">Price (IDR)</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="price" name="add_ons[price]">
                                 <?= form_error('add_ons[price]')?>
