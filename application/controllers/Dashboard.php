@@ -35,7 +35,6 @@ class Dashboard extends MY_Controller {
         $last_name                  = $this->input->post('last_name');
         $birth_date                 = $this->input->post('birth_date');
         $gender                     = $this->input->post('gender');
-        $photo                      = $this->input->post('photo');
 
         $password_verification      = $this->input->post('password_verification');
         
@@ -107,18 +106,25 @@ class Dashboard extends MY_Controller {
         // photo configuration
         $new_file_name                  = "p_".time()."_".$this->session->userdata('id');
         $config['upload_path']          = 'storage/images/user_avatar/';
-        $config['allowed_types']        = 'gif|jpg|png';
+        $config['allowed_types']        = 'gif|jpg|png|jpeg';
         $config['file_name']            = $new_file_name;
         $this->load->library('upload', $config);
+        $this->upload->initialize($config);
     }
 
     private function user_data_transaction($data_needed, $new_profile_data){
         if ($data_needed['user_encrypted_password'] === $data_needed['password_verification']) {
-            if (!$this->upload->do_upload('photo') && NULL === $data_needed['avatar']){
-                $error = $this->upload->display_errors();
+            $photo_upload_status = $this->upload->do_upload('photo');
+            $photo_upload_errors = $this->upload->display_errors(NULL,NULL);
+            if (!$photo_upload_status && NULL === $data_needed['avatar']){
                 return [
                     'is_error' => TRUE,
-                    'errors' => $error
+                    'errors' => $photo_upload_errors
+                ];
+            }else if ("" != $photo_upload_errors){
+                return [
+                    'is_error' => TRUE,
+                    'errors' => $photo_upload_errors
                 ];
             }else{
                 $user_exist = $this->user_data_m->detail($this->session->userdata('id'))->row();
