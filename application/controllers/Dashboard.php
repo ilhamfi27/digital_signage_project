@@ -91,14 +91,14 @@ class Dashboard extends MY_Controller {
                 'page_data' => $data
             ];
             $result = $this->user_data_transaction($data_needed, $new_profile_data);
-            if ($result['is_error'] === FALSE) {
-                echo json_encode([
-                    'success' => "Record Added Successfully",
-                    'new_image' => $result['new_image']
-                ]);
-            } else {
-                echo json_encode(['errors' => $result['errors']]);
-            }
+            // if ($result['is_error'] === FALSE) {
+            //     echo json_encode([
+            //         'success' => "Record Added Successfully",
+            //         'new_image' => $result['new_image']
+            //     ]);
+            // } else {
+            //     echo json_encode(['errors' => $result['errors']]);
+            // }
         }
     }
 
@@ -106,7 +106,8 @@ class Dashboard extends MY_Controller {
         // photo configuration
         $new_file_name                  = "p_".time()."_".$this->session->userdata('id');
         $config['upload_path']          = 'storage/images/user_avatar/';
-        $config['allowed_types']        = 'gif|jpg|png|jpeg';
+        // $config['allowed_types']        = 'gif|jpg|png|jpeg';
+        $config['allowed_types']        = 'gif';
         $config['file_name']            = $new_file_name;
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
@@ -116,17 +117,23 @@ class Dashboard extends MY_Controller {
         if ($data_needed['user_encrypted_password'] === $data_needed['password_verification']) {
             $photo_upload_status = $this->upload->do_upload('photo');
             $photo_upload_errors = $this->upload->display_errors(NULL,NULL);
-            if (!$photo_upload_status && NULL === $data_needed['avatar']){
-                return [
-                    'is_error' => TRUE,
-                    'errors' => $photo_upload_errors
-                ];
-            }else if ("" != $photo_upload_errors){
-                return [
-                    'is_error' => TRUE,
-                    'errors' => $photo_upload_errors
-                ];
-            }else{
+            if (!$photo_upload_status && NULL === $data_needed['avatar'] && "" != $photo_upload_errors){
+                // return [
+                //     'is_error' => TRUE,
+                //     'errors' => $photo_upload_errors
+                // ];
+                print_r($photo_upload_errors);
+                echo "1";
+            } else if (!$photo_upload_status && NULL !== $data_needed['avatar'] && "" != $photo_upload_errors){
+                // return [
+                //     'is_error' => TRUE,
+                //     'errors' => $photo_upload_errors
+                // ];
+                print_r($data_needed['avatar']);
+                print_r(NULL !== $data_needed['avatar'] && "" != $photo_upload_errors);
+                print_r($photo_upload_errors);
+                echo "2";
+            } else {
                 $user_exist = $this->user_data_m->detail($this->session->userdata('id'))->row();
                 $new_profile_data['avatar'] = "" !== $this->upload->data()['orig_name'] ? $this->upload->data()['orig_name'] : $data_needed['avatar'];
                 if (!isset($user_exist)) {
@@ -136,10 +143,12 @@ class Dashboard extends MY_Controller {
                     $db_operation = $this->user_data_m->update($new_profile_data, $this->session->userdata('id'));
                 }
                 
-                return [
-                    'is_error' => FALSE,
-                    'new_image' => $new_profile_data['avatar']
-                ];
+                // return [
+                //     'is_error' => FALSE,
+                //     'new_image' => $new_profile_data['avatar']
+                // ];
+                print_r($photo_upload_errors);
+                echo "3";
             }
         } else {
             return [
