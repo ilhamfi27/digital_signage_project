@@ -3,6 +3,7 @@ class MY_Controller extends CI_Controller {
     
     public function __construct() {
         parent::__construct();
+        $this->migration_check();
     }
     
     protected function session_needed_except($methods = NULL) {
@@ -65,5 +66,43 @@ class MY_Controller extends CI_Controller {
             'admin_footer' => $this->load->view('resources/_admin_footer', $data, TRUE),
             'admin_scripts' => $this->load->view('resources/_admin_scripts', NULL, TRUE)
         ];
+    }
+    
+    protected function inside_dir(){
+        $dir = APPPATH . "migrations";
+        $files = array();
+        $index = 0;
+        if (is_dir($dir)) {
+            if ($d = opendir($dir)) {
+                while (($file = readdir($d)) !== FALSE) {
+                    if (pathinfo($dir.$file)['extension'] === "php") {
+                        $file_name = explode("_",$file);
+                        $version = $file_name[0];
+                        array_shift($file_name);
+                        $files[$index]['version'] = $version;
+                        $files[$index]['file_name'] = implode("_", $file_name);
+                        $index++;
+                    }
+                }
+                closedir($d);
+            }
+        }
+        return $files;
+    }
+
+    private function migration_check() {
+        if(ENVIRONMENT == "development"){
+            $this->load->model('migration_model', 'mg');
+            $now_class = $this->router->fetch_class();
+            $latest_migrated_version = $this->mg
+                                             ->get_latest_migrated_version()
+                                             ->result()[0];
+            $files = $this->inside_dir();
+            $latest_migration_version = end($files)['version'];
+            if($latest_migrated_version != $latest_migration_version && $now_class != "migrate") {
+                $this->session->set_flashdata("migration_first", "There is <strong>Pending</strong> migration. Migrate it First!");
+                redirect('migrate/');
+            }
+        }
     }
 }

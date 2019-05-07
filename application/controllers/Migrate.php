@@ -13,15 +13,15 @@ class Migrate extends MY_Controller {
         } else {
             $migration_status = show_error($this->migration->error_string());
         }
-        $this->index($migration_status);    
+        $this->session->set_flashdata("migration_status", $migration_status);
+        redirect("migrate/index");
     }
     
-    public function index($migration_status = NULL) {
+    public function index() {
         $data['migration_version'] = $this->mg->get_latest_migrated_version()
-                                        ->result()[0]
-                                        ->version;
+                                          ->result()[0]
+                                          ->version;
         $data['files'] = $this->inside_dir();
-        $data['migration_status'] = $migration_status;
         $data['very_early_version'] = $data['files'][0]['version'];
         $data['very_last_version'] = end($data['files'])['version'];
         $this->load->view("migration_views/index", $data);
@@ -68,27 +68,5 @@ class Migrate extends MY_Controller {
         } else {
             return TRUE;
         }
-    }
-
-    private function inside_dir(){
-        $dir = APPPATH . "migrations";
-        $files = array();
-        $index = 0;
-        if (is_dir($dir)) {
-            if ($d = opendir($dir)) {
-                while (($file = readdir($d)) !== FALSE) {
-                    if (pathinfo($dir.$file)['extension'] === "php") {
-                        $file_name = explode("_",$file);
-                        $version = $file_name[0];
-                        array_shift($file_name);
-                        $files[$index]['version'] = $version;
-                        $files[$index]['file_name'] = implode("_", $file_name);
-                        $index++;
-                    }
-                }
-                closedir($d);
-            }
-        }
-        return $files;
     }
 }

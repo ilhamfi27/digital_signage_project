@@ -89,7 +89,16 @@
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="migration-list" role="tabpanel">
                         <h1>Migration list</h1>
-                        <?= $migration_status ?>
+                        <?php if("" != $this->session->userdata("migration_status")): ?>
+                        <div class="alert alert-info">
+                            <?= $this->session->userdata("migration_status") ?>
+                        </div>
+                        <?php endif; ?>
+                        <?php if("" != $this->session->userdata("migration_first")): ?>
+                        <div class="alert alert-danger">
+                            <?= $this->session->userdata("migration_first") ?>
+                        </div>
+                        <?php endif; ?>
                         <table class="table table-bordered" id="migration-table" style="width:100%">
                             <thead>
                                 <tr>
